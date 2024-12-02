@@ -1,0 +1,18 @@
+<form [formGroup]="myform" (ngSubmit)="addOrUpdate()">
+  <h1 mat-dialog-title>{{inputData.header}}</h1>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Region</mat-label>
+      <input formControlName="region" matInput />
+      <input formControlName="id" matInput hidden="hidden" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Rate</mat-label>
+      <input formControlName="rate" matInput />
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary">Save</button>
+    <button (click)="closePopup(); $event.preventDefault();" mat-raised-button color="warn">Close</button>
+  </div>
+</form>

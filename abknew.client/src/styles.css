@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/font-awesome/css/font-awesome.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.column-container {
+  display: flex;
+  flex-direction: column; /* This makes the children align in a column */
+  gap: 10px; /* Optional: Adds space between the divs */
+}
+
+.column-item {
+  background-color: #f0f0f0; /* Example background color */
+  padding: 20px;
+  border: 1px solid #ccc; /* Example border */
+}
+
+button {
+  margin: 10px;
+}
+

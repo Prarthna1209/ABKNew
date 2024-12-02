@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABKNew.Server", "ABKNew.Server\ABKNew.Server.csproj", "{DAF262D7-9C10-4827-982F-29CFA5BE6923}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "abknew.client", "abknew.client\abknew.client.esproj", "{4B057650-2888-4B5E-8922-B25DF12CC1FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DAF262D7-9C10-4827-982F-29CFA5BE6923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAF262D7-9C10-4827-982F-29CFA5BE6923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAF262D7-9C10-4827-982F-29CFA5BE6923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAF262D7-9C10-4827-982F-29CFA5BE6923}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B057650-2888-4B5E-8922-B25DF12CC1FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B057650-2888-4B5E-8922-B25DF12CC1FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B057650-2888-4B5E-8922-B25DF12CC1FA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4B057650-2888-4B5E-8922-B25DF12CC1FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B057650-2888-4B5E-8922-B25DF12CC1FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B057650-2888-4B5E-8922-B25DF12CC1FA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {64E0EEB8-489A-4BD7-9357-E448792CD76F}
+	EndGlobalSection
+EndGlobal

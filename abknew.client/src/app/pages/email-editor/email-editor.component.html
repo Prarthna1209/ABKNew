@@ -1,0 +1,41 @@
+<form [formGroup]="myform" (ngSubmit)="updateTemplate()">
+  <h1 mat-dialog-title>{{name}}</h1>
+  <div class="mat-dialog-content">
+    <mat-form-field appearance="fill" style="display: block !important;">
+      <mat-label>Subject</mat-label>
+      <input matInput formControlName="subject" value="{{subject}}" id="subject" placeholder="Placeholder">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary">Save</button>
+    <button (click)="cancel(); $event.preventDefault();" mat-raised-button color="warn">Cancel</button>
+  </div>
+
+</form>
+
+<div class="column-item">
+  <h3>Available Placeholder Variables</h3>
+  <div class="label-container">
+    <div *ngFor="let item of templateVars"
+         class="draggable-label"
+         draggable="true"
+         (dragstart)="onDragStart($event, item)">
+      {{ item }}
+    </div>
+  </div>
+</div>
+<div class="main-container column-item">
+  <div class="editor-container editor-container_classic-editor editor-container_include-block-toolbar" #editorContainerElement>
+    <div class="editor-container__editor">
+      <div #editorElement
+           (dragover)="onDragOver($event)"
+           (drop)="onDrop($event, Editor)">
+        <ckeditor [editor]="Editor" [config]="config" *ngIf="isLayoutReady"
+                  (ready)="onReady($event)" class="custom-ckeditor" />
+      </div>
+    </div>
+  </div>
+</div>

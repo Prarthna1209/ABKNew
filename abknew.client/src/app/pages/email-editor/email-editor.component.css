@@ -1,0 +1,58 @@
+@import 'ckeditor5/ckeditor5.css';
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@media print {
+  body {
+    margin: 0 !important;
+  }
+}
+
+.main-container {
+  font-family: 'Lato';
+  height: 60%;
+}
+
+.ck-content {
+  font-family: 'Lato';
+  line-height: 1.6;
+  word-break: break-word;
+  height: 300px !important; /* Set a fixed height */
+  overflow-y: auto !important; /* Enable vertical scrolling */
+}
+
+.editor-container_classic-editor .editor-container__editor {
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 60%;
+  max-height: 100%;
+}
+
+.editor-container_include-block-toolbar {
+  margin-left: 42px;
+}
+
+.label-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.draggable-label {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: grab;
+  user-select: none;
+}
+
+.draggable-label:active {
+  cursor: grabbing;
+}
+
+.ckeditor-container {
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: #f9f9f9;
+}

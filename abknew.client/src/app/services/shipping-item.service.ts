@@ -22,7 +22,7 @@ export class ShippingItemService
     return this.http.post<boolean>(this.apiUrl, shippingItem);
   }
 
-  getShippingItemById(id: number): Observable<ShippingItem>
+  getShippingItemById(id: string): Observable<ShippingItem>
   {
     return this.http.get<ShippingItem>(`${this.apiUrl}/${id}`);
   }
@@ -32,7 +32,7 @@ export class ShippingItemService
     return this.http.post<boolean>(`${this.apiUrl}`, { _method: 'PUT', ...shippingItem });
   }
 
-  deleteShippingItem(id: number): Observable<boolean>
+  deleteShippingItem(id: string): Observable<boolean>
   {
     return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
   }

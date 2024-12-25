@@ -21,7 +21,7 @@ export class PmService {
     return this.http.post<boolean>(this.apiUrl, pm);
   }
 
-  getPMById(id: number): Observable<Pm>
+  getPMById(id: string): Observable<Pm>
   {
     return this.http.get<Pm>(`${this.apiUrl}/${id}`);
   }
@@ -31,7 +31,7 @@ export class PmService {
     return this.http.post<boolean>(`${this.apiUrl}`, { _method: 'PUT', ...pm });
   }
 
-  deletePM(id: number): Observable<boolean>
+  deletePM(id: string): Observable<boolean>
   {
     return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
   }

@@ -27,7 +27,7 @@ export class PmPopupComponent {
   {
     this.inputData = this.data;
     this.contractors = this.data.contractors;
-    if (this.inputData.id > 0)
+    if (this.inputData.id != '')
     {
       this.setPopupData(this.inputData.id);
     }
@@ -39,7 +39,7 @@ export class PmPopupComponent {
   }
 
   myform = this.buildr.group({
-    id: this.buildr.control(0),
+    id: this.buildr.control(''),
     firstName: this.buildr.control(''),
     lastName: this.buildr.control(''),
     email: this.buildr.control(''),
@@ -67,8 +67,8 @@ export class PmPopupComponent {
 
   addOrUpdate()
   {
-    const id = this.myform.value.id || 0;
-    if (id > 0)
+    const id = this.myform.value.id || '';
+    if (id != '')
     {
       this.updatePM(id);
     }
@@ -87,7 +87,7 @@ export class PmPopupComponent {
       lastName: this.myform.value.lastName || '',
       email: this.myform.value.email || '',
       phone: this.myform.value.phone || '',
-      contractorId: parseInt(this.myform.value.contractorId || '0'),
+      contractorId: this.myform.value.contractorId || '0',
     };
     this.service.updatePM(item).subscribe(
       (result) =>
@@ -113,13 +113,13 @@ export class PmPopupComponent {
   {
     console.log(this.myform.value);
     var item = {
-      id: 0,
+      id: '',
       createdAt: new Date().toISOString(),
       firstName: this.myform.value.firstName || '',
       lastName: this.myform.value.lastName || '',
       email: this.myform.value.email || '',
       phone: this.myform.value.phone || '',
-      contractorId: parseInt(this.myform.value.contractorId || '0'),
+      contractorId: this.myform.value.contractorId || '0',
     };
     this.service.createPM(item).subscribe(
       (result) =>

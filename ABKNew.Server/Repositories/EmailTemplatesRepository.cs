@@ -14,6 +14,7 @@ namespace ABKNew.Server.Repositories
         {
             EmailTemplates item = new()
             {
+                Id = Guid.NewGuid().ToString(),
                 Name = model.Name,
                 Mailable = model.Mailable,
                 HtmlTemplate = model.HtmlTemplate,
@@ -32,7 +33,7 @@ namespace ABKNew.Server.Repositories
             return await GetAll();
         }
 
-        public async Task<int> DeleteEmailTemplates(int id)
+        public async Task<int> DeleteEmailTemplates(string id)
         {
             var item = await GetById(id);
             var result = await Remove(item);
@@ -54,7 +55,7 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
-        public async Task<EmailTemplates> GetEmailTemplates(int id)
+        public async Task<EmailTemplates> GetEmailTemplates(string id)
         {
             var item = await GetById(id);
             return item;

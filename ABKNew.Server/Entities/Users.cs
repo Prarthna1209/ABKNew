@@ -4,7 +4,7 @@ namespace ABKNew.Server.Entities
 {
     public class Users : IdentityUser
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
@@ -21,7 +21,7 @@ namespace ABKNew.Server.Entities
         public DateTime? LastActivity { get; set; }
 
         public DateTime? CreatedAt { get; set; }
-        public int RoleId { get; set; }
+        public string RoleId { get; set; }
         public UserRoles? Role { get; set; }
 
         public bool? IsDeleted { get; set; } = false;

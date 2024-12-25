@@ -80,7 +80,7 @@ export class EmailTemplatesComponent
   addEmailTemplatess()
   {
     const template: EmailTemplates = {
-      id: 0,
+      id: '',
       htmlTemplate: 'Add EmailTemplates',
       created_at: '',
       mailable: '',

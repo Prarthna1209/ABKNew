@@ -1,1 +1,162 @@
-<p>takeoffs works!</p>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Takeoff
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <form [formGroup]="myform" (ngSubmit)="addOrUpdate()">
+      <h1>{{inputData.header}}</h1>
+      <div>
+        <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
+          <mat-label for="createDate">Create Date</mat-label>
+          <input matInput formControlName="createDate" placeholder="Create Date" id="createDate">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint></mat-hint>
+        </mat-form-field>
+        <mat-form-field class="form-field-style col-3">
+          <mat-label>Salesperson</mat-label>
+          <mat-select placeholder="Salesperson" formControlName="salespersonId" name="salespersonId">
+            @if(salespersons && salespersons.length > 0) {
+            @for (item of salespersons; track item) {
+            <mat-option [value]="item.value">{{item.viewValue}}</mat-option>
+            }
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-field-style col-3">
+          <mat-label>Engineer</mat-label>
+          <mat-select placeholder="Engineer" formControlName="engineerId" name="engineerId">
+            @if(engineers && engineers.length > 0) {
+            @for (item of engineers; track item) {
+            <mat-option [value]="item.value">{{item.viewValue}}</mat-option>
+            }
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-field-style col-3">
+          <mat-label>Architect</mat-label>
+          <mat-select placeholder="Architect" formControlName="architectId" name="architectId">
+            @if(architects && architects.length > 0) {
+            @for (item of architects; track item) {
+            <mat-option [value]="item.value">{{item.viewValue}}</mat-option>
+            }
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field [appearance]="'fill'" class="form-field-style col-1">
+          <mat-label for="jobName">Job Name</mat-label>
+          <input matInput formControlName="jobName" placeholder="Job Name" id="jobName">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint></mat-hint>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill" class="form-field-style col-1">
+          <mat-label>Job Address</mat-label>
+          <input matInput formControlName="jobAddress" id="jobAddress" placeholder="Job Address">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint></mat-hint>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="form-field-style col-3">
+          <mat-label>Specifications</mat-label>
+          <mat-select placeholder="Specifications" formControlName="specificationId" name="specificationId">
+            @if(specifications && specifications.length > 0) {
+            @for (item of specifications; track item) {
+            <mat-option [value]="item.value">{{item.viewValue}}</mat-option>
+            }
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-field-style col-3">
+          <mat-label>Project Name</mat-label>
+          <input matInput formControlName="projectName" id="projectName" placeholder="Project Name">
+          <mat-icon matSuffix>username</mat-icon>
+          <mat-hint></mat-hint>
+        </mat-form-field>
+        <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
+          <mat-label for="drawingDate">Drawing Date</mat-label>
+          <input matInput formControlName="drawingDate" placeholder="Drawing Date" id="drawingDate">
+          <mat-icon matSuffix>date</mat-icon>
+          <mat-hint></mat-hint>
+        </mat-form-field>
+        <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
+          <mat-label for="revisedDate">Revised Date</mat-label>
+          <input matInput formControlName="revisedDate" placeholder="Revised Date" id="revisedDate">
+          <mat-icon matSuffix>date</mat-icon>
+          <mat-hint></mat-hint>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
+          <mat-label for="dueDate">Due Date</mat-label>
+          <input matInput formControlName="dueDate" placeholder="Due Date" id="dueDate">
+          <mat-icon matSuffix>date</mat-icon>
+          <mat-hint></mat-hint>
+        </mat-form-field>
+        <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
+          <mat-label for="drawingRCVDFrom">Drawing Rcvd From</mat-label>
+          <input matInput placeholder="Drawing RCVD From" id="drawingRCVDFrom" formControlName="drawingRCVDFrom">
+          <mat-icon matSuffix>drawing</mat-icon>
+          <mat-hint></mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-field-style col-3">
+          <mat-label>Bidders</mat-label>
+          <mat-select placeholder="Select Bidders" formControlName="bidderId" name="bidderId">
+            @if(bidders && bidders.length > 0) {
+            @for (item of bidders; track item) {
+            <mat-option [value]="item.value">{{item.viewValue}}</mat-option>
+            }
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-field-style col-3">
+          <mat-label>General Contractors</mat-label>
+          <mat-select placeholder="Select Contractor" formControlName="contractorId" name="contractorId">
+            @if(contractors && contractors.length > 0) {
+            @for (item of contractors; track item) {
+            <mat-option [value]="item.value">{{item.viewValue}}</mat-option>
+            }
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill" class="form-field-style col-1">
+          <mat-label for="comments">Takeoff Comments</mat-label>
+          <input matInput placeholder="Comments" id="comments" formControlName="comments">
+          <mat-icon matSuffix>contact</mat-icon>
+          <mat-hint></mat-hint>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="form-field-style col-1">
+          <mat-label>Status</mat-label>
+          <mat-select placeholder="Status" formControlName="status" name="status">
+            @if(statuses && statuses.length > 0) {
+            @for (item of statuses; track item) {
+            <mat-option [value]="item.value">{{item.viewValue}}</mat-option>
+            }
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-raised-button color="primary">Save</button>
+        <button (click)="cancel(); $event.preventDefault();" mat-raised-button color="warn">Close</button>
+      </div>
+    </form>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Quote
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <form></form>
+  </mat-expansion-panel>
+</mat-accordion>

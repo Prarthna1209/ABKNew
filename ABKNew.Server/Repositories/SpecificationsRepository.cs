@@ -13,6 +13,7 @@ namespace ABKNew.Server.Repositories
         {
             Specifications item = new Specifications
             {
+                Id = Guid.NewGuid().ToString(),
                 Name = model.Name,
                 Created_by = model.Created_by,
                 Created_at = DateTime.Now
@@ -27,7 +28,7 @@ namespace ABKNew.Server.Repositories
             return await GetAll();
         }
 
-        public async Task<int> DeleteSpecifications(int id)
+        public async Task<int> DeleteSpecifications(string id)
         {
             var item = await GetById(id);
             var result = await Remove(item);
@@ -44,7 +45,7 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
-        public async Task<Specifications> GetSpecifications(int id)
+        public async Task<Specifications> GetSpecifications(string id)
         {
             var item = await GetById(id);
             return item;

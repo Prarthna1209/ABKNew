@@ -27,7 +27,7 @@ namespace ABKNew.Server.Controllers
 
         // GET api/<EngineersController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Engineers>> Get(int id)
+        public async Task<ActionResult<Engineers>> Get(string id)
         {
             var result = await _repository.GetEngineers(id);
             return result;
@@ -37,7 +37,7 @@ namespace ABKNew.Server.Controllers
         [HttpPost]
         public async Task<bool> Post([FromBody] EngineersModel model)
         {
-            var result = model.Id > 0 ?
+            var result = model.Id != "" ?
                 await _repository.UpdateEngineers(model) :
                 await _repository.AddEngineers(model);
 
@@ -55,7 +55,7 @@ namespace ABKNew.Server.Controllers
 
         // DELETE api/<EngineersController>/5
         [HttpDelete("{id}")]
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(string id)
         {
             var result = await _repository.DeleteEngineers(id);
 

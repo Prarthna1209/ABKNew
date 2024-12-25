@@ -25,7 +25,7 @@ export class TaxPopupComponent implements OnInit {
   ngOnInit(): void
   {
     this.inputData = this.data;
-    if (this.inputData.id > 0)
+    if (this.inputData.id != '')
     {
       this.setPopupData(this.inputData.id);
     }
@@ -39,7 +39,7 @@ export class TaxPopupComponent implements OnInit {
   myform = this.buildr.group({
     rate: this.buildr.control(''),
     region: this.buildr.control(''),
-    id: this.buildr.control(0)
+    id: this.buildr.control('')
   });
 
   setPopupData(id: any)
@@ -57,8 +57,8 @@ export class TaxPopupComponent implements OnInit {
 
   addOrUpdate()
   {
-    const id = this.myform.value.id || 0;
-    if (id > 0)
+    const id = this.myform.value.id || '';
+    if (id != '')
     {
       this.updateShippingItem(id);
     }
@@ -102,7 +102,7 @@ export class TaxPopupComponent implements OnInit {
   {
     console.log(this.myform.value);
     var item = {
-      id: 0,
+      id: '',
       rate: parseFloat(this.myform.value.rate || "0"),
       region: this.myform.value.region || '',
       updated_at: new Date().toISOString(),

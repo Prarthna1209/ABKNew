@@ -1,6 +1,6 @@
 export interface Bidder
 {
-  id: number,
+  id: string,
   firstName: string,
   lastName: string,
   address: string,
@@ -13,7 +13,7 @@ export interface Bidder
   fax: string,
   website: string,
   comment: string,
-  salespersonId: number,
+  salespersonId: string,
   basicSteps: string,
   created_at: string
 }

@@ -2,7 +2,7 @@
 {
     public class Manufacturers
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; } = "";
         public float? TLP { get; set; } = float.MinValue;
         public float? TTL { get; set; } = float.MinValue;

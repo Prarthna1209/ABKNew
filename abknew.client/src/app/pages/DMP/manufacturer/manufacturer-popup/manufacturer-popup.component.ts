@@ -26,7 +26,7 @@ export class ManufacturerPopupComponent {
   {
     this.inputData = this.data;
     this.featuredLabel = "Is Featured";
-    if (this.inputData.id > 0)
+    if (this.inputData.id != '')
     {
       this.setPopupData(this.inputData.id);
     }
@@ -43,7 +43,7 @@ export class ManufacturerPopupComponent {
     ttl: this.buildr.control(''),
     isFeatured: this.buildr.control(''),
     created_by: this.buildr.control(''),
-    id: this.buildr.control(0)
+    id: this.buildr.control('')
   });
 
   setPopupData(id: any)
@@ -64,8 +64,8 @@ export class ManufacturerPopupComponent {
 
   addOrUpdate()
   {
-    const id = this.myform.value.id || 0;
-    if (id > 0)
+    const id = this.myform.value.id || '';
+    if (id != '')
     {
       this.updateShippingItem(id);
     }
@@ -111,7 +111,7 @@ export class ManufacturerPopupComponent {
   {
     console.log(this.myform.value);
     var item = {
-      id: 0,
+      id: '',
       name: this.myform.value.name || '',
       ttl: parseFloat(this.myform.value.ttl || '0.0'),
       tlp: parseFloat(this.myform.value.tlp || '0.0'),

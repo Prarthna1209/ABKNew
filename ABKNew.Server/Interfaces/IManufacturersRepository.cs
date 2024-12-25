@@ -6,9 +6,9 @@ namespace ABKNew.Server.Interfaces
     public interface IManufacturersRepository : IGenericRepository<Manufacturers>
     {
         Task<IEnumerable<Manufacturers>> GetList();
-        Task<Manufacturers> GetManufacturers(int id);
+        Task<Manufacturers> GetManufacturers(string id);
         Task<int> AddManufacturers(ManufacturersModel Manufacturers);
         Task<int> UpdateManufacturers(ManufacturersModel Manufacturers);
-        Task<int> DeleteManufacturers(int id);
+        Task<int> DeleteManufacturers(string id);
     }
 }

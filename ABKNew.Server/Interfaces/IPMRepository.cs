@@ -6,9 +6,9 @@ namespace ABKNew.Server.Interfaces
     public interface IPMRepository : IGenericRepository<PM>
     {
         Task<IEnumerable<PM>> GetList();
-        Task<PM> GetPM(int id);
+        Task<PM> GetPM(string id);
         Task<int> AddPM(PMModel PM);
         Task<int> UpdatePM(PMModel PM);
-        Task<int> DeletePM(int id);
+        Task<int> DeletePM(string id);
     }
 }

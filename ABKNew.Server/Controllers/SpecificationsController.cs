@@ -27,7 +27,7 @@ namespace ABKNew.Server.Controllers
 
         // GET api/<SpecificationsController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Specifications>> Get(int id)
+        public async Task<ActionResult<Specifications>> Get(string id)
         {
             var result = await _repository.GetById(id);
             return result;
@@ -37,7 +37,7 @@ namespace ABKNew.Server.Controllers
         [HttpPost]
         public async Task<bool> Post([FromBody] SpecificationsModel model)
         {
-            var result = model.Id > 0 ?
+            var result = model.Id != "" ?
                 await _repository.UpdateSpecifications(model) :
                 await _repository.AddSpecifications(model);
 
@@ -55,7 +55,7 @@ namespace ABKNew.Server.Controllers
 
         // DELETE api/<SpecificationsController>/5
         [HttpDelete("{id}")]
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(string id)
         {
             var result = await _repository.DeleteSpecifications(id);
 

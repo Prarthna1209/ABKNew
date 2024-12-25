@@ -5,7 +5,7 @@ namespace ABKNew.Server.Models
 {
     public class ContractorsModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -26,7 +26,7 @@ namespace ABKNew.Server.Models
         public string? Zipcode { get; set; }
 
         public string? CompanyAddress { get; set; }
-        public int SalespersonId { get; set; }
+        public string SalespersonId { get; set; }
         public bool Is_active { get; set; } = false;
         public DateTime? Created_at { get; set; } = DateTime.Now;
         public Users? SalesPerson { get; set; }

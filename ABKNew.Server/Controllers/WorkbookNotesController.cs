@@ -27,7 +27,7 @@ namespace ABKNew.Server.Controllers
 
         // GET api/<WorkbookNotesController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<WorkbookNotes>> Get(int id)
+        public async Task<ActionResult<WorkbookNotes>> Get(string id)
         {
             var result = await _repository.GetById(id);
             return result;
@@ -37,7 +37,7 @@ namespace ABKNew.Server.Controllers
         [HttpPost]
         public async Task<bool> Post([FromBody] WorkbookNotesModel model)
         {
-            var result = model.Id > 0 ?
+            var result = model.Id != "" ?
                 await _repository.UpdateWorkbookNote(model) :
                 await _repository.AddWorkbookNote(model);
 
@@ -55,7 +55,7 @@ namespace ABKNew.Server.Controllers
 
         // DELETE api/<WorkbookNotesController>/5
         [HttpDelete("{id}")]
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(string id)
         {
             var result = await _repository.DeleteWorkbookNote(id);
 

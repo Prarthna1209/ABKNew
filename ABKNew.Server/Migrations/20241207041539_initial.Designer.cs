@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ABKNew.Server.Migrations
 {
     [DbContext(typeof(ABKDBContext))]
-    [Migration("20241202071643_initial")]
+    [Migration("20241207041539_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -27,11 +27,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.Architects", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -68,11 +65,8 @@ namespace ABKNew.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SalesPersonId")
+                    b.Property<string>("SalespersonId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("SalespersonId")
-                        .HasColumnType("int");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -86,18 +80,15 @@ namespace ABKNew.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SalesPersonId");
+                    b.HasIndex("SalespersonId");
 
                     b.ToTable("Architects");
                 });
 
             modelBuilder.Entity("ABKNew.Server.Entities.Bidders", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -134,11 +125,8 @@ namespace ABKNew.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SalesPersonId")
+                    b.Property<string>("SalespersonId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("SalespersonId")
-                        .HasColumnType("int");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -152,18 +140,15 @@ namespace ABKNew.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SalesPersonId");
+                    b.HasIndex("SalespersonId");
 
                     b.ToTable("Bidders");
                 });
 
             modelBuilder.Entity("ABKNew.Server.Entities.Contractors", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -207,12 +192,9 @@ namespace ABKNew.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SalesPersonId")
+                    b.Property<string>("SalespersonId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("SalespersonId")
-                        .HasColumnType("int");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -226,18 +208,15 @@ namespace ABKNew.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SalesPersonId");
+                    b.HasIndex("SalespersonId");
 
                     b.ToTable("Contractors");
                 });
 
             modelBuilder.Entity("ABKNew.Server.Entities.EmailTemplates", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -272,11 +251,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.Engineers", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -313,11 +289,8 @@ namespace ABKNew.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SalesPersonId")
+                    b.Property<string>("SalespersonId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("SalespersonId")
-                        .HasColumnType("int");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -331,18 +304,15 @@ namespace ABKNew.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SalesPersonId");
+                    b.HasIndex("SalespersonId");
 
                     b.ToTable("Engineers");
                 });
 
             modelBuilder.Entity("ABKNew.Server.Entities.Manufacturers", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("Created_at")
                         .HasColumnType("datetime2");
@@ -373,11 +343,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.PDNI", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("Created_at")
                         .HasColumnType("datetime2");
@@ -399,14 +366,12 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.PM", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ContractorId")
-                        .HasColumnType("int");
+                    b.Property<string>("ContractorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -436,11 +401,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.ShippingItems", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime2");
@@ -463,11 +425,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.Shippings", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Created_By")
                         .IsRequired()
@@ -494,11 +453,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.SiteSettings", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("API_AccessToken")
                         .HasColumnType("nvarchar(max)");
@@ -639,11 +595,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.Specifications", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("Created_at")
                         .HasColumnType("datetime2");
@@ -665,11 +618,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.Taxes", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("Created_At")
                         .HasColumnType("datetime2");
@@ -695,11 +645,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.UserRoles", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -789,8 +736,9 @@ namespace ABKNew.Server.Migrations
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -799,14 +747,11 @@ namespace ABKNew.Server.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("Usercode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -827,11 +772,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.WorkbookNotes", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("Created_at")
                         .HasColumnType("datetime2");
@@ -988,7 +930,7 @@ namespace ABKNew.Server.Migrations
                 {
                     b.HasOne("ABKNew.Server.Entities.Users", "SalesPerson")
                         .WithMany()
-                        .HasForeignKey("SalesPersonId");
+                        .HasForeignKey("SalespersonId");
 
                     b.Navigation("SalesPerson");
                 });
@@ -997,7 +939,7 @@ namespace ABKNew.Server.Migrations
                 {
                     b.HasOne("ABKNew.Server.Entities.Users", "SalesPerson")
                         .WithMany()
-                        .HasForeignKey("SalesPersonId");
+                        .HasForeignKey("SalespersonId");
 
                     b.Navigation("SalesPerson");
                 });
@@ -1006,7 +948,7 @@ namespace ABKNew.Server.Migrations
                 {
                     b.HasOne("ABKNew.Server.Entities.Users", "SalesPerson")
                         .WithMany()
-                        .HasForeignKey("SalesPersonId")
+                        .HasForeignKey("SalespersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1017,7 +959,7 @@ namespace ABKNew.Server.Migrations
                 {
                     b.HasOne("ABKNew.Server.Entities.Users", "SalesPerson")
                         .WithMany()
-                        .HasForeignKey("SalesPersonId");
+                        .HasForeignKey("SalespersonId");
 
                     b.Navigation("SalesPerson");
                 });

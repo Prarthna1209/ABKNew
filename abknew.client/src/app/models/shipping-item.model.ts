@@ -1,6 +1,6 @@
 export interface ShippingItem
 {
-  id: number,
+  id: string,
   title: string,
   created_by: string,
   created_at: string,

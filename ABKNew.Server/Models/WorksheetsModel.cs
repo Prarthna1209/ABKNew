@@ -4,7 +4,7 @@ namespace ABKNew.Server.Models
 {
     public class WorksheetsModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Takeoff_Id { get; set; }
         public string Multiplier { get; set; }
         public string Manufacturer_Id { get; set; }

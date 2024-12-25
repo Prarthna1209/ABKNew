@@ -27,7 +27,7 @@ namespace ABKNew.Server.Controllers
 
         // GET api/<PDNIController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PDNI>> Get(int id)
+        public async Task<ActionResult<PDNI>> Get(string id)
         {
             var result = await _repository.GetById(id);
             return result;
@@ -37,7 +37,7 @@ namespace ABKNew.Server.Controllers
         [HttpPost]
         public async Task<bool> Post([FromBody] PDNIModel model)
         {
-            var result = model.Id > 0 ?
+            var result = model.Id != "" ?
                 await _repository.UpdatePDNI(model) :
                 await _repository.AddPDNI(model);
 
@@ -55,7 +55,7 @@ namespace ABKNew.Server.Controllers
 
         // DELETE api/<PDNIController>/5
         [HttpDelete("{id}")]
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(string id)
         {
             var result = await _repository.DeletePDNI(id);
 

@@ -45,3 +45,9 @@ b { /* used for event dates/times */
   max-width: 1100px;
   margin: 0 auto;
 }
+
+a.fc-event, a.fc-event:hover {
+  text-decoration: none;
+  word-wrap: normal !important;
+  overflow-wrap: normal;
+}

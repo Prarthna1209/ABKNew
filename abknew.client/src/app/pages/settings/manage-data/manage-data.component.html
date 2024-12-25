@@ -1,1 +1,20 @@
-<p>manage-data works!</p>
+<form [formGroup]="myform" (ngSubmit)="addOrUpdate()">
+  <h1>UPS API Settings</h1>
+  <div>
+    <mat-form-field [appearance]="'fill'" class="form-field-style">
+      <mat-label for="data_monthShow">Month Show</mat-label>
+      <input matInput formControlName="data_monthShow" placeholder="Month Show" id="data_monthShow">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field-style">
+      <mat-label>Quote Show</mat-label>
+      <input matInput formControlName="data_quoteShow" id="data_quoteShow" placeholder="Quote Show">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-raised-button color="primary">Update</button>
+  </div>
+</form>

@@ -1,6 +1,6 @@
 export interface WorkbookNotes
 {
-  id: number;
+  id: string;
   note: string;
   created_by: string;
   updated_at: string;

@@ -13,6 +13,7 @@ namespace ABKNew.Server.Repositories
         {
             Taxes item = new Taxes
             {
+                Id = Guid.NewGuid().ToString(),
                 Region = model.Region,
                 Updated_At = model.Updated_At,
                 Created_At = DateTime.Now,
@@ -28,7 +29,7 @@ namespace ABKNew.Server.Repositories
             return await GetAll();
         }
 
-        public async Task<int> DeleteTax(int id)
+        public async Task<int> DeleteTax(string id)
         {
             var item = await GetById(id);
             var result = await Remove(item);
@@ -46,7 +47,7 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
-        public async Task<Taxes> GetTax(int id)
+        public async Task<Taxes> GetTax(string id)
         {
             var item = await GetById(id);
             return item;

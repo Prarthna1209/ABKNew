@@ -1,6 +1,6 @@
 export interface EmailTemplates
 {
-  id: number;
+  id: string;
   name: string;
   mailable: string;
   subject: string;

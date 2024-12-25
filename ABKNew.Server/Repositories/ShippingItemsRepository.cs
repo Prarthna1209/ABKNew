@@ -13,6 +13,7 @@ namespace ABKNew.Server.Repositories
         {
             ShippingItems item = new ShippingItems
             {
+                Id = Guid.NewGuid().ToString(),
                 Title = model.Title,
                 Created_by = model.Created_by,
                 Created_at = DateTime.Now
@@ -27,7 +28,7 @@ namespace ABKNew.Server.Repositories
             return await GetAll();
         }
 
-        public async Task<int> DeleteShippingItem(int id)
+        public async Task<int> DeleteShippingItem(string id)
         {
             var item = await GetById(id);
             var result = await Remove(item);
@@ -44,7 +45,7 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
-        public async Task<ShippingItems> GetShippingItem(int id)
+        public async Task<ShippingItems> GetShippingItem(string id)
         {
             var item = await GetById(id);
             return item;

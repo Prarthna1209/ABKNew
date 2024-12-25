@@ -21,7 +21,7 @@ export class ShippingsService {
     return this.http.post<boolean>(this.apiUrl, Shippings);
   }
 
-  getShippingsById(id: number): Observable<Shippings>
+  getShippingsById(id: string): Observable<Shippings>
   {
     return this.http.get<Shippings>(`${this.apiUrl}/GetById/${id}`);
   }
@@ -31,7 +31,7 @@ export class ShippingsService {
     return this.http.post<boolean>(`${this.apiUrl}`, { _method: 'PUT', ...Shippings });
   }
 
-  deleteShippings(id: number): Observable<boolean>
+  deleteShippings(id: string): Observable<boolean>
   {
     return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
   }

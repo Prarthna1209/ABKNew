@@ -1,6 +1,6 @@
 export interface Shippings
 {
-  id: number,
+  id: string,
   name: string,
   type: string,
   created_by: string,

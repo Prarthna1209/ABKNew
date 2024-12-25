@@ -22,7 +22,7 @@ export class TaxesService {
     return this.http.post<boolean>(this.apiUrl, Taxes);
   }
 
-  getTaxesById(id: number): Observable<Taxes>
+  getTaxesById(id: string): Observable<Taxes>
   {
     return this.http.get<Taxes>(`${this.apiUrl}/${id}`);
   }
@@ -32,7 +32,7 @@ export class TaxesService {
     return this.http.post<boolean>(`${this.apiUrl}`, { _method: 'PUT', ...Taxes });
   }
 
-  deleteTaxes(id: number): Observable<boolean>
+  deleteTaxes(id: string): Observable<boolean>
   {
     return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
   }

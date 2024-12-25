@@ -18,3 +18,22 @@ button {
   margin: 10px;
 }
 
+.col-1 {
+  width: 99%;
+  margin: 5px;
+}
+
+.col-2 {
+  width: 45%;
+  margin: 5px;
+}
+
+.col-3 {
+  width: 24%;
+  margin: 5px;
+}
+
+.col-4 {
+  width: 20%;
+  margin: 5px;
+}

@@ -28,7 +28,7 @@ namespace ABKNew.Server.Controllers
 
         // GET api/<UserRolesController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserRoles>> Get(int id)
+        public async Task<ActionResult<UserRoles>> Get(string id)
         {
             var result = await _repository.GetUserRoles(id);
             return result;
@@ -38,7 +38,7 @@ namespace ABKNew.Server.Controllers
         [HttpPost]
         public async Task<bool> Post([FromBody] UserRolesModel model)
         {
-            var result = model.Id > 0 ?
+            var result = model.Id != "" ?
                 await _repository.UpdateUserRoles(model) :
                 await _repository.AddUserRoles(model);
 
@@ -56,7 +56,7 @@ namespace ABKNew.Server.Controllers
 
         // DELETE api/<UserRolesController>/5
         [HttpDelete("{id}")]
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(string id)
         {
             var result = await _repository.DeleteUserRoles(id);
 

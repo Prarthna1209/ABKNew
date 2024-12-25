@@ -18,6 +18,7 @@ namespace ABKNew.Server.Repositories
         {
             SiteSettings item = new()
             {
+                Id = Guid.NewGuid().ToString(),
                 DATA_MonthShow = model.DATA_MonthShow ?? "",
                 DATA_QuoteShow = model.DATA_QuoteShow ?? "",
                 UPSAPI_AccessToken = model.UPSAPI_AccessToken ?? "",
@@ -72,7 +73,7 @@ namespace ABKNew.Server.Repositories
             return await GetAll(); ;
         }
 
-        public async Task<int> DeleteSiteSettings(int id)
+        public async Task<int> DeleteSiteSettings(string id)
         {
             var item = await GetById(id);
             var result = await Remove(item);
@@ -130,7 +131,7 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
-        public async Task<SiteSettings> GetSiteSettings(int id)
+        public async Task<SiteSettings> GetSiteSettings(string id)
         {
             var item = await GetById(id);
             return item;

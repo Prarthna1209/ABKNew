@@ -7,9 +7,9 @@ namespace ABKNew.Server.Interfaces
     {
         Task<IEnumerable<SiteSettings>> GetList();
         //List<SiteSettings> GetSalesPersons();
-        Task<SiteSettings> GetSiteSettings(int id);
+        Task<SiteSettings> GetSiteSettings(string id);
         Task<int> AddSiteSettings(SiteSettingsModel SiteSettings);
         Task<int> UpdateSiteSettings(SiteSettingsModel SiteSettings);
-        Task<int> DeleteSiteSettings(int id);
+        Task<int> DeleteSiteSettings(string id);
     }
 }

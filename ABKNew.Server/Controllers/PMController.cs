@@ -27,7 +27,7 @@ namespace ABKNew.Server.Controllers
 
         // GET api/<PMController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PM>> Get(int id)
+        public async Task<ActionResult<PM>> Get(string id)
         {
             var result = await _repository.GetPM(id);
             return result;
@@ -37,7 +37,7 @@ namespace ABKNew.Server.Controllers
         [HttpPost]
         public async Task<bool> Post([FromBody] PMModel model)
         {
-            var result = model.Id > 0 ?
+            var result = model.Id != "" ?
                 await _repository.UpdatePM(model) :
                 await _repository.AddPM(model);
 
@@ -55,7 +55,7 @@ namespace ABKNew.Server.Controllers
 
         // DELETE api/<PMController>/5
         [HttpDelete("{id}")]
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(string id)
         {
             var result = await _repository.DeletePM(id);
 

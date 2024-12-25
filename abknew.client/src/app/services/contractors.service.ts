@@ -21,7 +21,7 @@ export class ContractorsService {
     return this.http.post<boolean>(this.apiUrl, contractor);
   }
 
-  getContractorById(id: number): Observable<Contractors>
+  getContractorById(id: string): Observable<Contractors>
   {
     return this.http.get<Contractors>(`${this.apiUrl}/${id}`);
   }
@@ -31,7 +31,7 @@ export class ContractorsService {
     return this.http.post<boolean>(`${this.apiUrl}`, { _method: 'PUT', ...contractor });
   }
 
-  deleteContractor(id: number): Observable<boolean>
+  deleteContractor(id: string): Observable<boolean>
   {
     return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
   }

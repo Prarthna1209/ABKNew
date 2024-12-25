@@ -6,9 +6,9 @@ namespace ABKNew.Server.Interfaces
     public interface IPDNIRepository : IGenericRepository<PDNI>
     {
         Task<IEnumerable<PDNI>> GetList();
-        Task<PDNI> GetPDNI(int id);
+        Task<PDNI> GetPDNI(string id);
         Task<int> AddPDNI(PDNIModel PDNI);
         Task<int> UpdatePDNI(PDNIModel PDNI);
-        Task<int> DeletePDNI(int id);
+        Task<int> DeletePDNI(string id);
     }
 }

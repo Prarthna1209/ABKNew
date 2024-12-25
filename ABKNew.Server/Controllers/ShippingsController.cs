@@ -28,7 +28,7 @@ namespace ABKNew.Server.Controllers
 
         // GET api/<TaxesController>/5
         [HttpGet("GetById/{id}")]
-        public async Task<ActionResult<Shippings>> GetById(int id)
+        public async Task<ActionResult<Shippings>> GetById(string id)
         {
             var result = await _repository.GetById(id);
             return result;
@@ -38,7 +38,7 @@ namespace ABKNew.Server.Controllers
         [HttpPost]
         public async Task<bool> Post([FromBody] ShippingModel model)
         {
-            var result = model.Id > 0 ?
+            var result = model.Id != "" ?
                 await _repository.UpdateShipping(model) :
                 await _repository.AddShipping(model);
 
@@ -56,7 +56,7 @@ namespace ABKNew.Server.Controllers
 
         // DELETE api/<TaxesController>/5
         [HttpDelete("{id}")]
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(string id)
         {
             var result = await _repository.DeleteShipping(id);
 

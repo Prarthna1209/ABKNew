@@ -21,7 +21,7 @@ export class EngineersService {
     return this.http.post<boolean>(this.apiUrl, engineer);
   }
 
-  getEngineerById(id: number): Observable<Engineers>
+  getEngineerById(id: string): Observable<Engineers>
   {
     return this.http.get<Engineers>(`${this.apiUrl}/${id}`);
   }
@@ -31,7 +31,7 @@ export class EngineersService {
     return this.http.post<boolean>(`${this.apiUrl}`, { _method: 'PUT', ...engineer });
   }
 
-  deleteEngineer(id: number): Observable<boolean>
+  deleteEngineer(id: string): Observable<boolean>
   {
     return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
   }

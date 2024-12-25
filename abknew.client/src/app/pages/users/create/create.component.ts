@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MaterialModule } from '../../../material/material.module';
 import { CommonModule } from '@angular/common';
+import { DS } from '../../../models/DS.model';
+import { UserRolesService } from '../../../services/user-roles.service';
 
 @Component({
   selector: 'app-create',
@@ -26,19 +28,25 @@ export class CreateComponent implements OnInit
   editData: any;
   selectedFiles: any;
   passwordVisible: boolean = false;
+  roles!: DS[];
 
   constructor(
     private buildr: FormBuilder,
     private service: UserService,
     private dataService: DataService,
     private router: Router,
-    private uploadService: UploadService
-  ) { }
+    private uploadService: UploadService,
+    private roleService: UserRolesService
+  )
+  {
+    this.getRoles();
+  }
 
   ngOnInit(): void
   {
     this.inputData = this.dataService.getData();
-    if (this.inputData?.id > 0)
+    //this.getRoles();
+    if (this.inputData?.id != undefined)
     {
       this.setPopupData(this.inputData.id);
     }
@@ -47,6 +55,22 @@ export class CreateComponent implements OnInit
       this.inputData = { header: 'Add User' };
     }
   }
+
+
+  getRoles()
+  {
+    this.roleService.getUserRoles().subscribe(
+      (result) =>
+      {
+        this.roles = result.map(item => ({ value: item.id, viewValue: `${item.name}` }));
+      },
+      (error) =>
+      {
+        console.error(error);
+      }
+    );
+  }
+
 
   onClickRevealPassword(event: any)
   {
@@ -69,7 +93,7 @@ export class CreateComponent implements OnInit
   }
 
   myform = this.buildr.group({
-    id: this.buildr.control(0),
+    id: this.buildr.control(''),
     firstName: this.buildr.control(''),
     lastName: this.buildr.control(''),
     username: this.buildr.control(''),
@@ -105,9 +129,9 @@ export class CreateComponent implements OnInit
 
   addOrUpdate()
   {
-    const id = this.myform.value.id || 0;
+    const id = this.myform.value.id || '';
     this.uploadService.uploadfile(this.selectedFiles[0]);
-    if (id > 0)
+    if (id != '')
     {
       this.updateShippingItem(id);
     }
@@ -157,7 +181,7 @@ export class CreateComponent implements OnInit
   {
     console.log(this.myform.value);
     var item = {
-      id: 0,
+      id: '',
       createdAt: new Date().toISOString(),
       firstName: this.myform.value.firstName || '',
       lastName: this.myform.value.lastName || '',

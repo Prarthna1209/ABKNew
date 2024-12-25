@@ -7,9 +7,9 @@ namespace ABKNew.Server.Interfaces
     {
         Task<IEnumerable<Users>> GetList();
         List<Users> GetSalesPersons();
-        Task<Users> GetUsers(int id);
+        Task<Users> GetUsers(string id);
         Task<int> AddUsers(UsersModel Users);
         Task<int> UpdateUsers(UsersModel Users);
-        Task<int> DeleteUsers(int id);
+        Task<int> DeleteUsers(string id);
     }
 }

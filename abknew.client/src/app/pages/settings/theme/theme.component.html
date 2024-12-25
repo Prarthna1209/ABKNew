@@ -1,1 +1,24 @@
-<p>theme works!</p>
+<form [formGroup]="myform" (ngSubmit)="addOrUpdate()">
+  <h1>Theme Settings</h1>
+    <mat-form-field [appearance]="'fill'">
+      <mat-label for="theme_current">Current Theme</mat-label>
+      <input matInput formControlName="theme_current" placeholder="Current Theme" id="theme_current">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Invoice Template</mat-label>
+      <input matInput formControlName="theme_invoiceTemp" id="theme_invoiceTemp" placeholder="Invoice Template">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field [appearance]="'fill'">
+      <mat-label for="theme_quotePaperSize">Quote Paper Size</mat-label>
+      <input matInput formControlName="theme_quotePaperSize" placeholder="Quote Paper Size" id="theme_quotePaperSize">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+  <div>
+    <button mat-raised-button color="primary">Update</button>
+  </div>
+</form>

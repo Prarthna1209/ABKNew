@@ -1,13 +1,15 @@
 import { Component, signal, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/core';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
-import { INITIAL_EVENTS, createEventId } from './event-utils';
+import { INITIAL_EVENTS, createEventId, formatTakeoff } from './event-utils';
+import { TakeoffService } from '../../services/takeoff.service';
+import { EventInput } from '@fullcalendar/core';
 
 
 @Component({
@@ -20,7 +22,7 @@ import { INITIAL_EVENTS, createEventId } from './event-utils';
 export class CalendarComponent
 {
   calendarVisible = signal(true);
-  calendarOptions = signal<CalendarOptions>({
+  calendarOptions: CalendarOptions = {
     plugins: [
       interactionPlugin,
       dayGridPlugin,
@@ -33,7 +35,9 @@ export class CalendarComponent
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
     initialView: 'dayGridMonth',
+    events: this.getTakeoffs.bind(this), // alternatively, use the `events` setting to fetch from a feed
     initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+
     weekends: true,
     editable: true,
     selectable: true,
@@ -41,16 +45,47 @@ export class CalendarComponent
     dayMaxEvents: true,
     select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
-    eventsSet: this.handleEvents.bind(this)
+    eventsSet: this.handleEvents.bind(this),
+    //eventContent: function (arg)
+    //{
+    //  return this.renderer.createComponent(arg.el, EventContentComponent, {
+    //    event: arg.event,
+    //  });
+    //}
     /* you can update a remote database when these fire:
     eventAdd:
     eventChange:
     eventRemove:
     */
-  });
+  };
+  ;
   currentEvents = signal<EventApi[]>([]);
+  takeoffs: EventInput[] = [];
+  constructor(
+    private changeDetector: ChangeDetectorRef,
+    private router: Router,
+    private service: TakeoffService
+  )
+  {
+  }
 
-  constructor(private changeDetector: ChangeDetectorRef) { }
+  eventRender(e: any) { e.el.querySelectorAll('.fc-title')[0].innerHTML = e.el.querySelectorAll('.fc-title')[0].innerText; }
+
+  async getTakeoffs(): Promise<EventInput[]>
+  {
+    return new Promise<EventInput[]>((resolve) =>
+    {
+      this.service.getTakeoff().subscribe(
+        (result) =>
+        {
+          this.takeoffs = formatTakeoff(result);
+          let events: EventInput[] = this.takeoffs;
+          //this.calendarOptions.events = this.takeoffs;
+          resolve(events);
+        },
+        error => console.error(error));
+    });
+  }
 
   handleCalendarToggle()
   {
@@ -59,29 +94,27 @@ export class CalendarComponent
 
   handleWeekendsToggle()
   {
-    this.calendarOptions.update((options) => ({
-      ...options,
-      weekends: !options.weekends,
-    }));
+    this.calendarOptions.weekends = !this.calendarOptions.weekends;
   }
 
   handleDateSelect(selectInfo: DateSelectArg)
   {
-    const title = prompt('Please enter a new title for your event');
-    const calendarApi = selectInfo.view.calendar;
+    this.router.navigate(['takeoffs']);
+    //const title = prompt('Please enter a new title for your event');
+    //const calendarApi = selectInfo.view.calendar;
 
-    calendarApi.unselect(); // clear date selection
+    //calendarApi.unselect(); // clear date selection
 
-    if (title)
-    {
-      calendarApi.addEvent({
-        id: createEventId(),
-        title,
-        start: selectInfo.startStr,
-        end: selectInfo.endStr,
-        allDay: selectInfo.allDay
-      });
-    }
+    //if (title)
+    //{
+    //  calendarApi.addEvent({
+    //    id: createEventId(),
+    //    title,
+    //    start: selectInfo.startStr,
+    //    end: selectInfo.endStr,
+    //    allDay: selectInfo.allDay
+    //  });
+    //}
   }
 
   handleEventClick(clickInfo: EventClickArg)

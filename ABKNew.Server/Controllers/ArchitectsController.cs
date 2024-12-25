@@ -27,7 +27,7 @@ namespace ABKNew.Server.Controllers
 
         // GET api/<ArchitectsController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Architects>> Get(int id)
+        public async Task<ActionResult<Architects>> Get(string id)
         {
             var result = await _repository.GetArchitects(id);
             return result;
@@ -37,7 +37,7 @@ namespace ABKNew.Server.Controllers
         [HttpPost]
         public async Task<bool> Post([FromBody] ArchitectsModel model)
         {
-            var result = model.Id > 0 ?
+            var result = model.Id != "" ?
                 await _repository.UpdateArchitects(model) :
                 await _repository.AddArchitects(model);
 
@@ -55,7 +55,7 @@ namespace ABKNew.Server.Controllers
 
         // DELETE api/<ArchitectsController>/5
         [HttpDelete("{id}")]
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(string id)
         {
             var result = await _repository.DeleteArchitects(id);
 

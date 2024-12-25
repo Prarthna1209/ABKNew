@@ -25,7 +25,7 @@ export class PdniPopupComponent {
   ngOnInit(): void
   {
     this.inputData = this.data;
-    if (this.inputData.id > 0)
+    if (this.inputData.id != '')
     {
       this.setPopupData(this.inputData.id);
     }
@@ -40,7 +40,7 @@ export class PdniPopupComponent {
     name: this.buildr.control(''),
     isFeatured: this.buildr.control(''),
     created_by: this.buildr.control(''),
-    id: this.buildr.control(0)
+    id: this.buildr.control('')
   });
 
   setPopupData(id: any)
@@ -59,8 +59,8 @@ export class PdniPopupComponent {
 
   addOrUpdate()
   {
-    const id = this.myform.value.id || 0;
-    if (id > 0)
+    const id = this.myform.value.id || '';
+    if (id != '')
     {
       this.updateShippingItem(id);
     }
@@ -104,7 +104,7 @@ export class PdniPopupComponent {
   {
     console.log(this.myform.value);
     var item = {
-      id: 0,
+      id: '',
       name: this.myform.value.name || '',
       isFeatured: (String(this.myform.value.isFeatured).toLowerCase() === 'true'),
       updated_at: new Date().toISOString(),

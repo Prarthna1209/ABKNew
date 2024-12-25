@@ -5,7 +5,7 @@ namespace ABKNew.Server.Models
 {
     public class UsersModel : IdentityUser
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
@@ -22,7 +22,7 @@ namespace ABKNew.Server.Models
         public DateTime? LastActivity { get; set; }
 
         public DateTime? CreatedAt { get; set; }
-        public int RoleId { get; set; }
+        public string RoleId { get; set; }
         public UserRoles? Role { get; set; }
         public bool? IsDeleted { get; set; } = false;
     }

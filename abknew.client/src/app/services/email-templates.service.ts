@@ -22,7 +22,7 @@ export class EmailTemplateServie {
     return this.http.post<boolean>(this.apiUrl, EmailTemplates);
   }
 
-  getEmailTemplatessById(id: number): Observable<EmailTemplates>
+  getEmailTemplatessById(id: string): Observable<EmailTemplates>
   {
     return this.http.get<EmailTemplates>(`${this.apiUrl}/${id}`);
   }
@@ -32,7 +32,7 @@ export class EmailTemplateServie {
     return this.http.post<boolean>(`${this.apiUrl}`, { _method: 'PUT', ...EmailTemplates });
   }
 
-  deleteEmailTemplatess(id: number): Observable<boolean>
+  deleteEmailTemplatess(id: string): Observable<boolean>
   {
     return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
   }

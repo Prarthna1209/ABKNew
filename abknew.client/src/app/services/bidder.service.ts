@@ -21,7 +21,7 @@ export class BidderService {
     return this.http.post<boolean>(this.apiUrl, bidder);
   }
 
-  getBidderById(id: number): Observable<Bidder>
+  getBidderById(id: string): Observable<Bidder>
   {
     return this.http.get<Bidder>(`${this.apiUrl}/${id}`);
   }
@@ -31,7 +31,7 @@ export class BidderService {
     return this.http.post<boolean>(`${this.apiUrl}`, { _method: 'PUT', ...bidder });
   }
 
-  deleteBidder(id: number): Observable<boolean>
+  deleteBidder(id: string): Observable<boolean>
   {
     return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
   }

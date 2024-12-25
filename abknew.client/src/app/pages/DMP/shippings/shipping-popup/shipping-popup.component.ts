@@ -28,7 +28,7 @@ export class ShippingPopupComponent implements OnInit
   {
     this.inputData = this.data;
     this.type = this.inputData.type;
-    if (this.inputData.id > 0)
+    if (this.inputData.id != '')
     {
       this.setPopupData(this.inputData.id);
     }
@@ -42,7 +42,7 @@ export class ShippingPopupComponent implements OnInit
   myform = this.buildr.group({
     type: this.buildr.control('TO'),
     name: this.buildr.control(''),
-    id: this.buildr.control(0)
+    id: this.buildr.control('')
   });
 
   setPopupData(id: any)
@@ -60,8 +60,8 @@ export class ShippingPopupComponent implements OnInit
 
   addOrUpdate()
   {
-    const id = this.myform.value.id || 0;
-    if (id > 0)
+    const id = this.myform.value.id || '';
+    if (id != '')
     {
       this.updateShipping(id);
     }
@@ -105,7 +105,7 @@ export class ShippingPopupComponent implements OnInit
   {
     console.log(this.myform.value);
     var item = {
-      id: 0,
+      id: '',
       name: this.myform.value.name || '',
       type: this.type,
       updated_at: new Date().toISOString(),

@@ -29,8 +29,7 @@ namespace ABKNew.Server.Migrations
                 name: "EmailTemplates",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Mailable = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -48,8 +47,7 @@ namespace ABKNew.Server.Migrations
                 name: "Manufacturers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TLP = table.Column<float>(type: "real", nullable: true),
                     TTL = table.Column<float>(type: "real", nullable: true),
@@ -67,8 +65,7 @@ namespace ABKNew.Server.Migrations
                 name: "PDNI",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Created_by = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Updated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -83,8 +80,7 @@ namespace ABKNew.Server.Migrations
                 name: "ShippingItems",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Created_by = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Updated_by = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -99,8 +95,7 @@ namespace ABKNew.Server.Migrations
                 name: "Shippings",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Created_By = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -116,8 +111,7 @@ namespace ABKNew.Server.Migrations
                 name: "SiteSettings",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     DATA_MonthShow = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DATA_QuoteShow = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UPSAPI_AccessToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -172,8 +166,7 @@ namespace ABKNew.Server.Migrations
                 name: "Specifications",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Created_by = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Updated_at = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -188,8 +181,7 @@ namespace ABKNew.Server.Migrations
                 name: "Taxes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Rate = table.Column<float>(type: "real", nullable: false),
                     Region = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Created_by = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -205,8 +197,7 @@ namespace ABKNew.Server.Migrations
                 name: "UserRoles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -218,8 +209,7 @@ namespace ABKNew.Server.Migrations
                 name: "WorkbookNotes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Created_by = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Updated_at = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -258,7 +248,7 @@ namespace ABKNew.Server.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    //Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     Usercode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     EmailVerifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -269,9 +259,8 @@ namespace ABKNew.Server.Migrations
                     IsOnline = table.Column<bool>(type: "bit", nullable: true),
                     LastActivity = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: true),
-                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
@@ -300,8 +289,7 @@ namespace ABKNew.Server.Migrations
                 name: "Architects",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -313,10 +301,9 @@ namespace ABKNew.Server.Migrations
                     State = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Zipcode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BasicSteps = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SalespersonId = table.Column<string>(type:"nvarchar(450)", nullable: true),
+                    SalespersonId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Created_at = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    //SalespersonId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    Created_at = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -417,8 +404,7 @@ namespace ABKNew.Server.Migrations
                 name: "Bidders",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -430,9 +416,9 @@ namespace ABKNew.Server.Migrations
                     State = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Zipcode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BasicSteps = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SalespersonId = table.Column<string>(type:"nvarchar(450)", nullable: true),
+                    SalespersonId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Created_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Created_at = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -448,8 +434,7 @@ namespace ABKNew.Server.Migrations
                 name: "Contractors",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -463,9 +448,9 @@ namespace ABKNew.Server.Migrations
                     State = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Zipcode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CompanyAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SalespersonId = table.Column<string>(type:"nvarchar(450)", nullable: false),
+                    SalespersonId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Is_active = table.Column<bool>(type: "bit", nullable: false),
-                    Created_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Created_at = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -482,8 +467,7 @@ namespace ABKNew.Server.Migrations
                 name: "Engineers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -495,9 +479,9 @@ namespace ABKNew.Server.Migrations
                     State = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Zipcode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BasicSteps = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SalespersonId = table.Column<string>(type:"nvarchar(450)", nullable: true),
+                    SalespersonId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Created_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Created_at = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -513,14 +497,13 @@ namespace ABKNew.Server.Migrations
                 name: "PM",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ContractorId = table.Column<int>(type: "int", nullable: false)
+                    ContractorId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {

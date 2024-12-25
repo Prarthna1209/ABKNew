@@ -25,7 +25,7 @@ export class WorkbookNotesPopupComponent {
   ngOnInit(): void
   {
     this.inputData = this.data;
-    if (this.inputData.id > 0)
+    if (this.inputData.id != '')
     {
       this.setPopupData(this.inputData.id);
     }
@@ -41,7 +41,7 @@ export class WorkbookNotesPopupComponent {
     created_at: this.buildr.control(''),
     created_by: this.buildr.control(''),
     updated_at: this.buildr.control(''),
-    id: this.buildr.control(0)
+    id: this.buildr.control('')
   });
 
   setPopupData(id: any)
@@ -61,8 +61,8 @@ export class WorkbookNotesPopupComponent {
 
   addOrUpdate()
   {
-    const id = this.myform.value.id || 0;
-    if (id > 0)
+    const id = this.myform.value.id || '';
+    if (id != '')
     {
       this.updateShippingItem(id);
     }
@@ -105,7 +105,7 @@ export class WorkbookNotesPopupComponent {
   {
     console.log(this.myform.value);
     var item = {
-      id: 0,
+      id: '',
       note: this.myform.value.note || '',
       updated_at: new Date().toISOString(),
       created_at: new Date().toISOString(),

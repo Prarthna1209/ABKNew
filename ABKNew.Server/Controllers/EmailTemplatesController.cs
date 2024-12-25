@@ -27,7 +27,7 @@ namespace ABKNew.Server.Controllers
 
         // GET api/<EmailTemplatesController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<EmailTemplates>> Get(int id)
+        public async Task<ActionResult<EmailTemplates>> Get(string id)
         {
             var result = await _repository.GetEmailTemplates(id);
             return result;
@@ -37,7 +37,7 @@ namespace ABKNew.Server.Controllers
         [HttpPost]
         public async Task<bool> Post([FromBody] EmailTemplatesModel model)
         {
-            var result = model.Id > 0 ?
+            var result = model.Id != "" ?
                 await _repository.UpdateEmailTemplates(model) :
                 await _repository.AddEmailTemplates(model);
 
@@ -55,7 +55,7 @@ namespace ABKNew.Server.Controllers
 
         // DELETE api/<EmailTemplatesController>/5
         [HttpDelete("{id}")]
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(string id)
         {
             var result = await _repository.DeleteEmailTemplates(id);
 

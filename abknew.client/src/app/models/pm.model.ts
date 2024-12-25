@@ -1,10 +1,10 @@
 export interface Pm
 {
-  id: number,
+  id: string,
   firstName: string,
   lastName: string,
   email: string,
   phone: string,
   createdAt: string,
-  contractorId: number
+  contractorId: string
 }

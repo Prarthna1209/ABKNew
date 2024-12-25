@@ -24,11 +24,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.Architects", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -65,11 +62,8 @@ namespace ABKNew.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SalesPersonId")
+                    b.Property<string>("SalespersonId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("SalespersonId")
-                        .HasColumnType("int");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -83,18 +77,15 @@ namespace ABKNew.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SalesPersonId");
+                    b.HasIndex("SalespersonId");
 
                     b.ToTable("Architects");
                 });
 
             modelBuilder.Entity("ABKNew.Server.Entities.Bidders", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -131,11 +122,8 @@ namespace ABKNew.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SalesPersonId")
+                    b.Property<string>("SalespersonId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("SalespersonId")
-                        .HasColumnType("int");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -149,18 +137,15 @@ namespace ABKNew.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SalesPersonId");
+                    b.HasIndex("SalespersonId");
 
                     b.ToTable("Bidders");
                 });
 
             modelBuilder.Entity("ABKNew.Server.Entities.Contractors", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -204,12 +189,9 @@ namespace ABKNew.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SalesPersonId")
+                    b.Property<string>("SalespersonId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("SalespersonId")
-                        .HasColumnType("int");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -223,18 +205,15 @@ namespace ABKNew.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SalesPersonId");
+                    b.HasIndex("SalespersonId");
 
                     b.ToTable("Contractors");
                 });
 
             modelBuilder.Entity("ABKNew.Server.Entities.EmailTemplates", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -269,11 +248,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.Engineers", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -310,11 +286,8 @@ namespace ABKNew.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SalesPersonId")
+                    b.Property<string>("SalespersonId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("SalespersonId")
-                        .HasColumnType("int");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -328,18 +301,15 @@ namespace ABKNew.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SalesPersonId");
+                    b.HasIndex("SalespersonId");
 
                     b.ToTable("Engineers");
                 });
 
             modelBuilder.Entity("ABKNew.Server.Entities.Manufacturers", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("Created_at")
                         .HasColumnType("datetime2");
@@ -370,11 +340,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.PDNI", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("Created_at")
                         .HasColumnType("datetime2");
@@ -396,14 +363,12 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.PM", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ContractorId")
-                        .HasColumnType("int");
+                    b.Property<string>("ContractorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -433,11 +398,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.ShippingItems", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime2");
@@ -460,11 +422,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.Shippings", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Created_By")
                         .IsRequired()
@@ -491,11 +450,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.SiteSettings", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("API_AccessToken")
                         .HasColumnType("nvarchar(max)");
@@ -636,11 +592,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.Specifications", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("Created_at")
                         .HasColumnType("datetime2");
@@ -660,13 +613,203 @@ namespace ABKNew.Server.Migrations
                     b.ToTable("Specifications");
                 });
 
+            modelBuilder.Entity("ABKNew.Server.Entities.Takeoff", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Amount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ArchitectId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Comments")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContractorId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DrawingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DrawingRCVDFrom")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EngineerId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Jobaddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OriginalQuote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OriginalQuoteId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PDFGenerated")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProjectNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuoteComments")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("QuoteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("QuoteEntered")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuoteId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuoteOut")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuoteRevision")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuotedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RevActive")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("RevisedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SalesmanId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecificationId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SubmittalDoneBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TakeoffId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedAt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VibroLayIn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WorksheetGenerated")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Takeoff");
+                });
+
+            modelBuilder.Entity("ABKNew.Server.Entities.TakeoffDocuments", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("File")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsVibro")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("TakeoffId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UploadedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TakeoffDocuments");
+                });
+
+            modelBuilder.Entity("ABKNew.Server.Entities.TakeoffNotes", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TakeoffNotes");
+                });
+
+            modelBuilder.Entity("ABKNew.Server.Entities.TakeoffTakeoffNotes", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TakeoffId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TakeoffNoteId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TakeoffTakeoffNotes");
+                });
+
             modelBuilder.Entity("ABKNew.Server.Entities.Taxes", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("Created_At")
                         .HasColumnType("datetime2");
@@ -692,11 +835,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.UserRoles", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -786,8 +926,9 @@ namespace ABKNew.Server.Migrations
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -796,14 +937,11 @@ namespace ABKNew.Server.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("Usercode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -824,11 +962,8 @@ namespace ABKNew.Server.Migrations
 
             modelBuilder.Entity("ABKNew.Server.Entities.WorkbookNotes", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("Created_at")
                         .HasColumnType("datetime2");
@@ -985,7 +1120,7 @@ namespace ABKNew.Server.Migrations
                 {
                     b.HasOne("ABKNew.Server.Entities.Users", "SalesPerson")
                         .WithMany()
-                        .HasForeignKey("SalesPersonId");
+                        .HasForeignKey("SalespersonId");
 
                     b.Navigation("SalesPerson");
                 });
@@ -994,7 +1129,7 @@ namespace ABKNew.Server.Migrations
                 {
                     b.HasOne("ABKNew.Server.Entities.Users", "SalesPerson")
                         .WithMany()
-                        .HasForeignKey("SalesPersonId");
+                        .HasForeignKey("SalespersonId");
 
                     b.Navigation("SalesPerson");
                 });
@@ -1003,7 +1138,7 @@ namespace ABKNew.Server.Migrations
                 {
                     b.HasOne("ABKNew.Server.Entities.Users", "SalesPerson")
                         .WithMany()
-                        .HasForeignKey("SalesPersonId")
+                        .HasForeignKey("SalespersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1014,7 +1149,7 @@ namespace ABKNew.Server.Migrations
                 {
                     b.HasOne("ABKNew.Server.Entities.Users", "SalesPerson")
                         .WithMany()
-                        .HasForeignKey("SalesPersonId");
+                        .HasForeignKey("SalespersonId");
 
                     b.Navigation("SalesPerson");
                 });

@@ -14,6 +14,7 @@ namespace ABKNew.Server.Repositories
         {
             UserRoles item = new()
             {
+                Id = Guid.NewGuid().ToString(),
                 Name = model.Name
             };
 
@@ -26,7 +27,7 @@ namespace ABKNew.Server.Repositories
             return await GetAll();
         }
 
-        public async Task<int> DeleteUserRoles(int id)
+        public async Task<int> DeleteUserRoles(string id)
         {
             var item = await GetById(id);
             var result = await Remove(item);
@@ -42,7 +43,7 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
-        public async Task<UserRoles> GetUserRoles(int id)
+        public async Task<UserRoles> GetUserRoles(string id)
         {
             var item = await GetById(id);
             return item;

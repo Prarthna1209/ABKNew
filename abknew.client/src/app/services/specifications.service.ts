@@ -21,7 +21,7 @@ export class SpecificationsService {
     return this.http.post<boolean>(this.apiUrl, specification);
   }
 
-  getSpecificationById(id: number): Observable<Specifications>
+  getSpecificationById(id: string): Observable<Specifications>
   {
     return this.http.get<Specifications>(`${this.apiUrl}/${id}`);
   }
@@ -31,7 +31,7 @@ export class SpecificationsService {
     return this.http.post<boolean>(`${this.apiUrl}`, { _method: 'PUT', ...specification });
   }
 
-  deleteSpecification(id: number): Observable<boolean>
+  deleteSpecification(id: string): Observable<boolean>
   {
     return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
   }

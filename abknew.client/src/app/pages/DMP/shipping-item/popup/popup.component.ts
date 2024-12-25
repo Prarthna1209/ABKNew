@@ -27,7 +27,7 @@ export class PopupComponent implements OnInit
   ngOnInit(): void
   {
     this.inputData = this.data;
-    if (this.inputData.id > 0)
+    if (this.inputData.id != '')
     {
       this.setPopupData(this.inputData.id);
     }
@@ -40,14 +40,14 @@ export class PopupComponent implements OnInit
 
   myform = this.buildr.group({
     title: this.buildr.control(''),
-    id: this.buildr.control(0)
+    id: this.buildr.control('')
   });
 
 
   addOrUpdate()
   {
-    const id = this.myform.value.id || 0;
-    if (id > 0)
+    const id = this.myform.value.id || '';
+    if (id != '')
     {
       this.updateShippingItem(id);
     }
@@ -111,7 +111,7 @@ export class PopupComponent implements OnInit
   {
     console.log(this.myform.value);
     var item = {
-      id: 0,
+      id: '',
       title: this.myform.value.title || '',
       updated_by: "",
       created_by: "1",

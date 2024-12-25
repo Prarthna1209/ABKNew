@@ -1,6 +1,6 @@
 export interface Taxes
 {
-  id: number,
+  id: string,
   rate: number,
   region: string,
   created_by: string,

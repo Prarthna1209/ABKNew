@@ -23,6 +23,10 @@ namespace ABKNew.Server.Data
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<WorkbookNotes> WorkbookNotes { get; set; }
+        public DbSet<Takeoff> Takeoff { get; set; }
+        public DbSet<TakeoffDocuments> TakeoffDocuments { get; set; }
+        public DbSet<TakeoffNotes> TakeoffNotes { get; set; }
+        public DbSet<TakeoffTakeoffNotes> TakeoffTakeoffNotes { get; set; }
         public DbSet<SiteSettings> SiteSettings { get; set; }
     }
 }

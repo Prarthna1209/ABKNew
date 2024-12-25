@@ -13,6 +13,7 @@ namespace ABKNew.Server.Repositories
         {
             WorkbookNotes item = new WorkbookNotes
             {
+                Id = Guid.NewGuid().ToString(),
                 Note = model.Note,
                 Created_by = model.Created_by,
                 Created_at = DateTime.Now
@@ -27,7 +28,7 @@ namespace ABKNew.Server.Repositories
             return await GetAll();
         }
 
-        public async Task<int> DeleteWorkbookNote(int id)
+        public async Task<int> DeleteWorkbookNote(string id)
         {
             var item = await GetById(id);
             var result = await Remove(item);
@@ -44,7 +45,7 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
-        public async Task<WorkbookNotes> GetWorkbookNote(int id)
+        public async Task<WorkbookNotes> GetWorkbookNote(string id)
         {
             var item = await GetById(id);
             return item;

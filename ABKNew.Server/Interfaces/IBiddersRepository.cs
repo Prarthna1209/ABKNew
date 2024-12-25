@@ -6,9 +6,9 @@ namespace ABKNew.Server.Interfaces
     public interface IBiddersRepository : IGenericRepository<Bidders>
     {
         Task<IEnumerable<Bidders>> GetList();
-        Task<Bidders> GetBidders(int id);
+        Task<Bidders> GetBidders(string id);
         Task<int> AddBidders(BiddersModel Bidders);
         Task<int> UpdateBidders(BiddersModel Bidders);
-        Task<int> DeleteBidders(int id);
+        Task<int> DeleteBidders(string id);
     }
 }

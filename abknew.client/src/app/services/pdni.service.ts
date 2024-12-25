@@ -21,7 +21,7 @@ export class PdniService {
     return this.http.post<boolean>(this.apiUrl, pdni);
   }
 
-  getPdniById(id: number): Observable<Pdni>
+  getPdniById(id: string): Observable<Pdni>
   {
     return this.http.get<Pdni>(`${this.apiUrl}/${id}`);
   }
@@ -31,7 +31,7 @@ export class PdniService {
     return this.http.post<boolean>(`${this.apiUrl}`, { _method: 'PUT', ...pdni });
   }
 
-  deletePdni(id: number): Observable<boolean>
+  deletePdni(id: string): Observable<boolean>
   {
     return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
   }

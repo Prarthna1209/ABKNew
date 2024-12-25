@@ -1,6 +1,6 @@
 export interface Contractors
 {
-  id: number,
+  id: string,
   firstName: string,
   lastName: string,
   customerName: string,
@@ -11,7 +11,7 @@ export interface Contractors
   phone: string,
   fax: string,
   website: string,
-  salespersonId: number,
+  salespersonId: string,
   isActive: string,
   created_at: string,
   officePhone: string,

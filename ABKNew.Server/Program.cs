@@ -69,6 +69,10 @@ builder.Services.AddScoped<ISpecificationRepository, SpecificationsRepository>()
 builder.Services.AddScoped<IUserRolesRepository, UserRolesRepository>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 builder.Services.AddScoped<IWorkbookNotesRepository, WorkbookNotesRepository>();
+builder.Services.AddScoped<ITakeoffRepository, TakeoffRepository>();
+builder.Services.AddScoped<ITakeoffDocumentsRepository, TakeoffDocumentsRepository>();
+builder.Services.AddScoped<ITakeoffNotesRepository, TakeoffNotesRepository>();
+builder.Services.AddScoped<ITakeoffTakeoffNotesRepository, TakeoffTakeoffNotesRepository>();
 
 
 builder.Services.AddControllers();

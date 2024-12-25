@@ -1,1 +1,129 @@
-<p>general-settings works!</p>
+<form [formGroup]="myform" (ngSubmit)="addOrUpdate()">
+  <h1>General Settings</h1>
+  <div>
+    <mat-form-field class="columns form-field-style" style="width:100% !important">
+      <mat-label *ngIf="gen_loginLogo; else newFile">{{selectedFiles.item(0).name}}</mat-label>
+      <ng-template #newFile>
+        <mat-label>Login Page Logo</mat-label>
+      </ng-template>
+      <input matInput disabled>
+      <button mat-icon-button matSuffix (click)="profileImage.click(); $event.preventDefault();">
+        <mat-icon>attach_file</mat-icon>
+      </button>
+      <input hidden (change)="selectLoginLogo($event); $event.preventDefault();" #profileImage type="file" id="profileImage">
+    </mat-form-field>
+    <mat-form-field class="columns form-field-style" style="width:100% !important">
+      <mat-label *ngIf="gen_headerLogo; else newFile">{{selectedFiles.item(0).name}}</mat-label>
+      <ng-template #newFile>
+        <mat-label>Header Logo</mat-label>
+      </ng-template>
+      <input matInput disabled>
+      <button mat-icon-button matSuffix (click)="profileImage.click(); $event.preventDefault();">
+        <mat-icon>attach_file</mat-icon>
+      </button>
+      <input hidden (change)="selectHeaderLogo($event); $event.preventDefault();" #profileImage type="file" id="profileImage">
+    </mat-form-field>
+    <mat-form-field class="columns form-field-style" style="width:100% !important">
+      <mat-label *ngIf="gen_emailLogo; else newFile">{{selectedFiles.item(0).name}}</mat-label>
+      <ng-template #newFile>
+        <mat-label>Email Logo</mat-label>
+      </ng-template>
+      <input matInput disabled>
+      <button mat-icon-button matSuffix (click)="profileImage.click(); $event.preventDefault();">
+        <mat-icon>attach_file</mat-icon>
+      </button>
+      <input hidden (change)="selectHeaderLogo($event); $event.preventDefault();" #profileImage type="file" id="profileImage">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill" class="form-field-style">
+      <mat-label>Company Name</mat-label>
+      <input matInput formControlName="gen_companyName" id="gen_companyName" placeholder="Company Name">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field [appearance]="'fill'" class="form-field-style">
+      <mat-label for="gen_frontWebsite">Front Website</mat-label>
+      <input matInput formControlName="gen_frontWebsite" placeholder="Front Website" id="gen_frontWebsite">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field-style">
+      <mat-label>Backend Application</mat-label>
+      <input matInput formControlName="gen_backenApp" id="gen_backenApp" placeholder="Backend Application">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill" class="form-field-style">
+      <mat-label>Office Address</mat-label>
+      <input matInput formControlName="gen_officeAdd" id="gen_officeAdd" placeholder="Office Address">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field [appearance]="'fill'" class="form-field-style">
+      <mat-label for="gen_fax">Fax</mat-label>
+      <input matInput formControlName="gen_fax" placeholder="Fax" id="gen_fax">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field-style">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="gen_phone" id="gen_phone" placeholder="Phone">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill" class="form-field-style">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="gen_email" id="gen_email" placeholder="Email">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill" class="form-field-style">
+      <mat-label>Clock 1 Label</mat-label>
+      <input matInput formControlName="gen_clock1Label" id="gen_clock1Label" placeholder="Clock 1 Label">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field [appearance]="'fill'" class="form-field-style">
+      <mat-label for="gen_clock1Timezone">Clock 1 Timezone</mat-label>
+      <mat-select formControlName="gen_clock1Timezone"></mat-select>
+      <input matInput formControlName="gen_clock1Timezone" placeholder="Clock 1 Timezone" id="gen_clock1Timezone">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field-style">
+      <mat-slide-toggle formControlName="gen_clock1Active">Clock 1 Active</mat-slide-toggle>
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill" class="form-field-style">
+      <mat-label>Clock 2 Label</mat-label>
+      <input matInput formControlName="gen_clock2Label" id="gen_clock2Label" placeholder="Clock 2 Label">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field [appearance]="'fill'" class="form-field-style">
+      <mat-label for="gen_clock2Timezone">Clock 2 Timezone</mat-label>
+      <mat-select formControlName="gen_clock2Timezone"></mat-select>
+      <input matInput formControlName="gen_clock2Timezone" placeholder="Clock 2 Timezone" id="gen_clock2Timezone">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field-style">
+      <mat-slide-toggle formControlName="gen_clock2Active">Clock 2 Active</mat-slide-toggle>
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-raised-button color="primary">Update</button>
+  </div>
+</form>

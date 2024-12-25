@@ -3,6 +3,8 @@ using ABKNew.Server.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 
 namespace ABKNew.Server.Controllers
 {
@@ -31,9 +33,10 @@ namespace ABKNew.Server.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new Users { 
-                UserName = userModel.UserName, 
-                Email = userModel.Email, 
+            var user = new Users
+            {
+                UserName = userModel.UserName,
+                Email = userModel.Email,
                 FirstName = userModel.FirstName,
                 LastName = userModel.LastName
             };
@@ -45,7 +48,7 @@ namespace ABKNew.Server.Controllers
                 return BadRequest(result.Errors);
             }
 
-            if(userModel.Role is null)
+            if (userModel.Role is null)
             {
                 await _usersManager.AddToRoleAsync(user, "Salesman");
             }
@@ -57,9 +60,50 @@ namespace ABKNew.Server.Controllers
             return Ok(new AuthResponseModel
             {
                 IsSuccess = true,
-                Message="Account created successfully!"
+                Message = "Account created successfully!"
             });
         }
 
+        [HttpPost("login")]
+        public async Task<ActionResult<string>> Login(LoginModel loginModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = await _usersManager.FindByNameAsync(loginModel.Username);
+            if (user is null)
+            {
+                return Unauthorized(new AuthResponseModel
+                {
+                    IsSuccess = false,
+                    Message = "User not found"
+                });
+            }
+
+            var result = await _usersManager.CheckPasswordAsync(user, loginModel.Password);
+            if (!result)
+            {
+                return Unauthorized(new AuthResponseModel
+                {
+                    IsSuccess = false,
+                    Message = "Invalid password!"
+                });
+            }
+
+            return Ok(new AuthResponseModel
+            {
+                IsSuccess = true,
+                Message = "OK"
+            });
+        }
+
+        //private string GenerateToken(UsersModel user) {
+        //    var tokenHandler = new JwtSecurityTokenHandler();
+
+        //    var key = Encoding.ASCII
+        //        .GetBytes(_configuration.GetSection("JWTSetting").GetSection("securityKey").Value!);
+        //}
     }
 }

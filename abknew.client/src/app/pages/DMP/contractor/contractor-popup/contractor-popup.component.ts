@@ -28,7 +28,7 @@ export class ContractorPopupComponent implements OnInit
     this.inputData = this.data;
     this.salesPersons = this.inputData.spDS;
     this.isActiveLabel = this.data.isActiveLabel;
-    if (this.inputData.id > 0)
+    if (this.inputData.id != '')
     {
       this.setPopupData(this.inputData.id);
     }
@@ -40,7 +40,7 @@ export class ContractorPopupComponent implements OnInit
   }
 
   myform = this.buildr.group({
-    id: this.buildr.control(0),
+    id: this.buildr.control(''),
     firstName: this.buildr.control(''),
     lastName: this.buildr.control(''),
     companyAddress: this.buildr.control(''),
@@ -86,8 +86,8 @@ export class ContractorPopupComponent implements OnInit
 
   addOrUpdate()
   {
-    const id = this.myform.value.id || 0;
-    if (id > 0)
+    const id = this.myform.value.id || '';
+    if (id != '')
     {
       this.updateContractor(id);
     }
@@ -114,7 +114,7 @@ export class ContractorPopupComponent implements OnInit
       fax: this.myform.value.fax || '',
       website: this.myform.value.website || '',
       isActive: this.myform.value.isActive || '',
-      salespersonId: parseInt(this.myform.value.salespersonId || '0'),
+      salespersonId: this.myform.value.salespersonId || '0',
       officePhone: this.myform.value.officePhone || '',
 
     };
@@ -142,7 +142,7 @@ export class ContractorPopupComponent implements OnInit
   {
     console.log(this.myform.value);
     var item = {
-      id: 0,
+      id: '',
       created_at: new Date().toISOString(),
       firstName: this.myform.value.firstName || '',
       lastName: this.myform.value.lastName || '',
@@ -156,7 +156,7 @@ export class ContractorPopupComponent implements OnInit
       fax: this.myform.value.fax || '',
       website: this.myform.value.website || '',
       isActive: this.myform.value.isActive || '',
-      salespersonId: parseInt(this.myform.value.salespersonId || '0'),
+      salespersonId: this.myform.value.salespersonId || '0',
       officePhone: this.myform.value.officePhone || '',
     };
     this.service.createContractor(item).subscribe(

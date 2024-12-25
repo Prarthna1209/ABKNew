@@ -1,6 +1,6 @@
 
 export interface DS
 {
-  value: number;
+  value: string;
   viewValue: string;
 }

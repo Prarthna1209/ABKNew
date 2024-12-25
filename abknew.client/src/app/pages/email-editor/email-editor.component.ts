@@ -78,7 +78,7 @@ export class EmailEditorComponent
   editorInstance: any;
 
   myform = this.buildr.group({
-    id: this.buildr.control(0),
+    id: this.buildr.control(''),
     name: this.buildr.control(''),
     mailable: this.buildr.control(''),
     subject: this.buildr.control(''),

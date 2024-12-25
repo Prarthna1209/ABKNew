@@ -1,6 +1,6 @@
 export interface Specifications
 {
-  id: number,
+  id: string,
   name: string,
   created_by: string,
   updated_at: string,

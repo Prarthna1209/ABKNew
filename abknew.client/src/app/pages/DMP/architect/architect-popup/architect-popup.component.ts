@@ -28,7 +28,7 @@ export class ArchitectPopupComponent implements OnInit
   {
     this.inputData = this.data;
     this.salesPersons = this.data.spDS;
-    if (this.inputData.id > 0)
+    if (this.inputData.id != '')
     {
       this.setPopupData(this.inputData.id);
     }
@@ -40,7 +40,7 @@ export class ArchitectPopupComponent implements OnInit
   }
 
   myform = this.buildr.group({
-    id: this.buildr.control(0),
+    id: this.buildr.control(''),
     firstName: this.buildr.control(''),
     lastName: this.buildr.control(''),
     address: this.buildr.control(''),
@@ -48,13 +48,11 @@ export class ArchitectPopupComponent implements OnInit
     state: this.buildr.control(''),
     zipcode: this.buildr.control(''),
     email: this.buildr.control(''),
-    password: this.buildr.control(''),
     phone: this.buildr.control(''),
     fax: this.buildr.control(''),
     website: this.buildr.control(''),
     comment: this.buildr.control(''),
     salespersonId: this.buildr.control(''),
-    basicSteps: this.buildr.control(''),
     created_at: this.buildr.control('')
   });
 
@@ -72,13 +70,11 @@ export class ArchitectPopupComponent implements OnInit
         state: this.editData.state,
         zipcode: this.editData.zipcode,
         email: this.editData.email,
-        password: this.editData.password,
         phone: this.editData.phone,
         fax: this.editData.fax,
         website: this.editData.website,
         comment: this.editData.comment,
         salespersonId: this.editData.salespersonId,
-        basicSteps: this.editData.basicSteps,
         created_at: this.editData.created_at
       })
     });
@@ -86,8 +82,8 @@ export class ArchitectPopupComponent implements OnInit
 
   addOrUpdate()
   {
-    const id = this.myform.value.id || 0;
-    if (id > 0)
+    const id = this.myform.value.id || '';
+    if (id != '')
     {
       this.updateShippingItem(id);
     }
@@ -109,13 +105,11 @@ export class ArchitectPopupComponent implements OnInit
       state: this.myform.value.state || '',
       zipcode: this.myform.value.zipcode || '',
       email: this.myform.value.email || '',
-      password: this.myform.value.password || '',
       phone: this.myform.value.phone || '',
       fax: this.myform.value.fax || '',
       website: this.myform.value.website || '',
       comment: this.myform.value.comment || '',
       salespersonId: this.myform.value.salespersonId || '',
-      basicSteps: this.myform.value.basicSteps || '',
 
     };
     this.service.updateArchitects(item).subscribe(
@@ -142,7 +136,7 @@ export class ArchitectPopupComponent implements OnInit
   {
     console.log(this.myform.value);
     var item = {
-      id: 0,
+      id: '',
       created_at: new Date().toISOString(),
       firstName: this.myform.value.firstName || '',
       lastName: this.myform.value.lastName || '',
@@ -151,13 +145,11 @@ export class ArchitectPopupComponent implements OnInit
       state: this.myform.value.state || '',
       zipcode: this.myform.value.zipcode || '',
       email: this.myform.value.email || '',
-      password: this.myform.value.password || '',
       phone: this.myform.value.phone || '',
       fax: this.myform.value.fax || '',
       website: this.myform.value.website || '',
       comment: this.myform.value.comment || '',
       salespersonId: this.myform.value.salespersonId || '',
-      basicSteps: this.myform.value.basicSteps || '',
     };
     this.service.createArchitects(item).subscribe(
       (result) =>

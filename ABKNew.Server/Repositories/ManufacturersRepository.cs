@@ -13,6 +13,7 @@ namespace ABKNew.Server.Repositories
         {
             Manufacturers item = new Manufacturers
             {
+                Id = Guid.NewGuid().ToString(),
                 Name = model.Name,
                 IsFeatured = model.IsFeatured,
                 TLP = model.TLP,
@@ -30,7 +31,7 @@ namespace ABKNew.Server.Repositories
             return await GetAll();
         }
 
-        public async Task<int> DeleteManufacturers(int id)
+        public async Task<int> DeleteManufacturers(string id)
         {
             var item = await GetById(id);
             var result = await Remove(item);
@@ -50,7 +51,7 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
-        public async Task<Manufacturers> GetManufacturers(int id)
+        public async Task<Manufacturers> GetManufacturers(string id)
         {
             var item = await GetById(id);
             return item;

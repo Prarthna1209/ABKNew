@@ -21,7 +21,7 @@ export class ManufecturersService {
     return this.http.post<boolean>(this.apiUrl, manufecturer);
   }
 
-  getManufacturerById(id: number): Observable<Manufecturers>
+  getManufacturerById(id: string): Observable<Manufecturers>
   {
     return this.http.get<Manufecturers>(`${this.apiUrl}/${id}`);
   }
@@ -31,7 +31,7 @@ export class ManufecturersService {
     return this.http.post<boolean>(`${this.apiUrl}`, { _method: 'PUT', ...manufecturer });
   }
 
-  deleteManufacturer(id: number): Observable<boolean>
+  deleteManufacturer(id: string): Observable<boolean>
   {
     return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
   }

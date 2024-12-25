@@ -1,6 +1,6 @@
 export interface Manufecturers
 {
-  id: number,
+  id: string,
   name: string,
   tlp: number,
   ttl: number,

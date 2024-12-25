@@ -19,6 +19,7 @@ namespace ABKNew.Server.Repositories
         {
             Users item = new()
             {
+                Id = Guid.NewGuid().ToString(),
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 UserName = model.UserName,
@@ -56,7 +57,7 @@ namespace ABKNew.Server.Repositories
             return list;
         }
 
-        public async Task<int> DeleteUsers(int id)
+        public async Task<int> DeleteUsers(string id)
         {
             var item = await GetById(id);
             item.IsDeleted = true;
@@ -86,7 +87,7 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
-        public async Task<Users> GetUsers(int id)
+        public async Task<Users> GetUsers(string id)
         {
             var item = await GetById(id);
             return item;

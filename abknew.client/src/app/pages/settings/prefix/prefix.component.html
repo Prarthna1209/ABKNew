@@ -1,1 +1,66 @@
-<p>prefix works!</p>
+<form [formGroup]="myform" (ngSubmit)="addOrUpdate()">
+  <h1>UPS API Settings</h1>
+  <div>
+    <mat-form-field [appearance]="'fill'" class="form-field-style">
+      <mat-label for="prefix_takeoff">Takeoff</mat-label>
+      <input matInput formControlName="prefix_takeoff" placeholder="Takeoff" id="prefix_takeoff">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field-style">
+      <mat-label>Quote</mat-label>
+      <input matInput formControlName="prefix_quote" id="prefix_quote" placeholder="Quote">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field [appearance]="'fill'" class="form-field-style">
+      <mat-label for="prefix_job">Job</mat-label>
+      <input matInput formControlName="prefix_job" placeholder="Job" id="prefix_job">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field [appearance]="'fill'" class="form-field-style">
+      <mat-label for="prefix_aw">AW</mat-label>
+      <input matInput formControlName="prefix_aw" placeholder="AW" id="prefix_aw">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field-style">
+      <mat-label>AWF</mat-label>
+      <input matInput formControlName="prefix_awf" id="prefix_awf" placeholder="AWF">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field [appearance]="'fill'" class="form-field-style">
+      <mat-label for="prefix_sbc">SBC</mat-label>
+      <input matInput formControlName="prefix_sbc" placeholder="SBC" id="prefix_sbc">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field [appearance]="'fill'" class="form-field-style">
+      <mat-label for="prefix_spl">SPL</mat-label>
+      <input matInput formControlName="prefix_spl" placeholder="SPL" id="prefix_spl">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field-style">
+      <mat-label>J</mat-label>
+      <input matInput formControlName="prefix_j" id="prefix_j" placeholder="J">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+    <mat-form-field [appearance]="'fill'" class="form-field-style">
+      <mat-label for="prefix_q">Q</mat-label>
+      <input matInput formControlName="prefix_q" placeholder="Q" id="prefix_q">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint></mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-raised-button color="primary">Update</button>
+  </div>
+</form>

@@ -21,7 +21,7 @@ export class ArchitectService {
     return this.http.post<boolean>(this.apiUrl, Architect);
   }
 
-  getArchitectsById(id: number): Observable<Architect>
+  getArchitectsById(id: string): Observable<Architect>
   {
     return this.http.get<Architect>(`${this.apiUrl}/${id}`);
   }
@@ -31,7 +31,7 @@ export class ArchitectService {
     return this.http.post<boolean>(`${this.apiUrl}`, { _method: 'PUT', ...Architect });
   }
 
-  deleteArchitects(id: number): Observable<boolean>
+  deleteArchitects(id: string): Observable<boolean>
   {
     return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
   }

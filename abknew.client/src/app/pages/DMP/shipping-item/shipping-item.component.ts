@@ -15,7 +15,7 @@ import { ShippingItemService } from '../../../services/shipping-item.service';
 import { PopupComponent } from './popup/popup.component';
 interface ShippingItem
 {
-  id: number,
+  id: string,
   title: string,
   created_by: string,
   created_at: string,
@@ -112,8 +112,8 @@ export class ShippingItemComponent
 
   addOrUpdate()
   {
-    const id = parseInt((document.getElementById("id") as HTMLInputElement).value);
-    if (id > 0)
+    const id = (document.getElementById("id") as HTMLInputElement).value;
+    if (id != '')
     {
       this.updateShippingItem(id);
     }
@@ -178,7 +178,7 @@ export class ShippingItemComponent
   addShippingItem()
   {
     var item = {
-      id: 0,
+      id: '',
       title: (document.getElementById("title") as HTMLInputElement).value,
       updated_by: "",
       created_by: "1",

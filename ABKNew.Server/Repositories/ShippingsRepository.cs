@@ -13,6 +13,7 @@ namespace ABKNew.Server.Repositories
         {
             Shippings item = new Shippings
             {
+                Id = Guid.NewGuid().ToString(),
                 Name = model.Name,
                 Updated_at = model.Updated_at,
                 Created_By = model.Created_By,
@@ -30,7 +31,7 @@ namespace ABKNew.Server.Repositories
             return list.Where(o => o.Type == type);
         }
 
-        public async Task<int> DeleteShipping(int id)
+        public async Task<int> DeleteShipping(string id)
         {
             var item = await GetById(id);
             var result = await Remove(item);
@@ -48,7 +49,7 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
-        public async Task<Shippings> GetShipping(int id)
+        public async Task<Shippings> GetShipping(string id)
         {
             var item = await GetById(id);
             return item;

@@ -13,6 +13,7 @@ namespace ABKNew.Server.Repositories
         {
             Bidders item = new()
             {
+                Id = Guid.NewGuid().ToString(),
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Address = model.Address ?? "",
@@ -38,7 +39,7 @@ namespace ABKNew.Server.Repositories
             return await GetAll();
         }
 
-        public async Task<int> DeleteBidders(int id)
+        public async Task<int> DeleteBidders(string id)
         {
             var item = await GetById(id);
             var result = await Remove(item);
@@ -67,7 +68,7 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
-        public async Task<Bidders> GetBidders(int id)
+        public async Task<Bidders> GetBidders(string id)
         {
             var item = await GetById(id);
             return item;

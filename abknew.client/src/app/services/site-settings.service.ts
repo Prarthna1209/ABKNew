@@ -7,7 +7,7 @@ import { SiteSettings } from '../models/site-settings.model';
   providedIn: 'root'
 })
 export class SiteSettingsService {
-  private apiUrl = 'https://localhost:7002/api/users';
+  private apiUrl = 'https://localhost:7002/api/settings';
 
   constructor(private http: HttpClient) { }
 

@@ -29,7 +29,7 @@ namespace ABKNew.Server.Controllers
 
         // GET api/<ShippingItemsController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ShippingItems>> Get(int id)
+        public async Task<ActionResult<ShippingItems>> Get(string id)
         {
             var result = await _shippingItemsRepository.GetById(id);
             return result;
@@ -39,7 +39,7 @@ namespace ABKNew.Server.Controllers
         [HttpPost]
         public async Task<bool> Post([FromBody] ShippingItemsModel model)
         {
-            var result = model.Id > 0 ? 
+            var result = model.Id != "" ? 
                 await _shippingItemsRepository.UpdateShippingItem(model) :
                 await _shippingItemsRepository.AddShippingItem(model);
 
@@ -57,7 +57,7 @@ namespace ABKNew.Server.Controllers
 
         // DELETE api/<ShippingItemsController>/5
         [HttpDelete("{id}")]
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(string id)
         {
             var result = await _shippingItemsRepository.DeleteShippingItem(id);
 

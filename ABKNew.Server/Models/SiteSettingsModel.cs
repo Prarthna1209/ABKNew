@@ -2,7 +2,7 @@
 {
     public class SiteSettingsModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string? DATA_MonthShow { get; set; } = "0";
         public string? DATA_QuoteShow { get; set; } = "0";
         public string? UPSAPI_AccessToken { get; set; } = "";

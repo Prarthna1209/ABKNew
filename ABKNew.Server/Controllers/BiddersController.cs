@@ -27,7 +27,7 @@ namespace ABKNew.Server.Controllers
 
         // GET api/<BiddersController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Bidders>> Get(int id)
+        public async Task<ActionResult<Bidders>> Get(string id)
         {
             var result = await _repository.GetBidders(id);
             return result;
@@ -37,7 +37,7 @@ namespace ABKNew.Server.Controllers
         [HttpPost]
         public async Task<bool> Post([FromBody] BiddersModel model)
         {
-            var result = model.Id > 0 ?
+            var result = model.Id != "" ?
                 await _repository.UpdateBidders(model) :
                 await _repository.AddBidders(model);
 
@@ -55,7 +55,7 @@ namespace ABKNew.Server.Controllers
 
         // DELETE api/<BiddersController>/5
         [HttpDelete("{id}")]
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(string id)
         {
             var result = await _repository.DeleteBidders(id);
 

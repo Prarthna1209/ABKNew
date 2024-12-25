@@ -13,6 +13,7 @@ namespace ABKNew.Server.Repositories
         {
             Engineers item = new()
             {
+                Id = Guid.NewGuid().ToString(),
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Address = model.Address ?? "",
@@ -38,7 +39,7 @@ namespace ABKNew.Server.Repositories
             return await GetAll();
         }
 
-        public async Task<int> DeleteEngineers(int id)
+        public async Task<int> DeleteEngineers(string id)
         {
             var item = await GetById(id);
             var result = await Remove(item);
@@ -67,7 +68,7 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
-        public async Task<Engineers> GetEngineers(int id)
+        public async Task<Engineers> GetEngineers(string id)
         {
             var item = await GetById(id);
             return item;

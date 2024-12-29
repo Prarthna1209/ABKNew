@@ -1,6 +1,7 @@
 import { EventInput } from '@fullcalendar/core';
 import { TakeoffService } from '../../services/takeoff.service';
 import { Takeoff } from '../../models/takeoffs.model';
+import { formatDate } from '@angular/common';
 
 let eventGuid = 0;
 const TODAY_STR = new Date().toISOString().replace(/T.*$/, ''); // YYYY-MM-DD of today
@@ -37,10 +38,29 @@ export function formatTakeoff(obj: Takeoff[])
   {
     takeoffs.push({
       id: item.id,
-      title: `Takeoff ID: ${item.takeoffId}</br>QuoteID: ${item.quoteId}</br>Job Name: ${item.jobName}`,
-      start: new Date(item.dueDate).toISOString()
+      title: `<div><b>Takeoff ID:</b> ${item.takeoffId}</br><b>QuoteID:</b> ${item.quoteId}</br><b>Job Name:</b> ${item.jobName}</div>`,
+      start: formatDate(item.dueDate, 'yyyy-MM-dd', "en-US")
+//        formatDate(item.dueDate, 'yyyy-MM-dd', "en-US")
+        //new Date(item.dueDate).toISOString()
     })
   }
 
   return takeoffs;
+}
+
+
+
+function parseDate(dateString: any): Date | string | null{
+  if (!dateString) return null;
+  if (typeof dateString === 'string')
+  {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime()))
+    {
+      console.error("Invalid date string", dateString);
+      return null;
+    }
+    return date;
+  }
+  return dateString;
 }

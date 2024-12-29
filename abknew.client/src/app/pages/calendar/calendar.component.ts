@@ -10,6 +10,7 @@ import listPlugin from '@fullcalendar/list';
 import { INITIAL_EVENTS, createEventId, formatTakeoff } from './event-utils';
 import { TakeoffService } from '../../services/takeoff.service';
 import { EventInput } from '@fullcalendar/core';
+import { DataService } from '../../services/data.service';
 
 
 @Component({
@@ -46,6 +47,11 @@ export class CalendarComponent
     select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
     eventsSet: this.handleEvents.bind(this),
+    //eventRender: function (event, element, view)
+    //{
+    //  var title = element.find('.fc-title');
+    //  title.html(title.text());
+    //}
     //eventContent: function (arg)
     //{
     //  return this.renderer.createComponent(arg.el, EventContentComponent, {
@@ -64,7 +70,8 @@ export class CalendarComponent
   constructor(
     private changeDetector: ChangeDetectorRef,
     private router: Router,
-    private service: TakeoffService
+    private service: TakeoffService,
+    private dataService: DataService
   )
   {
   }
@@ -119,10 +126,10 @@ export class CalendarComponent
 
   handleEventClick(clickInfo: EventClickArg)
   {
-    if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`))
-    {
-      clickInfo.event.remove();
-    }
+    var title = clickInfo.event.title;
+    var takeoffId = "";
+    this.dataService.setData({ id: takeoffId });
+    this.router.navigate(['takeoffs']);
   }
 
   handleEvents(events: EventApi[])

@@ -3,11 +3,11 @@
 
     <div class='demo-app-main'>
         <h2>Dashboard</h2>
-        <full-calendar (eventRender)="eventRender($event)" *ngIf='calendarVisible()' [options]='calendarOptions'>
+        <full-calendar *ngIf='calendarVisible()' [options]='calendarOptions'>
             <ng-template #eventContent let-arg>
                 <b>{{ arg.timeText }}</b>
                 <i>{{ arg.event.title }}</i>
-            </ng-template>
+            </ng-template> 
         </full-calendar>
     </div>
 

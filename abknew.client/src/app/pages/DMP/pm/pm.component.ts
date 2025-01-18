@@ -128,6 +128,7 @@ export class PmComponent
           console.error(error);
         }
       );
+      this.getPMs();
     }
   }
 }

@@ -210,6 +210,73 @@ namespace ABKNew.Server.Migrations
                     b.ToTable("Contractors");
                 });
 
+            modelBuilder.Entity("ABKNew.Server.Entities.Documents", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte[]>("Data")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Section")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SectionId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Documents");
+                });
+
+            modelBuilder.Entity("ABKNew.Server.Entities.EmailAccounts", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("BidReq_Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BidReq_Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Followup_Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Followup_Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Takeoff_Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Takeoff_Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EmailAccounts");
+                });
+
             modelBuilder.Entity("ABKNew.Server.Entities.EmailTemplates", b =>
                 {
                     b.Property<string>("Id")
@@ -324,6 +391,9 @@ namespace ABKNew.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ProductCount")
+                        .HasColumnType("int");
+
                     b.Property<float?>("TLP")
                         .HasColumnType("real");
 
@@ -394,6 +464,71 @@ namespace ABKNew.Server.Migrations
                     b.HasIndex("ContractorId");
 
                     b.ToTable("PM");
+                });
+
+            modelBuilder.Entity("ABKNew.Server.Entities.Permissions", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Module")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Permissions");
+                });
+
+            modelBuilder.Entity("ABKNew.Server.Entities.Products", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ManufacturerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ManufacturersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Range1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Range2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Range3")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ManufacturersId");
+
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("ABKNew.Server.Entities.ShippingItems", b =>
@@ -622,6 +757,9 @@ namespace ABKNew.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ArchitectId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BidderId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Comments")
@@ -1163,6 +1301,15 @@ namespace ABKNew.Server.Migrations
                         .IsRequired();
 
                     b.Navigation("Contractor");
+                });
+
+            modelBuilder.Entity("ABKNew.Server.Entities.Products", b =>
+                {
+                    b.HasOne("ABKNew.Server.Entities.Manufacturers", "Manufacturers")
+                        .WithMany()
+                        .HasForeignKey("ManufacturersId");
+
+                    b.Navigation("Manufacturers");
                 });
 
             modelBuilder.Entity("ABKNew.Server.Entities.Users", b =>

@@ -19,15 +19,31 @@ namespace ABKNew.Server.Controllers
 
         // GET: api/<TakeoffController>
         [HttpGet]
-        public async Task<IEnumerable<Takeoff>> Get()
+        public async Task<IEnumerable<TakeoffDetails>> Get()
         {
             var result = await _repository.GetList();
             return result;
         }
 
+        // GET: api/<TakeoffController>
+        [HttpGet("GetTakeoffId")]
+        public async Task<string> GetTakeoffId()
+        {
+            var result = await _repository.GetTakeoffId();
+            return result;
+        }
+
+        // GET: api/<TakeoffController>
+        [HttpGet("GetQuoteId")]
+        public async Task<string> GetQuoteId()
+        {
+            var result = await _repository.GetQuoteId();
+            return result;
+        }
+
         // GET api/<TakeoffController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Takeoff>> Get(string id)
+        public async Task<ActionResult<TakeoffDetails>> Get(string id)
         {
             var result = await _repository.GetTakeoff(id);
             return result;
@@ -53,6 +69,14 @@ namespace ABKNew.Server.Controllers
             return result > 0;
         }
 
+        // PUT api/<TakeoffController>/5
+        [HttpGet("GenerateQuote/{id}")]
+        public async Task<bool> GenerateQuote(string id)
+        {
+            var result = await _repository.GenerateQuote(id);
+
+            return result > 0;
+        }
         // DELETE api/<TakeoffController>/5
         [HttpDelete("{id}")]
         public async Task<bool> Delete(string id)

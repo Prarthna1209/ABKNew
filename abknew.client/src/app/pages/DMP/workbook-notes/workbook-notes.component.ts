@@ -106,6 +106,7 @@ export class WorkbookNotesComponent
           console.error(error);
         }
       );
+      this.getWorkbookNotes();
     }
   }
 

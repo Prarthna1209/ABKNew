@@ -28,5 +28,9 @@ namespace ABKNew.Server.Data
         public DbSet<TakeoffNotes> TakeoffNotes { get; set; }
         public DbSet<TakeoffTakeoffNotes> TakeoffTakeoffNotes { get; set; }
         public DbSet<SiteSettings> SiteSettings { get; set; }
+        public DbSet<EmailAccounts> EmailAccounts { get; set; }
+        public DbSet<Products> Products { get; set; }
+        public DbSet<Permissions> Permissions { get; set; }
+        public DbSet<Documents> Documents { get; set; }
     }
 }

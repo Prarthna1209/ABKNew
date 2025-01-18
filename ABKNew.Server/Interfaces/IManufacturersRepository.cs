@@ -10,5 +10,6 @@ namespace ABKNew.Server.Interfaces
         Task<int> AddManufacturers(ManufacturersModel Manufacturers);
         Task<int> UpdateManufacturers(ManufacturersModel Manufacturers);
         Task<int> DeleteManufacturers(string id);
+        Task<int> ProductCount(string ManufecturerId);
     }
 }

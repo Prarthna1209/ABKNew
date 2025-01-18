@@ -14,6 +14,7 @@ import { ManufacturerPopupComponent } from './manufacturer-popup/manufacturer-po
 import { Manufecturers } from '../../../models/manufecturers.model';
 import { ManufecturersService } from '../../../services/manufecturers.service';
 import { MaterialModule } from '../../../material/material.module';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-manufacturer',
@@ -24,7 +25,8 @@ import { MaterialModule } from '../../../material/material.module';
   templateUrl: './manufacturer.component.html',
   styleUrl: './manufacturer.component.css'
 })
-export class ManufacturerComponent {
+export class ManufacturerComponent
+{
   manufacturers!: Manufecturers[];
   dataSource: any;
   displayedColumns: string[] = ['id', 'name', 'featured', 'count', 'updated_at', 'created_at', 'action'];
@@ -33,7 +35,9 @@ export class ManufacturerComponent {
 
   constructor(
     private service: ManufecturersService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private dataService: DataService,
+    private router: Router
   )
   {
     this.getManufacturer();
@@ -81,6 +85,12 @@ export class ManufacturerComponent {
     this.openPopup(0, 'Add Manufacturer');
   }
 
+  addProduct(id: any)
+  {
+    this.dataService.setData({ manufacturerId: id });
+    this.router.navigate(['products']);
+  }
+
   filetrChange(data: Event)
   {
     const val = (data.target as HTMLInputElement).value;
@@ -108,6 +118,7 @@ export class ManufacturerComponent {
           console.error(error);
         }
       );
+      this.getManufacturer();
     }
   }
 }

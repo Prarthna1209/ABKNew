@@ -1,4 +1,5 @@
 ﻿using ABKNew.Server.Entities;
+using ABKNew.Server.JwtFeatures;
 using ABKNew.Server.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -15,14 +16,15 @@ namespace ABKNew.Server.Controllers
         private readonly UserManager<Users> _usersManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
-
+        private readonly JwtHandler _jwtHandler;
         public AccountController(UserManager<Users> userManager,
             RoleManager<IdentityRole> roleManager,
-            IConfiguration configuration)
+            IConfiguration configuration, JwtHandler jwtHandler)
         {
             _usersManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
+            _jwtHandler = jwtHandler;
         }
 
         [HttpPost("register")]
@@ -91,12 +93,11 @@ namespace ABKNew.Server.Controllers
                     Message = "Invalid password!"
                 });
             }
-
-            return Ok(new AuthResponseModel
-            {
-                IsSuccess = true,
-                Message = "OK"
-            });
+            var signingCredentials = _jwtHandler.GetSigningCredentials();
+            var claims = _jwtHandler.GetClaims(user);
+            var tokenOptions = _jwtHandler.GenerateTokenOptions(signingCredentials, claims);
+            var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+            return Ok(new AuthResponseModel { IsSuccess = true, Token = token });
         }
 
         //private string GenerateToken(UsersModel user) {

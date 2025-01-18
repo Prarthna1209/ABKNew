@@ -32,6 +32,11 @@ export class TakeoffService {
     return this.http.post<boolean>(`${this.apiUrl}`, { _method: 'PUT', ...Takeoff });
   }
 
+  generateQuote(id: string): Observable<boolean>
+  {
+    return this.http.get<boolean>(`${this.apiUrl}/GenerateQuote/${id}`);
+  }
+
   deleteTakeoff(id: string): Observable<boolean>
   {
     return this.http.delete<boolean>(`${this.apiUrl}/${id}`);

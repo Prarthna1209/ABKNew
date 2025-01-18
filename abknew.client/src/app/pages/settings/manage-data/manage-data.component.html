@@ -1,15 +1,15 @@
 <form [formGroup]="myform" (ngSubmit)="addOrUpdate()">
   <h1>UPS API Settings</h1>
   <div>
-    <mat-form-field [appearance]="'fill'" class="form-field-style">
-      <mat-label for="data_monthShow">Month Show</mat-label>
-      <input matInput formControlName="data_monthShow" placeholder="Month Show" id="data_monthShow">
+    <mat-form-field [appearance]="'fill'" class="form-field-style col-2">
+      <mat-label for="datA_MonthShow">Month Show</mat-label>
+      <input matInput formControlName="datA_MonthShow" placeholder="Month Show" id="datA_MonthShow">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
-    <mat-form-field appearance="fill" class="form-field-style">
+    <mat-form-field appearance="fill" class="form-field-style col-2">
       <mat-label>Quote Show</mat-label>
-      <input matInput formControlName="data_quoteShow" id="data_quoteShow" placeholder="Quote Show">
+      <input matInput formControlName="datA_QuoteShow" id="datA_QuoteShow" placeholder="Quote Show">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>

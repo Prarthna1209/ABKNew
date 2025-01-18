@@ -128,6 +128,7 @@ export class EngineersComponent {
           console.error(error);
         }
       );
+      this.getEngineers();
     }
   }
 }

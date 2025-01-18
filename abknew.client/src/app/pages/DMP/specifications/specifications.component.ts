@@ -22,7 +22,8 @@ import { SpecificationsPopupComponent } from './specifications-popup/specificati
   templateUrl: './specifications.component.html',
   styleUrl: './specifications.component.css'
 })
-export class SpecificationsComponent {
+export class SpecificationsComponent
+{
   type !: string;
   shippings !: Specifications[];
   dataSource: any;
@@ -109,6 +110,7 @@ export class SpecificationsComponent {
           console.error(error);
         }
       );
+      this.getSpecifications();
     }
   }
 }

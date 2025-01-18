@@ -45,6 +45,11 @@ export class ArchitectComponent
     this.getSalesPerson();
   }
 
+  reloadPage()
+  {
+    location.reload();
+  }
+
   getArchitects()
   {
     this.service.getArchitectss().subscribe(
@@ -129,6 +134,7 @@ export class ArchitectComponent
           console.error(error);
         }
       );
+      this.reloadPage();
     }
   }
 

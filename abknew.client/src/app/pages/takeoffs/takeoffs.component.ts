@@ -19,6 +19,9 @@ import { SpecificationsService } from '../../services/specifications.service';
 import { UserService } from '../../services/user.service';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
+import { Takeoff } from '../../models/takeoffs.model';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-takeoffs',
@@ -26,7 +29,9 @@ import { MatCardModule } from '@angular/material/card';
   templateUrl: './takeoffs.component.html',
   styleUrl: './takeoffs.component.css',
   imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatTableModule,
-    MaterialModule, MatSelectModule, CommonModule, MatExpansionModule, MatCardModule]
+    MaterialModule, MatSelectModule, CommonModule, MatExpansionModule, MatCardModule,
+    MatDatepickerModule, MatNativeDateModule
+  ]
 })
 export class TakeoffsComponent
 {
@@ -41,6 +46,8 @@ export class TakeoffsComponent
   specifications!: DS[];
   bidders!: DS[];
   contractors!: DS[];
+  minDate: Date = new Date(1970, 1, 1);
+  today: Date = new Date();
 
   constructor(
     private buildr: FormBuilder,
@@ -80,6 +87,13 @@ export class TakeoffsComponent
   ngOnInit(): void
   {
     this.inputData = this.dataService.getData();
+    this.statuses = [{
+      value: 'Active',
+      viewValue: 'Active'
+    }, {
+      value: 'Pending',
+      viewValue: 'Pending'
+    }];
     //this.getRoles();
     if (this.inputData?.id != undefined)
     {
@@ -87,7 +101,8 @@ export class TakeoffsComponent
     }
     else
     {
-      this.inputData = { header: 'Add Takeoff' };
+      this.myform.value.createDate = this.today.toString();
+      this.myform.value.dueDate = this.inputData.dueDate;
     }
   }
 
@@ -199,15 +214,16 @@ export class TakeoffsComponent
     id: this.buildr.control(''),
     takeoffId: this.buildr.control(''),
     quoteId: this.buildr.control(''),
-    createdDate: this.buildr.control(''),
-    drawingDate: this.buildr.control(''),
-    revisedDate: this.buildr.control(''),
-    dueDate: this.buildr.control(''),
-    quoteDate: this.buildr.control(''),
+    createDate: this.buildr.control(''),
+    drawingDate: this.buildr.control(null),
+    revisedDate: this.buildr.control(null),
+    dueDate: this.buildr.control(null),
+    quoteDate: this.buildr.control(null),
     salesmanId: this.buildr.control(''),
     engineerId: this.buildr.control(''),
     contractorId: this.buildr.control(''),
     architectId: this.buildr.control(''),
+    bidderId: this.buildr.control(''),
     specificationId: this.buildr.control(''),
     jobName: this.buildr.control(''),
     jobAddress: this.buildr.control(''),
@@ -229,18 +245,66 @@ export class TakeoffsComponent
     submittalDoneBy: this.buildr.control(''),
     quoteRevision: this.buildr.control(''),
     originalQuoteId: this.buildr.control(''),
-    createdAt: this.buildr.control(''),
-    deletedAt: this.buildr.control(''),
-    updatedAt: this.buildr.control('')
+    createdAt: this.buildr.control(null),
+    deletedAt: this.buildr.control(null),
+    updatedAt: this.buildr.control(null)
   });
+
+  generateQuote()
+  {
+    if (this.inputData?.id != undefined)
+    {
+      if (this.myform.value.quoteId == null || this.myform.value.quoteId == "")
+      {
+        //item.quotedBy = sessionStorage.getItem("UserId");
+        this.service.generateQuote(this.inputData?.id).subscribe(
+          (result) =>
+          {
+            if (result)
+              alert("Quote generated succesfully!");
+            else
+              alert("Quote not generated!")
+          },
+          (error) =>
+          {
+            console.error(error);
+          }
+        );
+      }
+      else
+      {
+        alert("Quote already created");
+      }
+    }
+    else
+    {
+      alert("Please create takeoff first!");
+    }
+  }
+  uploadFiles()
+  {
+
+    if (this.inputData?.id != undefined)
+    {
+      this.dataService.setData({ sectionId: this.inputData.id });
+      this.router.navigate(['file-upload']);
+    }
+    else
+    {
+      alert("Please create takeoff first!");
+    }
+  }
 
   setPopupData(id: any)
   {
     this.service.getTakeoffById(id).subscribe(item =>
     {
-      this.editData = item;
-      var obj = this.buildModel(this.editData);
-      this.myform.setValue(obj);
+      if (item != null)
+      {
+        this.editData = item;
+        var obj = this.buildModel(this.editData);
+        this.myform.setValue(obj);
+      }
     });
   }
 
@@ -263,76 +327,187 @@ export class TakeoffsComponent
     var obj: any = {};
     if (data.id && data.id != "")
       obj["id"] = data.id;
+
     if (data.takeoffId && data.takeoffId != "")
       obj["takeoffId"] = data.takeoffId;
+    else
+      obj["takeoffId"] = "";
+
     if (data.quoteId && data.quoteId != "")
       obj["quoteId"] = data.quoteId;
-    if (data.createdDate && data.createdDate != "")
-      obj["createdDate"] = data.createdDate;
+    else
+      obj["quoteId"] = "";
+
+    if (data.bidderId && data.bidderId != "")
+      obj["bidderId"] = data.bidderId;
+    else
+      obj["bidderId"] = "";
+
+    if (data.createDate && data.createDate != "")
+      obj["createDate"] = data.createDate;
+    else
+      obj["createDate"] = this.minDate;
+
     if (data.drawingDate && data.drawingDate != "")
       obj["drawingDate"] = data.drawingDate;
+    else
+      obj["drawingDate"] = this.minDate;
+
     if (data.revisedDate && data.revisedDate != "")
       obj["revisedDate"] = data.revisedDate;
+    else
+      obj["revisedDate"] = this.minDate;
+
     if (data.dueDate && data.dueDate != "")
       obj["dueDate"] = data.dueDate;
+    else
+      obj["dueDate"] = this.minDate;
+
     if (data.quoteDate && data.quoteDate != "")
       obj["quoteDate"] = data.quoteDate;
+    else
+      obj["quoteDate"] = this.minDate;
+
     if (data.salesmanId && data.salesmanId != "")
       obj["salesmanId"] = data.salesmanId;
+    else
+      obj["salesmanId"] = "";
+
     if (data.engineerId && data.engineerId != "")
       obj["engineerId"] = data.engineerId;
+    else
+      obj["engineerId"] = "";
+
     if (data.contractorId && data.contractorId != "")
       obj["contractorId"] = data.contractorId;
+    else
+      obj["contractorId"] = "";
+
     if (data.architectId && data.architectId != "")
       obj["architectId"] = data.architectId;
+    else
+      obj["architectId"] = "";
+
     if (data.specificationId && data.specificationId != "")
       obj["specificationId"] = data.specificationId;
+    else
+      obj["specificationId"] = "";
+
     if (data.jobName && data.jobName != "")
       obj["jobName"] = data.jobName;
+    else
+      obj["jobName"] = "";
+
     if (data.jobAddress && data.jobAddress != "")
       obj["jobAddress"] = data.jobAddress;
+    else
+      obj["jobAddress"] = "";
+
     if (data.comments && data.comments != "")
       obj["comments"] = data.comments;
+    else
+      obj["comments"] = "";
+
     if (data.worksheetGenerated && data.worksheetGenerated != "")
       obj["worksheetGenerated"] = data.worksheetGenerated;
+    else
+      obj["worksheetGenerated"] = "";
+
     if (data.pDFGenerated && data.pDFGenerated != "")
       obj["pDFGenerated"] = data.pDFGenerated;
+    else
+      obj["pDFGenerated"] = "";
+
     if (data.amount && data.amount != "")
       obj["amount"] = data.amount;
+    else
+      obj["amount"] = "";
+
     if (data.originalQuote && data.originalQuote != "")
       obj["originalQuote"] = data.originalQuote;
+    else
+      obj["originalQuote"] = "";
+
     if (data.quoteEntered && data.quoteEntered != "")
       obj["quoteEntered"] = data.quoteEntered;
+    else
+      obj["quoteEntered"] = "";
+
     if (data.createdBy && data.createdBy != "")
       obj["createdBy"] = data.createdBy;
+    else
+      obj["createdBy"] = "";
+
     if (data.quotedBy && data.quotedBy != "")
       obj["quotedBy"] = data.quotedBy;
+    else
+      obj["quotedBy"] = "";
+
     if (data.quoteComments && data.quoteComments != "")
       obj["quoteComments"] = data.quoteComments;
+    else
+      obj["quoteComments"] = "";
+
     if (data.status && data.status != "")
       obj["status"] = data.status;
+    else
+      obj["status"] = "";
+
     if (data.revActive && data.revActive != "")
       obj["revActive"] = data.revActive;
+    else
+      obj["revActive"] = "";
+
     if (data.projectNumber && data.projectNumber != "")
       obj["projectNumber"] = data.projectNumber;
+    else
+      obj["projectNumber"] = "";
+
     if (data.vibroLayIn && data.vibroLayIn != "")
       obj["vibroLayIn"] = data.vibroLayIn;
+    else
+      obj["vibroLayIn"] = "";
+
     if (data.drawingRCVDFrom && data.drawingRCVDFrom != "")
       obj["drawingRCVDFrom"] = data.drawingRCVDFrom;
+    else
+      obj["drawingRCVDFrom"] = "";
+
     if (data.quoteOut && data.quoteOut != "")
       obj["quoteOut"] = data.quoteOut;
+    else
+      obj["quoteOut"] = "";
+
     if (data.submittalDoneBy && data.submittalDoneBy != "")
       obj["submittalDoneBy"] = data.submittalDoneBy;
+    else
+      obj["submittalDoneBy"] = "";
+
     if (data.quoteRevision && data.quoteRevision != "")
       obj["quoteRevision"] = data.quoteRevision;
+    else
+      obj["quoteRevision"] = "";
+
     if (data.originalQuoteId && data.originalQuoteId != "")
       obj["originalQuoteId"] = data.originalQuoteId;
+    else
+      obj["originalQuoteId"] = "";
+
     if (data.deletedAt && data.deletedAt != "")
       obj["deletedAt"] = data.deletedAt;
+    else
+      obj["deletedAt"] = null;
+
     if (data.createdAt && data.createdAt != "")
       obj["createdAt"] = data.createdAt;
+    else
+      obj["createdAt"] = null;
+
     if (data.updatedAt && data.updatedAt != "")
       obj["updatedAt"] = data.updatedAt;
+    else
+      obj["updatedAt"] = null;
+
     return obj;
   }
 

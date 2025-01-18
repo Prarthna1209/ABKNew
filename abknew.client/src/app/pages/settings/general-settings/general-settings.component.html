@@ -1,8 +1,8 @@
 <form [formGroup]="myform" (ngSubmit)="addOrUpdate()">
   <h1>General Settings</h1>
   <div>
-    <mat-form-field class="columns form-field-style" style="width:100% !important">
-      <mat-label *ngIf="gen_loginLogo; else newFile">{{selectedFiles.item(0).name}}</mat-label>
+    <mat-form-field class="columns form-field-style col-3">
+      <mat-label *ngIf="geN_loginLogo; else newFile">{{selectedFiles.item(0).name}}</mat-label>
       <ng-template #newFile>
         <mat-label>Login Page Logo</mat-label>
       </ng-template>
@@ -12,8 +12,8 @@
       </button>
       <input hidden (change)="selectLoginLogo($event); $event.preventDefault();" #profileImage type="file" id="profileImage">
     </mat-form-field>
-    <mat-form-field class="columns form-field-style" style="width:100% !important">
-      <mat-label *ngIf="gen_headerLogo; else newFile">{{selectedFiles.item(0).name}}</mat-label>
+    <mat-form-field class="columns form-field-style col-3">
+      <mat-label *ngIf="geN_headerLogo; else newFile">{{selectedFiles.item(0).name}}</mat-label>
       <ng-template #newFile>
         <mat-label>Header Logo</mat-label>
       </ng-template>
@@ -23,8 +23,8 @@
       </button>
       <input hidden (change)="selectHeaderLogo($event); $event.preventDefault();" #profileImage type="file" id="profileImage">
     </mat-form-field>
-    <mat-form-field class="columns form-field-style" style="width:100% !important">
-      <mat-label *ngIf="gen_emailLogo; else newFile">{{selectedFiles.item(0).name}}</mat-label>
+    <mat-form-field class="columns form-field-style col-3">
+      <mat-label *ngIf="geN_emailLogo; else newFile">{{selectedFiles.item(0).name}}</mat-label>
       <ng-template #newFile>
         <mat-label>Email Logo</mat-label>
       </ng-template>
@@ -36,92 +36,84 @@
     </mat-form-field>
   </div>
   <div>
-    <mat-form-field appearance="fill" class="form-field-style">
+    <mat-form-field appearance="fill" class="form-field-style col-3">
       <mat-label>Company Name</mat-label>
-      <input matInput formControlName="gen_companyName" id="gen_companyName" placeholder="Company Name">
+      <input matInput formControlName="geN_companyName" id="geN_companyName" placeholder="Company Name">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
-    <mat-form-field [appearance]="'fill'" class="form-field-style">
-      <mat-label for="gen_frontWebsite">Front Website</mat-label>
-      <input matInput formControlName="gen_frontWebsite" placeholder="Front Website" id="gen_frontWebsite">
+    <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
+      <mat-label for="geN_frontWebsite">Front Website</mat-label>
+      <input matInput formControlName="geN_frontWebsite" placeholder="Front Website" id="geN_frontWebsite">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
-    <mat-form-field appearance="fill" class="form-field-style">
+    <mat-form-field appearance="fill" class="form-field-style col-3">
       <mat-label>Backend Application</mat-label>
-      <input matInput formControlName="gen_backenApp" id="gen_backenApp" placeholder="Backend Application">
+      <input matInput formControlName="geN_backendApp" id="geN_backendApp" placeholder="Backend Application">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
   </div>
   <div>
-    <mat-form-field appearance="fill" class="form-field-style">
+    <mat-form-field appearance="fill" class="form-field-style col-3">
       <mat-label>Office Address</mat-label>
-      <input matInput formControlName="gen_officeAdd" id="gen_officeAdd" placeholder="Office Address">
+      <input matInput formControlName="geN_officeAdd" id="geN_officeAdd" placeholder="Office Address">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
-    <mat-form-field [appearance]="'fill'" class="form-field-style">
-      <mat-label for="gen_fax">Fax</mat-label>
-      <input matInput formControlName="gen_fax" placeholder="Fax" id="gen_fax">
+    <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
+      <mat-label for="geN_fax">Fax</mat-label>
+      <input matInput formControlName="geN_fax" placeholder="Fax" id="geN_fax">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
-    <mat-form-field appearance="fill" class="form-field-style">
+    <mat-form-field appearance="fill" class="form-field-style col-3">
       <mat-label>Phone</mat-label>
-      <input matInput formControlName="gen_phone" id="gen_phone" placeholder="Phone">
+      <input matInput formControlName="geN_phone" id="geN_phone" placeholder="Phone">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
   </div>
   <div>
-    <mat-form-field appearance="fill" class="form-field-style">
+    <mat-form-field appearance="fill" class="form-field-style col-1">
       <mat-label>Email</mat-label>
-      <input matInput formControlName="gen_email" id="gen_email" placeholder="Email">
+      <input matInput formControlName="geN_email" id="geN_email" placeholder="Email">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
   </div>
   <div>
-    <mat-form-field appearance="fill" class="form-field-style">
+    <mat-form-field appearance="fill" class="form-field-style col-3">
       <mat-label>Clock 1 Label</mat-label>
-      <input matInput formControlName="gen_clock1Label" id="gen_clock1Label" placeholder="Clock 1 Label">
+      <input matInput formControlName="geN_clock1Label" id="geN_clock1Label" placeholder="Clock 1 Label">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
-    <mat-form-field [appearance]="'fill'" class="form-field-style">
-      <mat-label for="gen_clock1Timezone">Clock 1 Timezone</mat-label>
-      <mat-select formControlName="gen_clock1Timezone"></mat-select>
-      <input matInput formControlName="gen_clock1Timezone" placeholder="Clock 1 Timezone" id="gen_clock1Timezone">
+    <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
+      <mat-label for="geN_clock1Time">Clock 1 Timezone</mat-label>
+      <mat-select formControlName="geN_clock1Time"></mat-select>
+      <!--<input matInput formControlName="geN_clock1Time" placeholder="Clock 1 Timezone" id="geN_clock1Time">-->
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
-    <mat-form-field appearance="fill" class="form-field-style">
-      <mat-slide-toggle formControlName="gen_clock1Active">Clock 1 Active</mat-slide-toggle>
-      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      <mat-hint></mat-hint>
-    </mat-form-field>
+    <mat-slide-toggle formControlName="geN_clock1Active" class="col-3">Clock 1 Active</mat-slide-toggle>
   </div>
   <div>
-    <mat-form-field appearance="fill" class="form-field-style">
+    <mat-form-field appearance="fill" class="form-field-style col-3">
       <mat-label>Clock 2 Label</mat-label>
-      <input matInput formControlName="gen_clock2Label" id="gen_clock2Label" placeholder="Clock 2 Label">
+      <input matInput formControlName="geN_clock2Label" id="geN_clock2Label" placeholder="Clock 2 Label">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
-    <mat-form-field [appearance]="'fill'" class="form-field-style">
-      <mat-label for="gen_clock2Timezone">Clock 2 Timezone</mat-label>
-      <mat-select formControlName="gen_clock2Timezone"></mat-select>
-      <input matInput formControlName="gen_clock2Timezone" placeholder="Clock 2 Timezone" id="gen_clock2Timezone">
+    <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
+      <mat-label for="geN_clock2Time">Clock 2 Timezone</mat-label>
+      <mat-select formControlName="geN_clock2Time"></mat-select>
+      <!--<input matInput formControlName="geN_clock2Time" placeholder="Clock 2 Timezone" id="geN_clock2Time">-->
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
-    <mat-form-field appearance="fill" class="form-field-style">
-      <mat-slide-toggle formControlName="gen_clock2Active">Clock 2 Active</mat-slide-toggle>
-      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      <mat-hint></mat-hint>
-    </mat-form-field>
+    <mat-slide-toggle formControlName="geN_clock2Active" class="col-3">Clock 2 Active</mat-slide-toggle>
   </div>
   <div>
     <button mat-raised-button color="primary">Update</button>

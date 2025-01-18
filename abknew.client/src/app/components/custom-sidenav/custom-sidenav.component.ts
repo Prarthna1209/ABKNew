@@ -8,6 +8,7 @@ import { MenuItemComponent } from '../menu-item/menu-item.component';
 export type MenuItem = {
   icon: string;
   label: string;
+  include?: boolean;
   route?: string;
   subItems?: MenuItem[];
 };
@@ -38,15 +39,18 @@ export class CustomSidenavComponent
     {
       icon: "date_range",
       label: "Calendar",
-      route: "calendar"
+      route: "calendar",
+      include: true
     }, {
       icon: "flight_takeoff",
       label: "Takeoffs",
-      route: "takeoffs"
+      route: "takeoffs",
+      include: false
     }, {
       icon: "request_quote",
       label: "Quotes",
       route: "quotes",
+      include: false,
       subItems: [{
         icon: "airplane_ticket",
         label: "Pending Takeoffs",
@@ -63,19 +67,23 @@ export class CustomSidenavComponent
     }, {
       icon: "stars",
       label: "Job Awarded",
-      route: "jobawarded"
+      route: "jobawarded",
+      include: true
     }, {
       icon: "account_box",
       label: "Users",
-      route: "users"
+      route: "users",
+      include: true
     }, {
       icon: "markunread_mailbox",
       label: "Email Templates",
-      route: "emailtemplate"
+      route: "emailtemplate",
+      include: true
     }, {
       icon: "dataset",
       label: "DMP",
       route: "DMP",
+      include: true,
       subItems: [{
         icon: "architecture",
         label: "Architect DB",
@@ -132,11 +140,13 @@ export class CustomSidenavComponent
     }, {
       icon: "view_headline",
       label: "Logs",
-      route: "logs"
+      route: "logs",
+      include: true
     }, {
       icon: "settings_applications",
       label: "Settings",
       route: "settings",
+      include: true,
       subItems: [{
         icon: "settings",
         label: "General",

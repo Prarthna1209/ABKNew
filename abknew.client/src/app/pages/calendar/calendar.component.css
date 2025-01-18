@@ -51,3 +51,14 @@ a.fc-event, a.fc-event:hover {
   word-wrap: normal !important;
   overflow-wrap: normal;
 }
+
+.event-popup {
+  position: absolute;
+  background-color: rgba(0,0,0,0.4);
+  color: white;
+  border: 1px solid #ccc;
+  border-radius:5px;
+  padding: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 1000; /* Ensure it's on top */
+}

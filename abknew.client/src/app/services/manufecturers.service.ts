@@ -26,6 +26,11 @@ export class ManufecturersService {
     return this.http.get<Manufecturers>(`${this.apiUrl}/${id}`);
   }
 
+  getProductCount(id: string): Observable<Manufecturers>
+  {
+    return this.http.get<Manufecturers>(`${this.apiUrl}/GetProductCount/${id}`);
+  }
+
   updateManufacturer(manufecturer: Manufecturers): Observable<boolean>
   {
     return this.http.post<boolean>(`${this.apiUrl}`, { _method: 'PUT', ...manufecturer });

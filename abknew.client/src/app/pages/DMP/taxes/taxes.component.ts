@@ -108,6 +108,7 @@ export class TaxesComponent
           console.error(error);
         }
       );
+      this.getTaxes();
     }
   }
 

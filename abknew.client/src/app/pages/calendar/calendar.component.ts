@@ -11,6 +11,7 @@ import { INITIAL_EVENTS, createEventId, formatTakeoff } from './event-utils';
 import { TakeoffService } from '../../services/takeoff.service';
 import { EventInput } from '@fullcalendar/core';
 import { DataService } from '../../services/data.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 
 @Component({
@@ -35,7 +36,7 @@ export class CalendarComponent
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
-    initialView: 'dayGridMonth',
+    initialView: 'dayGridWeek',
     events: this.getTakeoffs.bind(this), // alternatively, use the `events` setting to fetch from a feed
     initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
 
@@ -47,6 +48,8 @@ export class CalendarComponent
     select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
     eventsSet: this.handleEvents.bind(this),
+    eventMouseEnter: this.handleEventMouseEnter.bind(this), // Bind 'this'
+    eventMouseLeave: this.handleEventMouseLeave.bind(this)
     //eventRender: function (event, element, view)
     //{
     //  var title = element.find('.fc-title');
@@ -64,16 +67,28 @@ export class CalendarComponent
     eventRemove:
     */
   };
-  ;
   currentEvents = signal<EventApi[]>([]);
   takeoffs: EventInput[] = [];
+  safePopupContent: SafeHtml = "";
+
+  popupVisible = false;
+  popupTop = 0;
+  popupLeft = 0;
+  popupContent = '';
   constructor(
     private changeDetector: ChangeDetectorRef,
     private router: Router,
     private service: TakeoffService,
-    private dataService: DataService
+    private dataService: DataService,
+    private sanitizer: DomSanitizer
   )
   {
+    sessionStorage.setItem('SiteSettingId', 'c43f04d9-e1be-4c7b-9fc6-fbfb49182f43');
+    sessionStorage.setItem('EmailAccountsId', '22f94c83-b443-44ff-8f5d-094abb755a2a');
+    sessionStorage.setItem('UserId', 'd42b8a53-790a-4817-852d-c7d0ded46fa6');
+    sessionStorage.setItem('CompanyId', '22f94c83-b443-44ff-8f5d-094abb755a2a');
+    sessionStorage.setItem('Prefix_Takeoff', 'T');
+    sessionStorage.setItem('Prefix_Quote', 'Q');
   }
 
   eventRender(e: any) { e.el.querySelectorAll('.fc-title')[0].innerHTML = e.el.querySelectorAll('.fc-title')[0].innerText; }
@@ -94,6 +109,19 @@ export class CalendarComponent
     });
   }
 
+  handleEventMouseEnter(info: any)
+  {
+    this.safePopupContent = this.sanitizer.bypassSecurityTrustHtml(info.event.extendedProps['description'] || 'No description');
+    this.popupTop = info.el.getBoundingClientRect().top - 30; // Adjust position
+    this.popupLeft = info.el.getBoundingClientRect().left - 250;
+    this.popupVisible = true;
+  }
+
+  handleEventMouseLeave(info: any)
+  {
+    this.popupVisible = false;
+  }
+
   handleCalendarToggle()
   {
     this.calendarVisible.update((bool) => !bool);
@@ -106,28 +134,13 @@ export class CalendarComponent
 
   handleDateSelect(selectInfo: DateSelectArg)
   {
+    this.dataService.setData({ dueDate: selectInfo.start });
     this.router.navigate(['takeoffs']);
-    //const title = prompt('Please enter a new title for your event');
-    //const calendarApi = selectInfo.view.calendar;
-
-    //calendarApi.unselect(); // clear date selection
-
-    //if (title)
-    //{
-    //  calendarApi.addEvent({
-    //    id: createEventId(),
-    //    title,
-    //    start: selectInfo.startStr,
-    //    end: selectInfo.endStr,
-    //    allDay: selectInfo.allDay
-    //  });
-    //}
   }
 
   handleEventClick(clickInfo: EventClickArg)
   {
-    var title = clickInfo.event.title;
-    var takeoffId = "";
+    var takeoffId = clickInfo.event.id;
     this.dataService.setData({ id: takeoffId });
     this.router.navigate(['takeoffs']);
   }

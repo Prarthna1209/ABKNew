@@ -48,6 +48,11 @@ export class BidderComponent {
     this.getSalesPerson();
   }
 
+  reloadPage()
+  {
+    location.reload();
+  }
+
   getSalesPerson()
   {
     this.userService.getSalesPersons().subscribe(
@@ -132,6 +137,7 @@ export class BidderComponent {
           console.error(error);
         }
       );
+      this.reloadPage();
     }
   }
 }

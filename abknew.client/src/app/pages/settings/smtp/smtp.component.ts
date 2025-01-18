@@ -33,7 +33,7 @@ export class SmtpComponent {
   ngOnInit(): void
   {
     this.siteSettingId = sessionStorage.getItem('SiteSettingId');
-    if (this.siteSettingId != '')
+    if (this.siteSettingId && this.siteSettingId != '')
     {
       this.setPopupData(this.siteSettingId);
     }
@@ -41,13 +41,13 @@ export class SmtpComponent {
 
   myform = this.buildr.group({
     id: this.buildr.control(''),
-    smtp_host: this.buildr.control(''),
-    smtp_port: this.buildr.control(''),
-    smtp_security: this.buildr.control(''),
-    smtp_username: this.buildr.control(''),
-    smtp_password: this.buildr.control(''),
-    smtp_fromEmail: this.buildr.control(''),
-    smtp_fromName: this.buildr.control(''),
+    smtP_Host: this.buildr.control(''),
+    smtP_Port: this.buildr.control(''),
+    smtP_Security: this.buildr.control(''),
+    smtP_Username: this.buildr.control(''),
+    smtP_Password: this.buildr.control(''),
+    smtP_FromEmail: this.buildr.control(''),
+    smtP_FromName: this.buildr.control(''),
     createdAt: this.buildr.control(''),
     updatedAt: this.buildr.control('')
   });
@@ -59,13 +59,13 @@ export class SmtpComponent {
       this.editData = item;
       this.myform.setValue({
         id: this.editData.id,
-        smtp_host: this.editData.smtp_host,
-        smtp_port: this.editData.smtp_port,
-        smtp_security: this.editData.smtp_security,
-        smtp_username: this.editData.smtp_username,
-        smtp_password: this.editData.smtp_password,
-        smtp_fromEmail: this.editData.smtp_fromEmail,
-        smtp_fromName: this.editData.smtp_fromName,
+        smtP_Host: this.editData.smtP_Host,
+        smtP_Port: this.editData.smtP_Port,
+        smtP_Security: this.editData.smtP_Security,
+        smtP_Username: this.editData.smtP_Username,
+        smtP_Password: this.editData.smtP_Password,
+        smtP_FromEmail: this.editData.smtP_FromEmail,
+        smtP_FromName: this.editData.smtP_FromName,
         createdAt: this.editData.createdAt,
         updatedAt: this.editData.updatedAt
       })
@@ -94,13 +94,13 @@ export class SmtpComponent {
   {
     var item = {
       id: id,
-      smtp_host: this.myform.value.smtp_host || '',
-      smtp_port: this.myform.value.smtp_port || '',
-      smtp_security: this.myform.value.smtp_security || '',
-      smtp_username: this.myform.value.smtp_username || '',
-      smtp_password: this.myform.value.smtp_password || '',
-      smtp_fromEmail: this.myform.value.smtp_fromEmail || '',
-      smtp_fromName: this.myform.value.smtp_fromName || '',
+      smtP_Host: this.myform.value.smtP_Host || '',
+      smtP_Port: this.myform.value.smtP_Port || '',
+      smtP_Security: this.myform.value.smtP_Security || '',
+      smtP_Username: this.myform.value.smtP_Username || '',
+      smtP_Password: this.myform.value.smtP_Password || '',
+      smtP_FromEmail: this.myform.value.smtP_FromEmail || '',
+      smtP_FromName: this.myform.value.smtP_FromName || '',
       createdAt: this.myform.value.createdAt || '',
       updatedAt: new Date().toISOString()
     };
@@ -129,13 +129,13 @@ export class SmtpComponent {
     console.log(this.myform.value);
     var item = {
       id: '',
-      smtp_host: this.myform.value.smtp_host || '',
-      smtp_port: this.myform.value.smtp_port || '',
-      smtp_security: this.myform.value.smtp_security || '',
-      smtp_username: this.myform.value.smtp_username || '',
-      smtp_password: this.myform.value.smtp_password || '',
-      smtp_fromEmail: this.myform.value.smtp_fromEmail || '',
-      smtp_fromName: this.myform.value.smtp_fromName || '',
+      smtP_Host: this.myform.value.smtP_Host || '',
+      smtP_Port: this.myform.value.smtP_Port || '',
+      smtP_Security: this.myform.value.smtP_Security || '',
+      smtP_Username: this.myform.value.smtP_Username || '',
+      smtP_Password: this.myform.value.smtP_Password || '',
+      smtP_FromEmail: this.myform.value.smtP_FromEmail || '',
+      smtP_FromName: this.myform.value.smtP_FromName || '',
       createdAt: new Date().toISOString() || '',
       updatedAt: new Date().toISOString()
     };

@@ -172,6 +172,7 @@ export class ShippingItemComponent
           console.error(error);
         }
       );
+      this.getShippingItems();
     }
   }
 

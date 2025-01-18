@@ -61,6 +61,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { EmailEditorComponent } from './pages/email-editor/email-editor.component';
 import { FormsModule } from '@angular/forms';
 import { CreateComponent } from './pages/users/create/create.component';
+import { FileUploadComponent } from './pages/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { CreateComponent } from './pages/users/create/create.component';
     PdniPopupComponent,
     PmPopupComponent,
     SpecificationsPopupComponent,
-    WorkbookNotesPopupComponent
+    WorkbookNotesPopupComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,

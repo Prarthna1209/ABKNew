@@ -85,7 +85,8 @@ export class ManufacturerPopupComponent {
       isFeatured: (String(this.myform.value.isFeatured).toLowerCase() === 'true'),
       updated_at: new Date().toISOString(),
       created_at: new Date().toISOString(),
-      created_by: this.myform.value.created_by || '0'
+      created_by: this.myform.value.created_by || '0',
+      productCount: 0
     };
     this.service.updateManufacturer(item).subscribe(
       (result) =>
@@ -118,7 +119,8 @@ export class ManufacturerPopupComponent {
       isFeatured: (String(this.myform.value.isFeatured).toLowerCase() === 'true'),
       updated_at: new Date().toISOString(),
       created_at: new Date().toISOString(),
-      created_by: this.myform.value.created_by || '0'
+      created_by: this.myform.value.created_by || '0',
+      productCount: 0
     };
     this.service.createManufacturer(item).subscribe(
       (result) =>

@@ -33,7 +33,8 @@ import { ViewQuotesComponent } from './pages/quotes/view-quotes/view-quotes.comp
 import { PendingTakeoffsComponent } from './pages/quotes/pending-takeoffs/pending-takeoffs.component';
 import { CreateComponent } from './pages/users/create/create.component';
 import { ShippingsComponent } from './pages/DMP/shippings/shippings.component';
-import { EmailEditorComponent} from './pages/email-editor/email-editor.component';
+import { EmailEditorComponent } from './pages/email-editor/email-editor.component';
+import { FileUploadComponent } from './pages/file-upload/file-upload.component';
 
 const routes: Routes = [
   {
@@ -103,6 +104,9 @@ const routes: Routes = [
       path: 'taxes',
       component: TaxesComponent
     }]
+  }, {
+    path: 'file-upload',
+    component: FileUploadComponent
   },
   {
     path: 'jobawarded',

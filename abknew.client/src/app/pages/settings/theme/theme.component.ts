@@ -33,7 +33,7 @@ export class ThemeComponent {
   ngOnInit(): void
   {
     this.siteSettingId = sessionStorage.getItem('SiteSettingId');
-    if (this.siteSettingId != '')
+    if (this.siteSettingId && this.siteSettingId != '')
     {
       this.setPopupData(this.siteSettingId);
     }
@@ -41,9 +41,9 @@ export class ThemeComponent {
 
   myform = this.buildr.group({
     id: this.buildr.control(''),
-    theme_current: this.buildr.control(''),
-    theme_invoiceTemp: this.buildr.control(''),
-    theme_quotePaperSize: this.buildr.control(''),
+    themE_Current: this.buildr.control(''),
+    themE_InvoiceTemp: this.buildr.control(''),
+    themE_QuotePaperSize: this.buildr.control(''),
     createdAt: this.buildr.control(''),
     updatedAt: this.buildr.control('')
   });
@@ -55,9 +55,9 @@ export class ThemeComponent {
       this.editData = item;
       this.myform.setValue({
         id: this.editData.id,
-        theme_current: this.editData.theme_current,
-        theme_invoiceTemp: this.editData.theme_invoiceTemp,
-        theme_quotePaperSize: this.editData.theme_quotePaperSize,
+        themE_Current: this.editData.themE_Current,
+        themE_InvoiceTemp: this.editData.themE_InvoiceTemp,
+        themE_QuotePaperSize: this.editData.themE_QuotePaperSize,
         createdAt: this.editData.createdAt,
         updatedAt: this.editData.updatedAt
       })
@@ -87,9 +87,9 @@ export class ThemeComponent {
     var item = {
       id: id,
       created_at: new Date().toISOString(),
-      theme_current: this.myform.value.theme_current || '',
-      theme_invoiceTemp: this.myform.value.theme_invoiceTemp || '',
-      theme_quotePaperSize: this.myform.value.theme_quotePaperSize || '',
+      themE_Current: this.myform.value.themE_Current || '',
+      themE_InvoiceTemp: this.myform.value.themE_InvoiceTemp || '',
+      themE_QuotePaperSize: this.myform.value.themE_QuotePaperSize || '',
       createdAt: this.myform.value.createdAt || '',
       updatedAt: new Date().toISOString()
     };
@@ -118,9 +118,9 @@ export class ThemeComponent {
     console.log(this.myform.value);
     var item = {
       id: '',
-      theme_current: this.myform.value.theme_current || '',
-      theme_invoiceTemp: this.myform.value.theme_invoiceTemp || '',
-      theme_quotePaperSize: this.myform.value.theme_quotePaperSize || '',
+      themE_Current: this.myform.value.themE_Current || '',
+      themE_InvoiceTemp: this.myform.value.themE_InvoiceTemp || '',
+      themE_QuotePaperSize: this.myform.value.themE_QuotePaperSize || '',
       createdAt: new Date().toISOString() || '',
       updatedAt: new Date().toISOString()
     };

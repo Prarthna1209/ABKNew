@@ -33,6 +33,13 @@ namespace ABKNew.Server.Controllers
             return result;
         }
 
+        // GET api/<ManufacturersController>/GetProductCount/5
+        [HttpGet("GetProductCount/{id}")]
+        public async Task<ActionResult<int>> GetProductCount(string id)
+        {
+            var result = await _repository.ProductCount(id);
+            return result;
+        }
         // POST api/<ManufacturersController>
         [HttpPost]
         public async Task<bool> Post([FromBody] ManufacturersModel model)

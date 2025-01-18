@@ -7,15 +7,16 @@
         public string? QuoteId { get; set; }
         public string? JobId { get; set; }
         public DateTime? CreateDate { get; set; }
-        public DateTime? DrawingDate { get; set; }
-        public DateTime? RevisedDate { get; set; }
-        public DateTime? DueDate { get; set; }
-        public DateTime? QuoteDate { get; set; }
+        public DateTime? DrawingDate { get; set; } = DateTime.MinValue;
+        public DateTime? RevisedDate { get; set; } = DateTime.MinValue;
+        public DateTime? DueDate { get; set; } = DateTime.MinValue;
+        public DateTime? QuoteDate { get; set; } = DateTime.MinValue;
         public string? SalesmanId { get; set; }
         public string? EngineerId { get; set; }
         public string? ContractorId { get; set; }
         public string? ArchitectId { get; set; }
         public string? SpecificationId { get; set; }
+        public string? BidderId { get; set; } = "";
         public string? JobName { get; set; }
         public string? Jobaddress { get; set; }
         public string? Comments { get; set; }

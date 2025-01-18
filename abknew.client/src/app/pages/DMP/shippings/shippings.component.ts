@@ -112,6 +112,7 @@ export class ShippingsComponent
           console.error(error);
         }
       );
+      this.getShippings();
     }
   }
 

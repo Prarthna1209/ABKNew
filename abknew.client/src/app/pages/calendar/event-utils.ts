@@ -36,10 +36,31 @@ export function formatTakeoff(obj: Takeoff[])
   let takeoffs: EventInput[] = [];
   for (let item of obj)
   {
+    //<b>Usercode: </b> ${item.u}</br >
+
     takeoffs.push({
       id: item.id,
-      title: `<div><b>Takeoff ID:</b> ${item.takeoffId}</br><b>QuoteID:</b> ${item.quoteId}</br><b>Job Name:</b> ${item.jobName}</div>`,
-      start: formatDate(item.dueDate, 'yyyy-MM-dd', "en-US")
+      title: `${item.takeoffId}`,
+      start: formatDate(item.dueDate, 'yyyy-MM-dd', "en-US"),
+      extendedProps: {
+        description: `<div>
+          <b>Takeoff ID:</b> ${item.takeoffId}</br>
+          <b>QuoteID:</b> ${item.quoteId}</br>
+          <b>Job Name:</b> ${item.jobName}</div>
+          <b>Job Address:</b> ${item.jobAddress}</br>
+          <b>Created Date:</b> ${item.createDate}</br>
+          <b>Due Date:</b> ${item.dueDate}</br>
+          <b>Salesman:</b> ${item.salesman}</br>
+          <b>Engineer:</b> ${item.engineer}</br>
+          <b>Architect:</b> ${item.architect}</br>
+          <b>Specs:</b> ${item.specification}</br>
+          <b>Bidder:</b> ${item.bidder}</br>
+          <b>Drwng Date:</b> ${item.drawingDate}</br>
+          <b>Revise Date:</b> ${item.revisedDate}</br>
+          <b>Drwng Rcvd Date:</b> ${item.drawingRCVDFrom}</br>
+          <b>Takeoff Comment:</b> ${item.comments}</br>
+          <b>GC List:</b></br>`
+      }
 //        formatDate(item.dueDate, 'yyyy-MM-dd', "en-US")
         //new Date(item.dueDate).toISOString()
     })

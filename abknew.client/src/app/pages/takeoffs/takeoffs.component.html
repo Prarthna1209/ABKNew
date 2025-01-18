@@ -1,22 +1,27 @@
 <mat-accordion>
-  <mat-expansion-panel>
+  <mat-expansion-panel expanded="true">
     <mat-expansion-panel-header>
       <mat-panel-title>
         Takeoff
       </mat-panel-title>
+      <button mat-icon-button color="primary" aria-label="Make Quote" (click)="$event.stopPropagation(); generateQuote()">
+        <mat-icon>add_comment</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" aria-label="Upload Files" (click)="$event.stopPropagation(); uploadFiles()">
+        <mat-icon>upload_file</mat-icon>
+      </button>
     </mat-expansion-panel-header>
     <form [formGroup]="myform" (ngSubmit)="addOrUpdate()">
-      <h1>{{inputData.header}}</h1>
       <div>
         <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
           <mat-label for="createDate">Create Date</mat-label>
-          <input matInput formControlName="createDate" placeholder="Create Date" id="createDate">
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          <mat-hint></mat-hint>
+          <input matInput [matDatepicker]="createDate" formControlName="createDate">
+          <mat-datepicker-toggle matSuffix [for]="createDate"></mat-datepicker-toggle>
+          <mat-datepicker #createDate></mat-datepicker>
         </mat-form-field>
         <mat-form-field class="form-field-style col-3">
           <mat-label>Salesperson</mat-label>
-          <mat-select placeholder="Salesperson" formControlName="salespersonId" name="salespersonId">
+          <mat-select placeholder="Salesperson" formControlName="salesmanId" name="salesmanId">
             @if(salespersons && salespersons.length > 0) {
             @for (item of salespersons; track item) {
             <mat-option [value]="item.value">{{item.viewValue}}</mat-option>
@@ -73,30 +78,30 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="fill" class="form-field-style col-3">
-          <mat-label>Project Name</mat-label>
-          <input matInput formControlName="projectName" id="projectName" placeholder="Project Name">
+          <mat-label>Project Number</mat-label>
+          <input matInput formControlName="projectNumber" id="projectNumber" placeholder="Project Number">
           <mat-icon matSuffix>username</mat-icon>
           <mat-hint></mat-hint>
         </mat-form-field>
         <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
           <mat-label for="drawingDate">Drawing Date</mat-label>
-          <input matInput formControlName="drawingDate" placeholder="Drawing Date" id="drawingDate">
-          <mat-icon matSuffix>date</mat-icon>
-          <mat-hint></mat-hint>
+          <input matInput  [matDatepicker]="drawingDate" formControlName="drawingDate">
+          <mat-datepicker-toggle matSuffix [for]="drawingDate"></mat-datepicker-toggle>
+          <mat-datepicker #drawingDate></mat-datepicker>
         </mat-form-field>
         <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
           <mat-label for="revisedDate">Revised Date</mat-label>
-          <input matInput formControlName="revisedDate" placeholder="Revised Date" id="revisedDate">
-          <mat-icon matSuffix>date</mat-icon>
-          <mat-hint></mat-hint>
+          <input matInput  [matDatepicker]="revisedDate" formControlName="revisedDate">
+          <mat-datepicker-toggle matSuffix [for]="revisedDate"></mat-datepicker-toggle>
+          <mat-datepicker #revisedDate></mat-datepicker>
         </mat-form-field>
       </div>
       <div>
         <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
           <mat-label for="dueDate">Due Date</mat-label>
-          <input matInput formControlName="dueDate" placeholder="Due Date" id="dueDate">
-          <mat-icon matSuffix>date</mat-icon>
-          <mat-hint></mat-hint>
+          <input matInput [matDatepicker]="dueDate" formControlName="dueDate">
+          <mat-datepicker-toggle matSuffix [for]="dueDate"></mat-datepicker-toggle>
+          <mat-datepicker #dueDate></mat-datepicker>
         </mat-form-field>
         <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
           <mat-label for="drawingRCVDFrom">Drawing Rcvd From</mat-label>
@@ -154,7 +159,7 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Quote
+        Worksheet
       </mat-panel-title>
     </mat-expansion-panel-header>
     <form></form>

@@ -1,15 +1,24 @@
 <mat-toolbar class="mat-elevation-z3">
-    <button mat-icon-button (click)="collapsed.set(!collapsed())">
-        <mat-icon>menu</mat-icon>
-    </button>
+  <img src="assets/image/Logo.png" alt="Hilbert" class="toolbar-logo" />
+  <button mat-icon-button (click)="collapsed.set(!collapsed())">
+    <mat-icon>menu</mat-icon>
+  </button>
 </mat-toolbar>
 
 <mat-sidenav-container>
-    <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
-        <app-custom-sidenav [collapsed] = "collapsed()"></app-custom-sidenav>
-    </mat-sidenav>
-    <mat-sidenav-content class="content" [style.margin-left] ="sidenavWidth()">
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
+  <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
+    <app-custom-sidenav [collapsed]="collapsed()"></app-custom-sidenav>
+  </mat-sidenav>
+  <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
 </mat-sidenav-container>
+
+<footer class="main-footer">
+  <div class="float-right d-none d-sm-block">
+    <b>Version</b> 1.0.0
+  </div>
+  <strong>Copyright © 2025 <a href="https://aet.abkestimates.com/auth">AET.</a></strong> All
+  rights reserved.
+</footer>
 

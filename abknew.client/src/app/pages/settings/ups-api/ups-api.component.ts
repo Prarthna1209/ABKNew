@@ -33,7 +33,7 @@ export class UpsApiComponent {
   ngOnInit(): void
   {
     this.siteSettingId = sessionStorage.getItem('SiteSettingId');
-    if (this.siteSettingId != '')
+    if (this.siteSettingId && this.siteSettingId != '')
     {
       this.setPopupData(this.siteSettingId);
     }
@@ -41,9 +41,9 @@ export class UpsApiComponent {
 
   myform = this.buildr.group({
     id: this.buildr.control(''),
-    upsapi_accessToken: this.buildr.control(''),
-    upsapi_username: this.buildr.control(''),
-    upsapi_password: this.buildr.control(''),
+    upsapI_AccessToken: this.buildr.control(''),
+    upsapI_Username: this.buildr.control(''),
+    upsapI_Password: this.buildr.control(''),
     createdAt: this.buildr.control(''),
     updatedAt: this.buildr.control('')
   });
@@ -55,9 +55,9 @@ export class UpsApiComponent {
       this.editData = item;
       this.myform.setValue({
         id: this.editData.id,
-        upsapi_accessToken: this.editData.upsapi_accessToken,
-        upsapi_username: this.editData.upsapi_username,
-        upsapi_password: this.editData.upsapi_password,
+        upsapI_AccessToken: this.editData.upsapI_AccessToken,
+        upsapI_Username: this.editData.upsapI_Username,
+        upsapI_Password: this.editData.upsapI_Password,
         createdAt: this.editData.createdAt,
         updatedAt: this.editData.updatedAt
       })
@@ -86,9 +86,9 @@ export class UpsApiComponent {
   {
     var item = {
       id: id,
-      upsapi_accessToken: this.myform.value.upsapi_accessToken || '',
-      upsapi_username: this.myform.value.upsapi_username || '',
-      upsapi_password: this.myform.value.upsapi_password || '',
+      upsapI_AccessToken: this.myform.value.upsapI_AccessToken || '',
+      upsapI_Username: this.myform.value.upsapI_Username || '',
+      upsapI_Password: this.myform.value.upsapI_Password || '',
       createdAt: this.myform.value.createdAt || '',
       updatedAt: new Date().toISOString()
     };
@@ -117,9 +117,9 @@ export class UpsApiComponent {
     console.log(this.myform.value);
     var item = {
       id: '',
-      upsapi_accessToken: this.myform.value.upsapi_accessToken || '',
-      upsapi_username: this.myform.value.upsapi_username || '',
-      upsapi_password: this.myform.value.upsapi_password || '',
+      upsapI_AccessToken: this.myform.value.upsapI_AccessToken || '',
+      upsapI_Username: this.myform.value.upsapI_Username || '',
+      upsapI_Password: this.myform.value.upsapI_Password || '',
       createdAt: new Date().toISOString() || '',
       updatedAt: new Date().toISOString()
     };

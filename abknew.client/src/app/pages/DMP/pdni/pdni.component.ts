@@ -21,7 +21,8 @@ import { MaterialModule } from '../../../material/material.module';
   templateUrl: './pdni.component.html',
   styleUrl: './pdni.component.css'
 })
-export class PdniComponent {
+export class PdniComponent
+{
   pdni!: Pdni[];
   dataSource: any;
   displayedColumns: string[] = ['id', 'name', 'updated_at', 'created_at', 'action'];
@@ -105,6 +106,7 @@ export class PdniComponent {
           console.error(error);
         }
       );
+      this.getPdni();
     }
   }
 }

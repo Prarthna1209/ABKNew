@@ -35,7 +35,7 @@ export class ApiComponent
   ngOnInit(): void
   {
     this.siteSettingId = sessionStorage.getItem('SiteSettingId');
-    if (this.siteSettingId != '')
+    if (this.siteSettingId && this.siteSettingId != '')
     {
       this.setPopupData(this.siteSettingId);
     }
@@ -48,8 +48,8 @@ export class ApiComponent
 
   myform = this.buildr.group({
     id: this.buildr.control(''),
-    api_accessToken: this.buildr.control(''),
-    api_clientSecret: this.buildr.control('')
+    apI_AccessToken: this.buildr.control(''),
+    apI_ClientSecret: this.buildr.control('')
   });
 
   setPopupData(id: any)
@@ -59,8 +59,8 @@ export class ApiComponent
       this.editData = item;
       this.myform.setValue({
         id: this.editData.id,
-        api_accessToken: this.editData.api_accessToken,
-        api_clientSecret: this.editData.api_clientSecret
+        apI_AccessToken: this.editData.apI_AccessToken,
+        apI_ClientSecret: this.editData.apI_ClientSecret
       })
     });
   }
@@ -87,8 +87,8 @@ export class ApiComponent
   {
     var item = {
       id: id,
-      api_accessToken: this.myform.value.api_accessToken || '',
-      api_clientSecret: this.myform.value.api_clientSecret || ''
+      apI_AccessToken: this.myform.value.apI_AccessToken || '',
+      apI_ClientSecret: this.myform.value.apI_ClientSecret || ''
 
     };
     this.service.updateSiteSettings(this.siteSettingId, item).subscribe(
@@ -116,8 +116,8 @@ export class ApiComponent
     console.log(this.myform.value);
     var item = {
       id: '',
-      api_accessToken: this.myform.value.api_accessToken || '',
-      api_clientSecret: this.myform.value.api_clientSecret || '',
+      apI_AccessToken: this.myform.value.apI_AccessToken || '',
+      apI_ClientSecret: this.myform.value.apI_ClientSecret || '',
     };
     this.service.createSiteSettings(item).subscribe(
       (result) =>

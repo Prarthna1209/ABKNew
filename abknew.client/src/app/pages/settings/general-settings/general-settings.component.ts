@@ -9,12 +9,14 @@ import { Router } from '@angular/router';
 import { SiteSettingsService } from '../../../services/site-settings.service';
 import { CommonModule } from '@angular/common';
 import { UploadService } from '../../../services/upload.service';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-general-settings',
   standalone: true,
   imports: [
-    CommonModule, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatTableModule, MaterialModule
+    CommonModule, MatFormFieldModule, MatInputModule, FormsModule,
+    MatButtonModule, MatTableModule, MaterialModule, MatSlideToggleModule
   ],
   templateUrl: './general-settings.component.html',
   styleUrl: './general-settings.component.css'
@@ -25,9 +27,9 @@ export class GeneralSettingsComponent
   selectedValue: string = "-1";
   siteSettingId: any;
   selectedFiles: any;
-  gen_loginLogo: any;
-  gen_headerLogo: any;
-  gen_emailLogo: any;
+  geN_loginLogo: any;
+  geN_headerLogo: any;
+  geN_emailLogo: any;
   constructor(
     private buildr: FormBuilder,
     private service: SiteSettingsService,
@@ -41,7 +43,7 @@ export class GeneralSettingsComponent
   ngOnInit(): void
   {
     this.siteSettingId = sessionStorage.getItem('SiteSettingId');
-    if (this.siteSettingId != '')
+    if (this.siteSettingId && this.siteSettingId != '')
     {
       this.setPopupData(this.siteSettingId);
     }
@@ -49,22 +51,22 @@ export class GeneralSettingsComponent
 
   myform = this.buildr.group({
     id: this.buildr.control(''),
-    gen_loginLogo: this.buildr.control(''),
-    gen_headerLogo: this.buildr.control(''),
-    gen_emailLogo: this.buildr.control(''),
-    gen_companyName: this.buildr.control(''),
-    gen_frontWebsite: this.buildr.control(''),
-    gen_backendApp: this.buildr.control(''),
-    gen_officeAdd: this.buildr.control(''),
-    gen_phone: this.buildr.control(''),
-    gen_fax: this.buildr.control(''),
-    gen_email: this.buildr.control(''),
-    gen_clock1Label: this.buildr.control(''),
-    gen_clock1Time: this.buildr.control(''),
-    gen_clock1Active: this.buildr.control(''),
-    gen_clock2Label: this.buildr.control(''),
-    gen_clock2Time: this.buildr.control(''),
-    gen_clock2Active: this.buildr.control(''),
+    geN_loginLogo: this.buildr.control(''),
+    geN_headerLogo: this.buildr.control(''),
+    geN_emailLogo: this.buildr.control(''),
+    geN_companyName: this.buildr.control(''),
+    geN_frontWebsite: this.buildr.control(''),
+    geN_backendApp: this.buildr.control(''),
+    geN_officeAdd: this.buildr.control(''),
+    geN_phone: this.buildr.control(''),
+    geN_fax: this.buildr.control(''),
+    geN_email: this.buildr.control(''),
+    geN_clock1Label: this.buildr.control(''),
+    geN_clock1Time: this.buildr.control(''),
+    geN_clock1Active: this.buildr.control(''),
+    geN_clock2Label: this.buildr.control(''),
+    geN_clock2Time: this.buildr.control(''),
+    geN_clock2Active: this.buildr.control(''),
     createdAt: this.buildr.control(''),
     updatedAt: this.buildr.control('')
   });
@@ -76,22 +78,22 @@ export class GeneralSettingsComponent
       this.editData = item;
       this.myform.setValue({
         id: this.editData.id,
-        gen_loginLogo: this.editData.gen_loginLogo,
-        gen_headerLogo: this.editData.gen_headerLogo,
-        gen_emailLogo: this.editData.gen_emailLogo,
-        gen_companyName: this.editData.gen_companyName,
-        gen_frontWebsite: this.editData.gen_frontWebsite,
-        gen_backendApp: this.editData.gen_backendApp,
-        gen_officeAdd: this.editData.gen_officeAdd,
-        gen_phone: this.editData.gen_phone,
-        gen_fax: this.editData.gen_fax,
-        gen_email: this.editData.gen_email,
-        gen_clock1Label: this.editData.gen_clock1Label,
-        gen_clock1Time: this.editData.gen_clock1Time,
-        gen_clock1Active: this.editData.gen_clock1Active,
-        gen_clock2Label: this.editData.gen_clock2Label,
-        gen_clock2Time: this.editData.gen_clock2Time,
-        gen_clock2Active: this.editData.gen_clock2Active,
+        geN_loginLogo: this.editData.geN_LoginLogo || '',
+        geN_headerLogo: this.editData.geN_HeaderLogo || '',
+        geN_emailLogo: this.editData.geN_EmailLogo || '',
+        geN_companyName: this.editData.geN_CompanyName || '',
+        geN_frontWebsite: this.editData.geN_FrontWebsite || '',
+        geN_backendApp: this.editData.geN_BackendApp || '',
+        geN_officeAdd: this.editData.geN_OfficeAdd || '',
+        geN_phone: this.editData.geN_Phone || '',
+        geN_fax: this.editData.geN_Fax || '',
+        geN_email: this.editData.geN_Email || '',
+        geN_clock1Label: this.editData.geN_Clock1Label || '',
+        geN_clock1Time: this.editData.geN_Clock1Time || '',
+        geN_clock1Active: this.editData.geN_Clock1Active || false,
+        geN_clock2Label: this.editData.geN_Clock2Label || '',
+        geN_clock2Time: this.editData.geN_Clock2Time || '',
+        geN_clock2Active: this.editData.geN_Clock2Active || false,
         createdAt: this.editData.createdAt,
         updatedAt: this.editData.updatedAt
       })
@@ -100,25 +102,28 @@ export class GeneralSettingsComponent
 
   selectHeaderLogo(event: any)
   {
-    this.gen_headerLogo = event.target.files;
+    this.geN_headerLogo = event.target.files;
   }
 
   selectLoginLogo(event: any)
   {
-    this.gen_loginLogo = event.target.files;
+    this.geN_loginLogo = event.target.files;
   }
 
   selectEmailLogo(event: any)
   {
-    this.gen_emailLogo = event.target.files;
+    this.geN_emailLogo = event.target.files;
   }
 
   addOrUpdate()
   {
-    const id = this.myform.value.id || '';
-    this.uploadService.uploadfile(this.gen_headerLogo[0]);
-    this.uploadService.uploadfile(this.gen_loginLogo[0]);
-    this.uploadService.uploadfile(this.gen_emailLogo[0]);
+    const id = this.siteSettingId || '';
+    if (this.geN_headerLogo && this.geN_headerLogo != '')
+      this.uploadService.uploadfile(this.geN_headerLogo[0]);
+    if (this.geN_loginLogo && this.geN_loginLogo != '')
+      this.uploadService.uploadfile(this.geN_loginLogo[0]);
+    if (this.geN_emailLogo && this.geN_emailLogo != '')
+      this.uploadService.uploadfile(this.geN_emailLogo[0]);
     if (id != '')
     {
       this.updateGeneralSettings(id);
@@ -139,26 +144,26 @@ export class GeneralSettingsComponent
     var item = {
       id: id,
       created_at: new Date().toISOString(),
-      gen_loginLogo: this.gen_loginLogo[0].name || '',
-      gen_headerLogo: this.gen_headerLogo[0].name || '',
-      gen_emailLogo: this.gen_emailLogo[0].name || '',
-      gen_companyName: this.myform.value.gen_companyName || '',
-      gen_frontWebsite: this.myform.value.gen_frontWebsite || '',
-      gen_backendApp: this.myform.value.gen_backendApp || '',
-      gen_officeAdd: this.myform.value.gen_officeAdd || '',
-      gen_phone: this.myform.value.gen_phone || '',
-      gen_fax: this.myform.value.gen_fax || '',
-      gen_email: this.myform.value.gen_email || '',
-      gen_clock1Label: this.myform.value.gen_clock1Label || '',
-      gen_clock1Time: this.myform.value.gen_clock1Time || '',
-      gen_clock1Active: (this.myform.value.gen_clock1Active || 'false').toLowerCase() == 'true',
-      gen_clock2Label: this.myform.value.gen_clock2Label || '',
-      gen_clock2Time: this.myform.value.gen_clock2Time || '',
-      gen_clock2Active: (this.myform.value.gen_clock2Active || 'false').toLowerCase() == 'true',
-      createdAt: this.myform.value.createdAt || '',
+      geN_loginLogo: this.geN_loginLogo ? this.geN_loginLogo[0].name : '',
+      geN_headerLogo: this.geN_headerLogo ? this.geN_headerLogo[0].name : '',
+      geN_emailLogo: this.geN_emailLogo ? this.geN_emailLogo[0].name : '',
+      geN_companyName: this.myform.value.geN_companyName || '',
+      geN_frontWebsite: this.myform.value.geN_frontWebsite || '',
+      geN_backendApp: this.myform.value.geN_backendApp || '',
+      geN_officeAdd: this.myform.value.geN_officeAdd || '',
+      geN_phone: this.myform.value.geN_phone || '',
+      geN_fax: this.myform.value.geN_fax || '',
+      geN_email: this.myform.value.geN_email || '',
+      geN_clock1Label: this.myform.value.geN_clock1Label || '',
+      geN_clock1Time: this.myform.value.geN_clock1Time || '',
+      geN_clock1Active: (this.myform.value.geN_clock1Active || 'false').toLowerCase() == 'true',
+      geN_clock2Label: this.myform.value.geN_clock2Label || '',
+      geN_clock2Time: this.myform.value.geN_clock2Time || '',
+      geN_clock2Active: (this.myform.value.geN_clock2Active || 'false').toLowerCase() == 'true',
+      createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
-    this.service.updateSiteSettings(id,item).subscribe(
+    this.service.updateSiteSettings(id, item).subscribe(
       (result) =>
       {
         if (result)
@@ -183,23 +188,23 @@ export class GeneralSettingsComponent
     console.log(this.myform.value);
     var item = {
       id: '',
-      gen_loginLogo: this.gen_loginLogo[0].name || '',
-      gen_headerLogo: this.gen_headerLogo[0].name || '',
-      gen_emailLogo: this.gen_emailLogo[0].name || '',
-      gen_companyName: this.myform.value.gen_companyName || '',
-      gen_frontWebsite: this.myform.value.gen_frontWebsite || '',
-      gen_backendApp: this.myform.value.gen_backendApp || '',
-      gen_officeAdd: this.myform.value.gen_officeAdd || '',
-      gen_phone: this.myform.value.gen_phone || '',
-      gen_fax: this.myform.value.gen_fax || '',
-      gen_email: this.myform.value.gen_email || '',
-      gen_clock1Label: this.myform.value.gen_clock1Label || '',
-      gen_clock1Time: this.myform.value.gen_clock1Time || '',
-      gen_clock1Active: (this.myform.value.gen_clock1Active || 'false').toLowerCase() == 'true',
-      gen_clock2Label: this.myform.value.gen_clock2Label || '',
-      gen_clock2Time: this.myform.value.gen_clock2Time || '',
-      gen_clock2Active: (this.myform.value.gen_backendApp || 'false').toLowerCase() == 'true',
-      createdAt: new Date().toISOString() || '',
+      geN_loginLogo: this.geN_loginLogo ? this.geN_loginLogo[0].name : '',
+      geN_headerLogo: this.geN_headerLogo ? this.geN_headerLogo[0].name : '',
+      geN_emailLogo: this.geN_emailLogo ? this.geN_emailLogo[0].name : '',
+      geN_companyName: this.myform.value.geN_companyName || '',
+      geN_frontWebsite: this.myform.value.geN_frontWebsite || '',
+      geN_backendApp: this.myform.value.geN_backendApp || '',
+      geN_officeAdd: this.myform.value.geN_officeAdd || '',
+      geN_phone: this.myform.value.geN_phone || '',
+      geN_fax: this.myform.value.geN_fax || '',
+      geN_email: this.myform.value.geN_email || '',
+      geN_clock1Label: this.myform.value.geN_clock1Label || '',
+      geN_clock1Time: this.myform.value.geN_clock1Time || '',
+      geN_clock1Active: (this.myform.value.geN_clock1Active || 'false').toLowerCase() == 'true',
+      geN_clock2Label: this.myform.value.geN_clock2Label || '',
+      geN_clock2Time: this.myform.value.geN_clock2Time || '',
+      geN_clock2Active: (this.myform.value.geN_backendApp || 'false').toLowerCase() == 'true',
+      createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
     this.service.createSiteSettings(item).subscribe(

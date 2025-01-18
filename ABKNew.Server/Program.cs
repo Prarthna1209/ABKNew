@@ -1,6 +1,7 @@
 using ABKNew.Server.Data;
 using ABKNew.Server.Entities;
 using ABKNew.Server.Interfaces;
+using ABKNew.Server.JwtFeatures;
 using ABKNew.Server.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -53,6 +54,7 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddDbContext<ABKDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ABKConnectionLocal")));
 
+builder.Services.AddScoped<JwtHandler>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IShippingItemsRepository, ShippingItemsRepository>();
 builder.Services.AddScoped<ITaxesRepository, TaxesRepository>();
@@ -73,7 +75,10 @@ builder.Services.AddScoped<ITakeoffRepository, TakeoffRepository>();
 builder.Services.AddScoped<ITakeoffDocumentsRepository, TakeoffDocumentsRepository>();
 builder.Services.AddScoped<ITakeoffNotesRepository, TakeoffNotesRepository>();
 builder.Services.AddScoped<ITakeoffTakeoffNotesRepository, TakeoffTakeoffNotesRepository>();
-
+builder.Services.AddScoped<ISiteSettingsRepository, SiteSettingsRepository>();
+builder.Services.AddScoped<IEmailAccountsRepository, EmailAccountsRepository>();
+builder.Services.AddScoped<IEngineeringRepository, EngineeringRepository>();
+builder.Services.AddScoped<IDocumentsRepository, DocumentsRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

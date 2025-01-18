@@ -1,43 +1,43 @@
 <form [formGroup]="myform" (ngSubmit)="addOrUpdate()">
   <h1>Email Accounts Settings</h1>
   <div>
-    <mat-form-field [appearance]="'fill'" class="form-field-style">
-      <mat-label for="api_accessToken">Followup Email</mat-label>
-      <input matInput formControlName="api_accessToken" placeholder="Access Token" id="api_accessToken">
+    <mat-form-field [appearance]="'fill'" class="form-field-style col-2">
+      <mat-label for="folloup_Email">Followup Email</mat-label>
+      <input matInput formControlName="folloup_Email" placeholder="Followup Email" id="folloup_Email">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
-    <mat-form-field appearance="fill" class="form-field-style">
+    <mat-form-field appearance="fill" class="form-field-style col-2">
       <mat-label>Followup Password</mat-label>
-      <input matInput formControlName="api_clientSecret" id="api_clientSecret" placeholder="Client Secret">
+      <input matInput formControlName="followup_Password" id="followup_Password" placeholder="Followup Password">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
   </div>
   <div>
-    <mat-form-field [appearance]="'fill'" class="form-field-style">
-      <mat-label for="api_accessToken">Takeoff Email</mat-label>
-      <input matInput formControlName="api_accessToken" placeholder="Access Token" id="api_accessToken">
+    <mat-form-field [appearance]="'fill'" class="form-field-style col-2">
+      <mat-label for="takeoff_Email">Takeoff Email</mat-label>
+      <input matInput formControlName="takeoff_Email" placeholder="Takeoff Email" id="takeoff_Email">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
-    <mat-form-field appearance="fill" class="form-field-style">
+    <mat-form-field appearance="fill" class="form-field-style col-2">
       <mat-label>Takeoff Password</mat-label>
-      <input matInput formControlName="api_clientSecret" id="api_clientSecret" placeholder="Client Secret">
+      <input matInput formControlName="takeoff_Password" id="takeoff_Password" placeholder="Takeoff Password">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
   </div>
   <div>
-    <mat-form-field [appearance]="'fill'" class="form-field-style">
-      <mat-label for="api_accessToken">Bid Request Email</mat-label>
-      <input matInput formControlName="api_accessToken" placeholder="Access Token" id="api_accessToken">
+    <mat-form-field [appearance]="'fill'" class="form-field-style col-2">
+      <mat-label for="bidReq_Email">Bid Request Email</mat-label>
+      <input matInput formControlName="bidReq_Email" placeholder="Bid Request Email" id="bidReq_Email">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
-    <mat-form-field appearance="fill" class="form-field-style">
+    <mat-form-field appearance="fill" class="form-field-style col-2">
       <mat-label>Bid Request Password</mat-label>
-      <input matInput formControlName="api_clientSecret" id="api_clientSecret" placeholder="Client Secret">
+      <input matInput formControlName="bidReq_Password" id="bidReq_Password" placeholder="Bid Request Password">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>

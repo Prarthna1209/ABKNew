@@ -5,6 +5,8 @@ mat-toolbar{
 }
 .content {
   padding: 24px;
+  flex: 1 0 auto; /* Allow content to grow and take up available space */
+  padding-bottom: 50px;
 }
 
 mat-sidenav-container {

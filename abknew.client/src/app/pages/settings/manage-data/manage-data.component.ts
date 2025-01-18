@@ -33,7 +33,7 @@ export class ManageDataComponent {
   ngOnInit(): void
   {
     this.siteSettingId = sessionStorage.getItem('SiteSettingId');
-    if (this.siteSettingId != '')
+    if (this.siteSettingId && this.siteSettingId != '')
     {
       this.setPopupData(this.siteSettingId);
     }
@@ -41,8 +41,8 @@ export class ManageDataComponent {
 
   myform = this.buildr.group({
     id: this.buildr.control(''),
-    data_monthShow: this.buildr.control(''),
-    data_quoteShow: this.buildr.control(''),
+    datA_MonthShow: this.buildr.control(''),
+    datA_QuoteShow: this.buildr.control(''),
     createdAt: this.buildr.control(''),
     updatedAt: this.buildr.control('')
   });
@@ -54,8 +54,8 @@ export class ManageDataComponent {
       this.editData = item;
       this.myform.setValue({
         id: this.editData.id,
-        data_monthShow: this.editData.data_monthShow,
-        data_quoteShow: this.editData.data_quoteShow,
+        datA_MonthShow: this.editData.datA_MonthShow,
+        datA_QuoteShow: this.editData.datA_QuoteShow,
         createdAt: this.editData.createdAt,
         updatedAt: this.editData.updatedAt
       })
@@ -85,8 +85,8 @@ export class ManageDataComponent {
     var item = {
       id: id,
       created_at: new Date().toISOString(),
-      data_monthShow: this.myform.value.data_monthShow || '',
-      data_quoteShow: this.myform.value.data_quoteShow || '',
+      datA_MonthShow: this.myform.value.datA_MonthShow || '',
+      datA_QuoteShow: this.myform.value.datA_QuoteShow || '',
       createdAt: this.myform.value.createdAt || '',
       updatedAt: new Date().toISOString()
     };
@@ -115,8 +115,8 @@ export class ManageDataComponent {
     console.log(this.myform.value);
     var item = {
       id: '',
-      data_monthShow: this.myform.value.data_monthShow || '',
-      data_quoteShow: this.myform.value.data_quoteShow || '',
+      datA_MonthShow: this.myform.value.datA_MonthShow || '',
+      datA_QuoteShow: this.myform.value.datA_QuoteShow || '',
       createdAt: new Date().toISOString() || '',
       updatedAt: new Date().toISOString()
     };

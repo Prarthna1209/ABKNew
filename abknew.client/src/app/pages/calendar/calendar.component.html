@@ -1,14 +1,18 @@
 
 <div class='demo-app'>
 
-    <div class='demo-app-main'>
-        <h2>Dashboard</h2>
-        <full-calendar *ngIf='calendarVisible()' [options]='calendarOptions'>
-            <ng-template #eventContent let-arg>
-                <b>{{ arg.timeText }}</b>
-                <i>{{ arg.event.title }}</i>
-            </ng-template> 
-        </full-calendar>
+  <div class='demo-app-main'>
+    <h2>Dashboard</h2>
+    <full-calendar *ngIf='calendarVisible()' [options]='calendarOptions'>
+      <ng-template #eventContent let-arg>
+        <b>{{ arg.timeText }}</b>
+        <i>{{ arg.event.title }}</i>
+      </ng-template>
+    </full-calendar>
+    <div *ngIf="popupVisible" [style.top.px]="popupTop" [innerHTML]="safePopupContent"
+         [style.left.px]="popupLeft" class="event-popup">
+     
     </div>
+  </div>
 
 </div>

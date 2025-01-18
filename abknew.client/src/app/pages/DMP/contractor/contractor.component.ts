@@ -128,6 +128,7 @@ export class ContractorComponent {
           console.error(error);
         }
       );
+      this.getContractors();
     }
   }
 }

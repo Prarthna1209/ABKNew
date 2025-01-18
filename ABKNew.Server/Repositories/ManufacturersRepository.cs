@@ -54,7 +54,18 @@ namespace ABKNew.Server.Repositories
         public async Task<Manufacturers> GetManufacturers(string id)
         {
             var item = await GetById(id);
+            var prdCount = await ProductCount(id);
+            item.ProductCount = prdCount;
             return item;
+        }
+
+        public async Task<int> ProductCount(string ManufacturerId = "")
+        {
+            List<Products> prd = ((IEnumerable<Products>)(from products in _context.Products
+                                                          where products.ManufacturerId == ManufacturerId
+                                                          select products)).ToList();
+
+            return prd.Count;
         }
     }
 }

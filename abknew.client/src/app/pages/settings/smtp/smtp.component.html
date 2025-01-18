@@ -1,47 +1,47 @@
   <form [formGroup]="myform" (ngSubmit)="addOrUpdate()">
     <h1>SMTP Settings</h1>
     <div>
-      <mat-form-field [appearance]="'fill'" class="form-field-style">
-        <mat-label for="smtp_host">Host</mat-label>
-        <input matInput formControlName="smtp_host" placeholder="Host" id="smtp_host">
+      <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
+        <mat-label for="smtP_Host">Host</mat-label>
+        <input matInput formControlName="smtP_Host" placeholder="Host" id="smtP_Host">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint></mat-hint>
       </mat-form-field>
-      <mat-form-field appearance="fill" class="form-field-style">
+      <mat-form-field appearance="fill" class="form-field-style col-3">
         <mat-label>Port</mat-label>
-        <input matInput formControlName="smtp_port" id="smtp_port" placeholder="Port">
+        <input matInput formControlName="smtP_Port" id="smtP_Port" placeholder="Port">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint></mat-hint>
       </mat-form-field>
-      <mat-form-field [appearance]="'fill'" class="form-field-style">
-        <mat-label for="smtp_security">Security</mat-label>
-        <input matInput formControlName="smtp_security" placeholder="Security" id="smtp_security">
+      <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
+        <mat-label for="smtP_Security">Security</mat-label>
+        <input matInput formControlName="smtP_Security" placeholder="Security" id="smtP_Security">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint></mat-hint>
       </mat-form-field>
     </div>
     <div>
-      <mat-form-field appearance="fill" class="form-field-style">
+      <mat-form-field appearance="fill" class="form-field-style col-4">
         <mat-label>Username</mat-label>
-        <input matInput formControlName="smtp_username" id="smtp_username" placeholder="Username">
+        <input matInput formControlName="smtP_Username" id="smtP_Username" placeholder="Username">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint></mat-hint>
       </mat-form-field>
-      <mat-form-field [appearance]="'fill'" class="form-field-style">
-        <mat-label for="smtp_password">Password</mat-label>
-        <input matInput formControlName="smtp_password" placeholder="Password" id="smtp_password">
+      <mat-form-field [appearance]="'fill'" class="form-field-style col-4">
+        <mat-label for="smtP_Password">Password</mat-label>
+        <input matInput formControlName="smtP_Password" placeholder="Password" id="smtP_Password">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint></mat-hint>
       </mat-form-field>
-      <mat-form-field appearance="fill" class="form-field-style">
+      <mat-form-field appearance="fill" class="form-field-style col-4">
         <mat-label>From Email</mat-label>
-        <input matInput formControlName="smtp_fromEmail" id="smtp_fromEmail" placeholder="From Email">
+        <input matInput formControlName="smtP_FromEmail" id="smtP_FromEmail" placeholder="From Email">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint></mat-hint>
       </mat-form-field>
-      <mat-form-field appearance="fill" class="form-field-style">
+      <mat-form-field appearance="fill" class="form-field-style col-4">
         <mat-label>From Name</mat-label>
-        <input matInput formControlName="smtp_fromName" id="smtp_fromName" placeholder="From Name">
+        <input matInput formControlName="smtP_FromName" id="smtP_FromName" placeholder="From Name">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint></mat-hint>
       </mat-form-field>

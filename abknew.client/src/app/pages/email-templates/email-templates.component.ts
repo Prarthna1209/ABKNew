@@ -77,7 +77,7 @@ export class EmailTemplatesComponent
     this.openPopup(data);
   }
 
-  addEmailTemplatess()
+  addEmailTemplate()
   {
     const template: EmailTemplates = {
       id: '',

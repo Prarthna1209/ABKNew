@@ -33,7 +33,7 @@ export class PrefixComponent {
   ngOnInit(): void
   {
     this.siteSettingId = sessionStorage.getItem('SiteSettingId');
-    if (this.siteSettingId != '')
+    if (this.siteSettingId && this.siteSettingId != '')
     {
       this.setPopupData(this.siteSettingId);
     }
@@ -41,15 +41,15 @@ export class PrefixComponent {
 
   myform = this.buildr.group({
     id: this.buildr.control(''),
-    prefix_takeoff: this.buildr.control(''),
-    prefix_quote: this.buildr.control(''),
-    prefix_job: this.buildr.control(''),
-    prefix_aw: this.buildr.control(''),
-    prefix_aWF: this.buildr.control(''),
-    prefix_sBC: this.buildr.control(''),
-    prefix_sPL: this.buildr.control(''),
-    prefix_j: this.buildr.control(''),
-    prefix_q: this.buildr.control(''),
+    prefix_Takeoff: this.buildr.control(''),
+    prefix_Quote: this.buildr.control(''),
+    prefix_Job: this.buildr.control(''),
+    prefix_AW: this.buildr.control(''),
+    prefix_AWF: this.buildr.control(''),
+    prefix_SBC: this.buildr.control(''),
+    prefix_SPL: this.buildr.control(''),
+    prefix_J: this.buildr.control(''),
+    prefix_Q: this.buildr.control(''),
     createdAt: this.buildr.control(''),
     updatedAt: this.buildr.control('')
   });
@@ -61,15 +61,15 @@ export class PrefixComponent {
       this.editData = item;
       this.myform.setValue({
         id: this.editData.id,
-        prefix_takeoff: this.editData.prefix_takeoff,
-        prefix_quote: this.editData.prefix_quote,
-        prefix_job: this.editData.prefix_job,
-        prefix_aw: this.editData.prefix_aw,
-        prefix_aWF: this.editData.prefix_aWF,
-        prefix_sBC: this.editData.prefix_sBC,
-        prefix_sPL: this.editData.prefix_sPL,
-        prefix_j: this.editData.prefix_j,
-        prefix_q: this.editData.prefix_q,
+        prefix_Takeoff: this.editData.prefix_Takeoff,
+        prefix_Quote: this.editData.prefix_Quote,
+        prefix_Job: this.editData.prefix_Job,
+        prefix_AW: this.editData.prefix_AW,
+        prefix_AWF: this.editData.prefix_AWF,
+        prefix_SBC: this.editData.prefix_SBC,
+        prefix_SPL: this.editData.prefix_SPL,
+        prefix_J: this.editData.prefix_J,
+        prefix_Q: this.editData.prefix_Q,
         createdAt: this.editData.createdAt,
         updatedAt: this.editData.updatedAt
       })
@@ -98,16 +98,16 @@ export class PrefixComponent {
   {
     var item = {
       id: id,
-      created_at: new Date().toISOString(),
-      prefix_takeoff: this.myform.value.prefix_takeoff || '',
-      prefix_quote: this.myform.value.prefix_quote || '',
-      prefix_job: this.myform.value.prefix_job || '',
-      prefix_aw: this.myform.value.prefix_aw || '',
-      prefix_aWF: this.myform.value.prefix_aWF || '',
-      prefix_sBC: this.myform.value.prefix_sBC || '',
-      prefix_sPL: this.myform.value.prefix_sPL || '',
-      prefix_j: this.myform.value.prefix_j || '',
-      prefix_q: this.myform.value.prefix_q || '',
+      created_At: new Date().toISOString(),
+      prefix_Takeoff: this.myform.value.prefix_Takeoff || '',
+      prefix_Quote: this.myform.value.prefix_Quote || '',
+      prefix_Job: this.myform.value.prefix_Job || '',
+      prefix_AW: this.myform.value.prefix_AW || '',
+      prefix_AWF: this.myform.value.prefix_AWF || '',
+      prefix_SBC: this.myform.value.prefix_SBC || '',
+      prefix_SPL: this.myform.value.prefix_SPL || '',
+      prefix_J: this.myform.value.prefix_J || '',
+      prefix_Q: this.myform.value.prefix_Q || '',
       createdAt: this.myform.value.createdAt || '',
       updatedAt: new Date().toISOString()
     };
@@ -136,15 +136,15 @@ export class PrefixComponent {
     console.log(this.myform.value);
     var item = {
       id: '',
-      prefix_takeoff: this.myform.value.prefix_takeoff || '',
-      prefix_quote: this.myform.value.prefix_quote || '',
-      prefix_job: this.myform.value.prefix_job || '',
-      prefix_aw: this.myform.value.prefix_aw || '',
-      prefix_aWF: this.myform.value.prefix_aWF || '',
-      prefix_sBC: this.myform.value.prefix_sBC || '',
-      prefix_sPL: this.myform.value.prefix_sPL || '',
-      prefix_j: this.myform.value.prefix_j || '',
-      prefix_q: this.myform.value.prefix_q || '',
+      prefix_Takeoff: this.myform.value.prefix_Takeoff || '',
+      prefix_Quote: this.myform.value.prefix_Quote || '',
+      prefix_Job: this.myform.value.prefix_Job || '',
+      prefix_AW: this.myform.value.prefix_AW || '',
+      prefix_AWF: this.myform.value.prefix_AWF || '',
+      prefix_SBC: this.myform.value.prefix_SBC || '',
+      prefix_SPL: this.myform.value.prefix_SPL || '',
+      prefix_J: this.myform.value.prefix_J || '',
+      prefix_Q: this.myform.value.prefix_Q || '',
       createdAt: new Date().toISOString() || '',
       updatedAt: new Date().toISOString()
     };

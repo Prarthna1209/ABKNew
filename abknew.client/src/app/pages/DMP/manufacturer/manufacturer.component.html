@@ -33,7 +33,7 @@
       <!-- Rate Column -->
       <ng-container matColumnDef="count">
         <th mat-sort-header mat-header-cell *matHeaderCellDef> Product Count </th>
-        <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.productCount}} </td>
       </ng-container>
 
       <!-- Rate Column -->
@@ -45,13 +45,14 @@
       <!-- Rate Column -->
       <ng-container matColumnDef="updated_at">
         <th mat-sort-header mat-header-cell *matHeaderCellDef> Updated At </th>
-        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.updated_at}} </td>
       </ng-container>
 
       <!-- Action Column -->
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> Action </th>
         <td mat-cell *matCellDef="let element">
+          <button (click)="addProduct(element.id)" mat-raised-button color="success">Add Product</button>
           <button (click)="editItem(element.id)" mat-raised-button color="primary">Edit</button>
           <button (click)="deleteItem(element.id)" mat-raised-button color="warn">Delete</button>
         </td>

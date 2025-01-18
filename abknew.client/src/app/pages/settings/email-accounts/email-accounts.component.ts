@@ -31,8 +31,8 @@ export class EmailAccountsComponent
 
   ngOnInit(): void
   {
-    this.siteSettingId = sessionStorage.getItem('SiteSettingId');
-    if (this.siteSettingId != '')
+    this.siteSettingId = sessionStorage.getItem('EmailAccountsId');
+    if (this.siteSettingId && this.siteSettingId != '')
     {
       this.setPopupData(this.siteSettingId);
     }
@@ -40,12 +40,12 @@ export class EmailAccountsComponent
 
   myform = this.buildr.group({
     id: this.buildr.control(''),
-    folloup_email: this.buildr.control(''),
-    followup_password: this.buildr.control(''),
-    takeoff_email: this.buildr.control(''),
-    takeoff_password: this.buildr.control(''),
-    bidReq_email: this.buildr.control(''),
-    bidReq_password: this.buildr.control(''),
+    folloup_Email: this.buildr.control(''),
+    followup_Password: this.buildr.control(''),
+    takeoff_Email: this.buildr.control(''),
+    takeoff_Password: this.buildr.control(''),
+    bidReq_Email: this.buildr.control(''),
+    bidReq_Password: this.buildr.control(''),
     createdAt: this.buildr.control(''),
     updatedAt: this.buildr.control('')
   });
@@ -57,12 +57,12 @@ export class EmailAccountsComponent
       this.editData = item;
       this.myform.setValue({
         id: this.editData.id,
-        folloup_email: this.editData.folloup_email,
-        followup_password: this.editData.followup_password,
-        takeoff_email: this.editData.takeoff_email,
-        takeoff_password: this.editData.takeoff_password,
-        bidReq_email: this.editData.bidReq_email,
-        bidReq_password: this.editData.bidReq_password,
+        folloup_Email: this.editData.folloup_Email ?? "",
+        followup_Password: this.editData.followup_Password ?? "",
+        takeoff_Email: this.editData.takeoff_Email ?? "",
+        takeoff_Password: this.editData.takeoff_Password ?? "",
+        bidReq_Email: this.editData.bidReq_Email ?? "",
+        bidReq_Password: this.editData.bidReq_Password ?? "",
         createdAt: this.editData.createdAt,
         updatedAt: this.editData.updatedAt
       })
@@ -92,12 +92,12 @@ export class EmailAccountsComponent
     var item = {
       id: id,
       created_at: new Date().toISOString(),
-      folloup_email: this.myform.value.folloup_email || '',
-      followup_password: this.myform.value.followup_password || '',
-      takeoff_email: this.myform.value.takeoff_email || '',
-      takeoff_password: this.myform.value.takeoff_password || '',
-      bidReq_email: this.myform.value.bidReq_email || '',
-      bidReq_password: this.myform.value.bidReq_password || '',
+      folloup_email: this.myform.value.folloup_Email || '',
+      followup_password: this.myform.value.followup_Password || '',
+      takeoff_email: this.myform.value.takeoff_Email || '',
+      takeoff_password: this.myform.value.takeoff_Password || '',
+      bidReq_email: this.myform.value.bidReq_Email || '',
+      bidReq_password: this.myform.value.bidReq_Password || '',
       createdAt: this.myform.value.createdAt || '',
       updatedAt: new Date().toISOString()
     };
@@ -127,12 +127,12 @@ export class EmailAccountsComponent
     var item = {
       id: '',
       created_at: new Date().toISOString(),
-      folloup_email: this.myform.value.folloup_email || '',
-      followup_password: this.myform.value.followup_password || '',
-      takeoff_email: this.myform.value.takeoff_email || '',
-      takeoff_password: this.myform.value.takeoff_password || '',
-      bidReq_email: this.myform.value.bidReq_email || '',
-      bidReq_password: this.myform.value.bidReq_password || '',
+      folloup_email: this.myform.value.folloup_Email || '',
+      followup_password: this.myform.value.followup_Password || '',
+      takeoff_email: this.myform.value.takeoff_Email || '',
+      takeoff_password: this.myform.value.takeoff_Password || '',
+      bidReq_email: this.myform.value.bidReq_Email || '',
+      bidReq_password: this.myform.value.bidReq_Password || '',
       createdAt: new Date().toISOString() || '',
       updatedAt: new Date().toISOString()
     };

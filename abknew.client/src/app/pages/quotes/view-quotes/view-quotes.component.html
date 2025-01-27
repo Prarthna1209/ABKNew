@@ -1,1 +1,128 @@
-<p>view-quotes works!</p>
+<h1 id="ArchitectsLable"> Quotes List</h1>
+<mat-card>
+  <mat-card-header>
+    <mat-form-field>
+      <input matInput (keyup)="filetrChange($event)" placeholder="" />
+    </mat-form-field>
+  </mat-card-header>
+  <mat-card-content>
+    <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="info">
+        <th mat-header-cell *matHeaderCellDef> Info </th>
+        <td mat-cell *matCellDef="let element; let i = index;">
+          <button mat-icon-button color="primary" aria-label="Takeoff">
+            <mat-icon>information</mat-icon>
+          </button>
+
+          <button mat-icon-button color="primary" aria-label="Quote">
+            <mat-icon>information</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="worksheet">
+        <th mat-header-cell *matHeaderCellDef> Worksheet </th>
+        <td mat-cell *matCellDef="let element; let i = index;">
+          <button mat-icon-button color="primary" (click)="openWorksheet(element.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button mat-icon-button color="gray">
+            <mat-icon>dollar</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="attachments">
+        <th mat-header-cell *matHeaderCellDef> Attachments </th>
+        <td mat-cell *matCellDef="let element; let i = index;">
+          <button mat-icon-button color="primary">
+            <mat-icon>cloud</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Rate Column -->
+      <ng-container matColumnDef="dueDate">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Due Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.dueDate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="jobId">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Job Entry Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.takeoffId}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="worksheetId">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Workbook Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.takeoffId}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="submittalId">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Submittal Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.takeoffId}} </td>
+      </ng-container>
+
+      <!-- Rate Column -->
+      <ng-container matColumnDef="jobName">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Job Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.jobName}} </td>
+      </ng-container>
+
+      <!-- Rate Column -->
+      <ng-container matColumnDef="jobAddress">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.jobAddress}} </td>
+      </ng-container>
+
+      <!-- Rate Column -->
+      <ng-container matColumnDef="architect">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Architect </th>
+        <td mat-cell *matCellDef="let element"> {{element.architect}} </td>
+      </ng-container>
+
+      <!-- Rate Column -->
+      <ng-container matColumnDef="engineer">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Engineer </th>
+        <td mat-cell *matCellDef="let element"> {{element.engineer}} </td>
+      </ng-container>
+
+      <!-- Rate Column -->
+      <ng-container matColumnDef="amount">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Amount </th>
+        <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="specs">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Specs </th>
+        <td mat-cell *matCellDef="let element"> {{element.specs}} </td>
+      </ng-container>
+
+      <!-- Rate Column -->
+      <ng-container matColumnDef="quotedBy">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Quoted By </th>
+        <td mat-cell *matCellDef="let element"> {{element.quotedBy}} </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="bidders">
+        <th mat-header-cell *matHeaderCellDef> Bidders </th>
+        <td mat-cell *matCellDef="let element">
+          <button (click)="openBidders(element.id)" mat-raised-button color="primary">Bidder</button>
+          <mat-slide-toggle></mat-slide-toggle>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+  <br />
+  <mat-card-footer>
+    <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+  </mat-card-footer>
+</mat-card>

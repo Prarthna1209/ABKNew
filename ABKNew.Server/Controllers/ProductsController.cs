@@ -27,7 +27,7 @@ namespace ABKNew.Server.Controllers
 
         // GET api/<ProductsController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Products>> Get(string id)
+        public async Task<IEnumerable<Products>> Get(string id)
         {
             var result = await _repository.GetProducts(id);
             return result;

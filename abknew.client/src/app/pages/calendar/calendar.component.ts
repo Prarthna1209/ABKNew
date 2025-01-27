@@ -7,11 +7,16 @@ import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
-import { INITIAL_EVENTS, createEventId, formatTakeoff } from './event-utils';
+import { INITIAL_EVENTS, createEventId, formatTakeoff, objectContainsSearchString } from './event-utils';
 import { TakeoffService } from '../../services/takeoff.service';
 import { EventInput } from '@fullcalendar/core';
 import { DataService } from '../../services/data.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MaterialModule } from '../../material/material.module';
 
 
 @Component({
@@ -19,7 +24,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, FullCalendarModule]
+  imports: [CommonModule, RouterOutlet, FullCalendarModule,
+    MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MaterialModule]
 })
 export class CalendarComponent
 {
@@ -38,6 +44,7 @@ export class CalendarComponent
     },
     initialView: 'dayGridWeek',
     events: this.getTakeoffs.bind(this), // alternatively, use the `events` setting to fetch from a feed
+    eventDidMount: this.handleDidMount.bind(this),
     initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
 
     weekends: true,
@@ -71,6 +78,8 @@ export class CalendarComponent
   takeoffs: EventInput[] = [];
   safePopupContent: SafeHtml = "";
 
+  searchTerm: string = '';
+
   popupVisible = false;
   popupTop = 0;
   popupLeft = 0;
@@ -101,12 +110,33 @@ export class CalendarComponent
         (result) =>
         {
           this.takeoffs = formatTakeoff(result);
-          let events: EventInput[] = this.takeoffs;
-          //this.calendarOptions.events = this.takeoffs;
+          let filtered = this.takeoffs;
+          if (this.searchTerm && this.searchTerm != '')
+          {
+            filtered = filtered.filter(event => objectContainsSearchString(event.extendedProps?.['takeoff'], this.searchTerm))
+          }
+          let events: EventInput[] = filtered;
+          this.calendarOptions.events = events;
           resolve(events);
+          this.changeDetector.detectChanges();
         },
         error => console.error(error));
     });
+  }
+
+  handleDidMount(info: any)
+  {
+    const takeoff = info.event.extendedProps['takeoff'];
+    if (takeoff.quoteId == null || takeoff.quoteId == "")
+    {
+      info.el.style.backgroundColor = 'red';
+      info.el.style.borderColor = 'red';
+    }
+    else if (takeoff.worksheetGenerated.toLowerCase() == "true")
+    {
+      info.el.style.backgroundColor = 'green';
+      info.el.style.borderColor = 'green';
+    }
   }
 
   handleEventMouseEnter(info: any)
@@ -135,6 +165,11 @@ export class CalendarComponent
   handleDateSelect(selectInfo: DateSelectArg)
   {
     this.dataService.setData({ dueDate: selectInfo.start });
+    this.addTakeoff();
+  }
+
+  addTakeoff()
+  {
     this.router.navigate(['takeoffs']);
   }
 

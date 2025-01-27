@@ -79,6 +79,10 @@ builder.Services.AddScoped<ISiteSettingsRepository, SiteSettingsRepository>();
 builder.Services.AddScoped<IEmailAccountsRepository, EmailAccountsRepository>();
 builder.Services.AddScoped<IEngineeringRepository, EngineeringRepository>();
 builder.Services.AddScoped<IDocumentsRepository, DocumentsRepository>();
+builder.Services.AddScoped<IWorkbookNotesWorksheetRepository, WorkbookNotesWorksheetRepository>();
+builder.Services.AddScoped<IWorksheetItemsRepository, WorksheetItemsRepository>();
+builder.Services.AddScoped<IWorksheetsRepository, WorksheetsRepository>();
+builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -114,6 +118,16 @@ builder.Services.AddSwaggerGen(
         });
     });
 
+// Add Distributed Memory Cache (required for sessions)
+builder.Services.AddDistributedMemoryCache(); //Use AddStackExchangeRedisCache for Redis
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Session timeout
+    options.Cookie.HttpOnly = true; // Important for security
+    options.Cookie.IsEssential = true; // Make the cookie essential
+});
+
 var app = builder.Build();
 
 app.UseDefaultFiles();
@@ -132,8 +146,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors("AllowAll");
 
+app.UseSession();
 app.MapControllers();
 
 app.MapFallbackToFile("/index.html");
+
 
 app.Run();

@@ -2,11 +2,11 @@
 {
     public class GeneralUtility
     {
-        public string FormatId(int id)
+        public string FormatId(int id, string prefix)
         {
             string formatedId = "";
             int currentYear = DateTime.Now.Year;
-            formatedId = $"{currentYear}-{id + 1:0000}";
+            formatedId = $"{prefix}{currentYear}-{id + 1:0000}";
             return formatedId;
         }
     }

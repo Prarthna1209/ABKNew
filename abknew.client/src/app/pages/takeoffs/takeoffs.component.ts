@@ -28,7 +28,8 @@ import { MatNativeDateModule } from '@angular/material/core';
   standalone: true,
   templateUrl: './takeoffs.component.html',
   styleUrl: './takeoffs.component.css',
-  imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatTableModule,
+  imports: [
+    MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatTableModule,
     MaterialModule, MatSelectModule, CommonModule, MatExpansionModule, MatCardModule,
     MatDatepickerModule, MatNativeDateModule
   ]

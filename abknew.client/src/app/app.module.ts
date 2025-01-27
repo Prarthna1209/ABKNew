@@ -62,6 +62,9 @@ import { EmailEditorComponent } from './pages/email-editor/email-editor.componen
 import { FormsModule } from '@angular/forms';
 import { CreateComponent } from './pages/users/create/create.component';
 import { FileUploadComponent } from './pages/file-upload/file-upload.component';
+import { WorksheetEditComponent } from './pages/quotes/view-quotes/worksheet-edit/worksheet-edit.component';
+import { ProductComponent } from './pages/DMP/manufacturer/product/product.component';
+import { AddProductComponent } from './pages/DMP/manufacturer/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -122,6 +125,9 @@ import { FileUploadComponent } from './pages/file-upload/file-upload.component';
     ShippingsComponent,
     EmailEditorComponent,
     CreateComponent,
+    ProductComponent,
+    AddProductComponent,
+    WorksheetEditComponent,
   ],
   providers: [
     MatInputModule,

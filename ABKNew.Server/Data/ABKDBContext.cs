@@ -1,4 +1,5 @@
 ﻿using ABKNew.Server.Entities;
+using ABKNew.Server.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,5 +33,8 @@ namespace ABKNew.Server.Data
         public DbSet<Products> Products { get; set; }
         public DbSet<Permissions> Permissions { get; set; }
         public DbSet<Documents> Documents { get; set; }
+        public DbSet<Worksheets> Worksheets { get; set; }
+        public DbSet<WorksheetItems> WorksheetItems { get; set; }
+        public DbSet<WorkbookNotesWorksheet> WorkbookNotesWorksheet { get; set; }
     }
 }

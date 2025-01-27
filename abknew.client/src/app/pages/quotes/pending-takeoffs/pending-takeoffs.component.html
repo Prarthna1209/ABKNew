@@ -1,1 +1,92 @@
-<p>pending-takeoffs works!</p>
+<h1 id="ArchitectsLable"> Architects List</h1>
+
+<button style="margin-left: 60%;" (click)="addTakeoffs()" mat-raised-button color="primary">
+  Add Architects (+)
+</button>
+<mat-card>
+  <mat-card-header>
+    <mat-form-field>
+      <input matInput (keyup)="filetrChange($event)" placeholder="" />
+    </mat-form-field>
+  </mat-card-header>
+  <mat-card-content>
+    <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
+      </ng-container>
+
+      <!-- Region Column -->
+      <ng-container matColumnDef="createdDate">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.createdDate}} </td>
+      </ng-container>
+
+      <!-- Rate Column -->
+      <ng-container matColumnDef="dueDate">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Due Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.dueDate}} </td>
+      </ng-container>
+
+      <!-- Rate Column -->
+      <ng-container matColumnDef="jobName">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Job Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.jobName}} </td>
+      </ng-container>
+
+      <!-- Rate Column -->
+      <ng-container matColumnDef="jobAddress">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.jobAddress}} </td>
+      </ng-container>
+
+      <!-- Rate Column -->
+      <ng-container matColumnDef="architect">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Architect </th>
+        <td mat-cell *matCellDef="let element"> {{element.architect}} </td>
+      </ng-container>
+
+      <!-- Rate Column -->
+      <ng-container matColumnDef="engineer">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Engineer </th>
+        <td mat-cell *matCellDef="let element"> {{element.engineer}} </td>
+      </ng-container>
+
+      <!-- Rate Column -->
+      <ng-container matColumnDef="drawingDate">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Drawing Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.drawingDate}} </td>
+      </ng-container>
+
+      <!-- Rate Column -->
+      <ng-container matColumnDef="architect">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> SP </th>
+        <td mat-cell *matCellDef="let element"> {{element.architect}} </td>
+      </ng-container>
+
+      <!-- Rate Column -->
+      <ng-container matColumnDef="architect">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef> Architect </th>
+        <td mat-cell *matCellDef="let element"> {{element.architect}} </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element">
+          <button (click)="editItem(element.id)" mat-raised-button color="primary">Edit</button>
+          <button (click)="deleteItem(element.id)" mat-raised-button color="warn">Delete</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+  <br />
+  <mat-card-footer>
+    <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+  </mat-card-footer>
+</mat-card>

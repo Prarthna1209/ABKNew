@@ -19,6 +19,8 @@ namespace ABKNew.Server.Repositories
                 Range1 = model.Range1,
                 Range2 = model.Range2,
                 Range3 = model.Range3,
+                ManufacturerId = model.ManufacturerId,
+                Comments=model.Comments,
                 CreatedAt = DateTime.Now
             };
 
@@ -55,9 +57,12 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
-        public async Task<Products> GetProducts(string id)
+        public async Task<IEnumerable<Products>> GetProducts(string id)
         {
-            var item = await GetById(id);
+            var item = (IEnumerable<Products>)(
+                from p in _context.Products
+                where p.ManufacturerId == id
+                select p);
             return item;
         }
 

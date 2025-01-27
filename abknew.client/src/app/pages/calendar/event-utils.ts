@@ -40,7 +40,7 @@ export function formatTakeoff(obj: Takeoff[])
 
     takeoffs.push({
       id: item.id,
-      title: `${item.takeoffId}`,
+      title: `${item.takeoffId} / ${item.quoteId}\n${item.jobName}`,
       start: formatDate(item.dueDate, 'yyyy-MM-dd', "en-US"),
       extendedProps: {
         description: `<div>
@@ -59,7 +59,8 @@ export function formatTakeoff(obj: Takeoff[])
           <b>Revise Date:</b> ${item.revisedDate}</br>
           <b>Drwng Rcvd Date:</b> ${item.drawingRCVDFrom}</br>
           <b>Takeoff Comment:</b> ${item.comments}</br>
-          <b>GC List:</b></br>`
+          <b>GC List:</b></br>`,
+        takeoff: item
       }
 //        formatDate(item.dueDate, 'yyyy-MM-dd', "en-US")
         //new Date(item.dueDate).toISOString()
@@ -67,6 +68,28 @@ export function formatTakeoff(obj: Takeoff[])
   }
 
   return takeoffs;
+}
+
+export function objectContainsSearchString(obj: any, searchString: string): boolean
+{
+  if (!obj || typeof obj !== 'object' || !searchString)
+  {
+    return false; // Handle null, non-objects, or empty search strings
+  }
+
+  const lowerCaseSearchString = searchString.toLowerCase();
+
+  return Object.values(obj).some(value =>
+  {
+    if (typeof value === 'string')
+    {
+      return value.toLowerCase().includes(lowerCaseSearchString);
+    } else if (typeof value === 'number')
+    {
+      return value.toString().includes(lowerCaseSearchString);
+    }
+    return false; // Ignore non-string/number values
+  });
 }
 
 

@@ -2,7 +2,16 @@
 <div class='demo-app'>
 
   <div class='demo-app-main'>
-    <h2>Dashboard</h2>
+    <span mat-title>Dashboard</span>
+    <div class="search-container">
+      <button mat-raised-button color="primary" (click)="addTakeoff()">Add Takeoff</button>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input matInput type="text" [(ngModel)]="searchTerm" (input)="getTakeoffs()" placeholder="Search...">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
     <full-calendar *ngIf='calendarVisible()' [options]='calendarOptions'>
       <ng-template #eventContent let-arg>
         <b>{{ arg.timeText }}</b>
@@ -11,7 +20,7 @@
     </full-calendar>
     <div *ngIf="popupVisible" [style.top.px]="popupTop" [innerHTML]="safePopupContent"
          [style.left.px]="popupLeft" class="event-popup">
-     
+
     </div>
   </div>
 

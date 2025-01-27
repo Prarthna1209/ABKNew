@@ -6,7 +6,8 @@ import { Takeoff } from '../models/takeoffs.model';
 @Injectable({
   providedIn: 'root'
 })
-export class TakeoffService {
+export class TakeoffService
+{
   private apiUrl = 'https://localhost:7002/api/Takeoff';
 
   constructor(private http: HttpClient) { }
@@ -20,6 +21,16 @@ export class TakeoffService {
   createTakeoff(Takeoff: Takeoff): Observable<boolean>
   {
     return this.http.post<boolean>(this.apiUrl, Takeoff);
+  }
+
+  getPendingQuotes(): Observable<Takeoff[]>
+  {
+    return this.http.get<Takeoff[]>(`${this.apiUrl}/GetPendingQuote`);
+  }
+
+  getQuotes(): Observable<Takeoff[]>
+  {
+    return this.http.get<Takeoff[]>(`${this.apiUrl}/getQuotes`);
   }
 
   getTakeoffById(id: string): Observable<Takeoff>

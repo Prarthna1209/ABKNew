@@ -4,6 +4,8 @@ using ABKNew.Server.Interfaces;
 using ABKNew.Server.Models;
 using ABKNew.Server.Utility;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using System.Collections.Generic;
@@ -15,9 +17,9 @@ namespace ABKNew.Server.Repositories
     {
         public TakeoffRepository(ABKDBContext dbContext) : base(dbContext) { }
 
-        public async Task<int> AddTakeoff(TakeoffModel model)
+        public async Task<int> AddTakeoff(TakeoffModel model, string prefix)
         {
-            string takeoffId = await GetTakeoffId();
+            string takeoffId = await GetTakeoffId(prefix);
             Takeoff item = new()
             {
                 Id = Guid.NewGuid().ToString(),
@@ -128,6 +130,136 @@ namespace ABKNew.Server.Repositories
             return list;
         }
 
+        public async Task<IEnumerable<TakeoffDetails>> GetPendingQuotes()
+        {
+            var list = ((IEnumerable<TakeoffDetails>)
+                (from t in _context.Takeoff
+                 join u in _context.Users on t.SalesmanId equals u.Id into user
+                 from u in user.DefaultIfEmpty()
+                 join e in _context.Engineers on t.EngineerId equals e.Id into eng
+                 from e in eng.DefaultIfEmpty()
+                 join c in _context.Contractors on t.ContractorId equals c.Id into cont
+                 from c in cont.DefaultIfEmpty()
+                 join a in _context.Architects on t.ArchitectId equals a.Id into arch
+                 from a in arch.DefaultIfEmpty()
+                 join s in _context.Specifications on t.SpecificationId equals s.Id into spec
+                 from s in spec.DefaultIfEmpty()
+                 where t.QuoteId == null || t.QuoteId == ""
+                 select new TakeoffDetails
+                 {
+                     Amount = t.Amount,
+                     ArchitectId = t.ArchitectId,
+                     BidderId = t.BidderId,
+                     Bidder = "",
+                     Comments = t.Comments,
+                     ContractorId = t.ContractorId,
+                     CreatedAt = t.CreatedAt,
+                     CreatedBy = t.CreatedBy,
+                     CreateDate = t.CreateDate,
+                     DeletedAt = t.DeletedAt,
+                     DrawingDate = t.DrawingDate,
+                     DrawingRCVDFrom = t.DrawingRCVDFrom,
+                     DueDate = t.DueDate,
+                     EngineerId = t.EngineerId,
+                     Id = t.Id,
+                     Jobaddress = t.Jobaddress,
+                     JobId = t.JobId,
+                     JobName = t.JobName,
+                     OriginalQuote = t.OriginalQuote,
+                     OriginalQuoteId = t.OriginalQuoteId,
+                     PDFGenerated = t.PDFGenerated,
+                     ProjectNumber = t.ProjectNumber,
+                     QuoteComments = t.QuoteComments,
+                     QuoteId = t.QuoteId,
+                     QuoteDate = t.QuoteDate,
+                     QuotedBy = t.QuotedBy,
+                     QuoteEntered = t.QuoteEntered,
+                     QuoteOut = t.QuoteOut,
+                     QuoteRevision = t.QuoteRevision,
+                     RevActive = t.RevActive,
+                     RevisedDate = t.RevisedDate,
+                     SalesmanId = t.SalesmanId,
+                     SpecificationId = t.SpecificationId,
+                     Status = t.Status,
+                     SubmittalDoneBy = t.SubmittalDoneBy,
+                     TakeoffId = t.TakeoffId,
+                     UpdatedAt = t.UpdatedAt,
+                     VibroLayIn = t.VibroLayIn,
+                     WorksheetGenerated = t.WorksheetGenerated,
+                     Salesman = u.FirstName + " " + u.LastName,
+                     Engineer = e.FirstName + " " + e.LastName,
+                     Contractor = c.FirstName + " " + c.LastName,
+                     Architect = a.FirstName + " " + a.LastName,
+                     Specification = s.Name
+                 }));
+            return list;
+        }
+
+        public async Task<IEnumerable<TakeoffDetails>> GetQuotes()
+        {
+            var list = ((IEnumerable<TakeoffDetails>)
+                (from t in _context.Takeoff
+                 join u in _context.Users on t.SalesmanId equals u.Id into user
+                 from u in user.DefaultIfEmpty()
+                 join e in _context.Engineers on t.EngineerId equals e.Id into eng
+                 from e in eng.DefaultIfEmpty()
+                 join c in _context.Contractors on t.ContractorId equals c.Id into cont
+                 from c in cont.DefaultIfEmpty()
+                 join a in _context.Architects on t.ArchitectId equals a.Id into arch
+                 from a in arch.DefaultIfEmpty()
+                 join s in _context.Specifications on t.SpecificationId equals s.Id into spec
+                 from s in spec.DefaultIfEmpty()
+                 where t.QuoteId != null && t.QuoteId != ""
+                 select new TakeoffDetails
+                 {
+                     Amount = t.Amount,
+                     ArchitectId = t.ArchitectId,
+                     BidderId = t.BidderId,
+                     Bidder = "",
+                     Comments = t.Comments,
+                     ContractorId = t.ContractorId,
+                     CreatedAt = t.CreatedAt,
+                     CreatedBy = t.CreatedBy,
+                     CreateDate = t.CreateDate,
+                     DeletedAt = t.DeletedAt,
+                     DrawingDate = t.DrawingDate,
+                     DrawingRCVDFrom = t.DrawingRCVDFrom,
+                     DueDate = t.DueDate,
+                     EngineerId = t.EngineerId,
+                     Id = t.Id,
+                     Jobaddress = t.Jobaddress,
+                     JobId = t.JobId,
+                     JobName = t.JobName,
+                     OriginalQuote = t.OriginalQuote,
+                     OriginalQuoteId = t.OriginalQuoteId,
+                     PDFGenerated = t.PDFGenerated,
+                     ProjectNumber = t.ProjectNumber,
+                     QuoteComments = t.QuoteComments,
+                     QuoteId = t.QuoteId,
+                     QuoteDate = t.QuoteDate,
+                     QuotedBy = t.QuotedBy,
+                     QuoteEntered = t.QuoteEntered,
+                     QuoteOut = t.QuoteOut,
+                     QuoteRevision = t.QuoteRevision,
+                     RevActive = t.RevActive,
+                     RevisedDate = t.RevisedDate,
+                     SalesmanId = t.SalesmanId,
+                     SpecificationId = t.SpecificationId,
+                     Status = t.Status,
+                     SubmittalDoneBy = t.SubmittalDoneBy,
+                     TakeoffId = t.TakeoffId,
+                     UpdatedAt = t.UpdatedAt,
+                     VibroLayIn = t.VibroLayIn,
+                     WorksheetGenerated = t.WorksheetGenerated,
+                     Salesman = u.FirstName + " " + u.LastName,
+                     Engineer = e.FirstName + " " + e.LastName,
+                     Contractor = c.FirstName + " " + c.LastName,
+                     Architect = a.FirstName + " " + a.LastName,
+                     Specification = s.Name
+                 }));
+            return list;
+        }
+
         public async Task<int> DeleteTakeoff(string id)
         {
             var item = await GetById(id);
@@ -180,9 +312,9 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
-        public async Task<int> GenerateQuote(string id)
+        public async Task<int> GenerateQuote(string id, string prefix)
         {
-            string quoteId = await GetQuoteId();
+            string quoteId = await GetQuoteId(prefix);
             var item = await GetById(id);
             item.QuoteId = quoteId;
             item.QuoteDate = DateTime.Now;
@@ -263,7 +395,7 @@ namespace ABKNew.Server.Repositories
             return takeoffs.Count > 0 ? takeoffs[0] : null;
         }
 
-        public async Task<string> GetTakeoffId()
+        public async Task<string> GetTakeoffId(string prefix)
         {
             GeneralUtility utility = new GeneralUtility();
             string year = DateTime.Now.Year.ToString() + "-";
@@ -272,11 +404,11 @@ namespace ABKNew.Server.Repositories
                  where t.TakeoffId != null && t.TakeoffId.Contains(year)
                  select t)).ToList();
 
-            string id = utility.FormatId(takeoffs.Count);
+            string id = utility.FormatId(takeoffs.Count, prefix);
 
             return id;
         }
-        public async Task<string> GetQuoteId()
+        public async Task<string> GetQuoteId(string prefix)
         {
             GeneralUtility utility = new GeneralUtility();
             string compstr = DateTime.Now.Year.ToString() + "-";
@@ -285,7 +417,7 @@ namespace ABKNew.Server.Repositories
                  where t.QuoteId != null && t.QuoteId.Contains(compstr)
                  select t)).ToList();
 
-            string id = utility.FormatId(takeoffs.Count);
+            string id = utility.FormatId(takeoffs.Count, prefix);
 
             return id;
         }

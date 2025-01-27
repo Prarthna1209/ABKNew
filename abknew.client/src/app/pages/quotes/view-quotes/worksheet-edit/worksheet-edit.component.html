@@ -1,0 +1,245 @@
+<mat-card class="quote-card">
+  <mat-card-header>
+    <mat-card-title>
+      Office Worksheet
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="header-section">
+      <div class="header-item">
+        <span class="label">Project</span>
+        <span>{{quote.projectNumber}}</span>
+      </div>
+      <div class="header-item">
+        <span class="label">Date</span>
+        <span>{{quote.quoteDate}}</span>
+      </div>
+      <div class="header-item">
+        <span class="label">Quote No.</span>
+        <span>{{quote.quoteId}}</span>
+      </div>
+      <div class="header-item">
+        <span class="label">Plan Date</span>
+        <span>{{quote.planDate}}</span>
+      </div>
+    </div>
+
+    <div class="details-section">
+      <div class="detail-item">
+        <span class="label">Address</span>
+        <span>{{quote.jobAddress}}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Salesman</span>
+        <span>{{quote.salesman}}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Engineer</span>
+        <span>{{quote.engineer}}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Architect</span>
+        <span>{{quote.architect}}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Spec.</span>
+        <span>{{quote.spec}}</span>
+      </div>
+    </div>
+    <div class="bidders-section">
+      <span class="label">Bidders</span>
+      <span>{{quote.bidder}}</span>
+    </div>
+    <div *ngIf="showActionDiv" class="actions-section">
+      <button mat-raised-button color="primary">Preview Quote</button>
+      <button mat-raised-button color="warn">Delete Worksheet</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+<div>
+  <button mat-raised-button color="primary" (click)="saveWorksheet()">Save Worksheet</button>
+</div>
+<form [formGroup]="worksheetFrm" (ngSubmit)="worksheetSubmit()">
+  <mat-card>
+    <mat-card-content>
+      <div formArrayName="worksheets">
+        <div *ngFor="let wrksheet of worksheets.controls; let i = index" [formGroupName]="i" class="worksheet-container">
+          <div>
+            <mat-form-field class="form-field-style col-1">
+              <mat-label>Manufacturer</mat-label>
+              <mat-select placeholder="Manufacturer" formControlName="manufacturerId">
+                @if(manufacturers && manufacturers.length > 0) {
+                @for (item of manufacturers; track item) {
+                <mat-option [value]="item.value">{{item.viewValue}}</mat-option>
+                }
+                }
+              </mat-select>
+            </mat-form-field>
+            <a mat-button href="/manufacturers">new</a>
+            <button mat-raised-button type="button" color="red" (click)="deleteWItem(i)">Delete Group</button>
+          </div>
+          <div>
+            <div class="col-2 text-center">Qty</div>
+            <div class="col-4 text-center">Product</div>
+            <div class="col-3 text-center">List$</div>
+            <div class="col-2 text-center">Net$</div>
+          </div>
+          <div>
+            <mat-form-field [appearance]="'fill'" class="form-field-style col-2">
+              <input matInput formControlName="quantity" placeholder="Quantity" id="quantity">
+            </mat-form-field>
+            <mat-form-field [appearance]="'fill'" class="form-field-style col-4">
+              <mat-select placeholder="Product" formControlName="productId">
+                @if(products && products.length > 0) {
+                @for (item of products; track item) {
+                <mat-option [value]="item.value">{{item.viewValue}}</mat-option>
+                }
+                }
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
+              <input matInput formControlName="listPrice" placeholder="List Price" id="listPrice">
+            </mat-form-field>
+            <mat-form-field [appearance]="'fill'" class="form-field-style col-2">
+              <input matInput formControlName="net" placeholder="Net" id="net">
+            </mat-form-field>
+            <div class="form-field-style col-1">
+              <button mat-icon-button color="primary" aria-label="Add Item" (click)="addWItem()">
+                <mat-icon>add</mat-icon>
+              </button>
+              <button mat-icon-button color="cancel" aria-label="Delete Item" (click)="deleteWItem(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div>
+            <div class="form-field-style col-2">
+            </div>
+            <div class="form-field-style col-4 text-right">
+              <label>Total</label>
+            </div>
+            <mat-form-field [appearance]="'fill'" class="form-field-style col-3">
+              <input matInput formControlName="totalList" readonly placeholder="0.00" id="totalList">
+            </mat-form-field>
+            <mat-form-field [appearance]="'fill'" class="form-field-style col-2">
+              <input matInput formControlName="totalNet" readonly placeholder="0.00" id="totalNet">
+            </mat-form-field>
+            <div class="form-field-style col-1">
+            </div>
+          </div>
+          <div>
+            <div class="col-3 text-center">MULT</div>
+            <div class="col-1 text-center">=</div>
+            <div class="col-2 text-center">NET$</div>
+            <div class="col-2 text-center">FRT$</div>
+            <div class="col-2 text-center">TTL$</div>
+            <div class="col-2 text-center">Quote Amount</div>
+          </div>
+          <div>
+            <div class="form-field-style col-1 text-left">
+              <label>TLP</label>
+            </div>
+            <mat-form-field [appearance]="'fill'" class="form-field-style col-2">
+              <input matInput formControlName="listSum" readonly placeholder="0.00" id="listSum">
+            </mat-form-field>
+            <mat-form-field [appearance]="'fill'" class="form-field-style col-2">
+              <mat-select placeholder="Product" formControlName="productId">
+                @if(products && products.length > 0) {
+                @for (item of products; track item) {
+                <mat-option [value]="item.value">{{item.viewValue}}</mat-option>
+                }
+                }
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field [appearance]="'fill'" class="form-field-style col-2">
+              <mat-checkbox>Override</mat-checkbox>
+            </mat-form-field>
+            <mat-form-field [appearance]="'fill'" class="form-field-style col-1">
+              <input matInput formControlName="tlpMul" readonly placeholder="0.00" id="tlpMul">
+            </mat-form-field>
+            <mat-form-field [appearance]="'fill'" class="form-field-style col-2">
+              <input matInput formControlName="netSum" readonly placeholder="0.00" id="netSum">
+            </mat-form-field>
+            <mat-form-field [appearance]="'fill'" class="form-field-style col-2">
+              <input matInput formControlName="frieght" readonly placeholder="0.00" id="frieght">
+            </mat-form-field>
+            <mat-form-field [appearance]="'fill'" class="form-field-style col-2">
+              <input matInput formControlName="TTL" readonly placeholder="0.00" id="TTL">
+            </mat-form-field>
+            <mat-form-field [appearance]="'fill'" class="form-field-style col-2">
+              <input matInput formControlName="quoteAmount" readonly placeholder="0.00" id="quoteAmount">
+            </mat-form-field>
+          </div>
+          <div>
+            <div class="form-field-style col-1 text-left"><label>PDNI</label></div>
+            <mat-form-field [appearance]="'fill'" class="form-field-style col-2">
+              <mat-select placeholder="--" formControlName="pdniId">
+                @if(pdnis && pdnis.length > 0) {
+                @for (item of pdnis; track item) {
+                <mat-option [value]="item.value">{{item.viewValue}}</mat-option>
+                }
+                }
+              </mat-select>
+            </mat-form-field>
+            <div class="form-field-style col-1">
+              <button mat-icon-button color="primary" aria-label="Add Item" (click)="addPItem()">
+                <mat-icon>add</mat-icon>
+              </button>
+              <button mat-icon-button color="cancel" aria-label="Delete Item" (click)="deletePItem(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div>
+            <mat-form-field [appearance]="'fill'" class="form-field-style col-4">
+              <mat-label>Comments</mat-label>
+              <textarea matInput formControlName="comments" readonly placeholder="" id="comments"></textarea>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field [appearance]="'fill'" class="form-field-style col-4">
+              <mat-label>Special Notes</mat-label>
+              <textarea matInput formControlName="specialNotes" readonly placeholder="" id="specialNotes"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>
+
+<div>
+  <button mat-raised-button type="submit" color="primary" (click)="addWItem()">Add Another Group</button>
+</div>
+
+<form [formGroup]="notesFrm" (ngSubmit)="noteSubmit()">
+  <mat-card>
+    <mat-card-content>
+      <div formArrayName="workbookNotes">
+        <div class="form-field-style col-1 text-left"><label>Add Notes</label></div>
+        <div *ngFor="let note of workbookNotes.controls; let i = index" [formGroupName]="i" class="worksheet-container">
+          <mat-form-field [appearance]="'fill'" class="form-field-style col-2">
+            <mat-select placeholder="--" formControlName="noteId">
+              @if(notes && notes.length > 0) {
+              @for (item of notes; track item) {
+              <mat-option [value]="item.value">{{item.viewValue}}</mat-option>
+              }
+              }
+            </mat-select>
+          </mat-form-field>
+          <div class="form-field-style col-1">
+            <button mat-icon-button color="primary" aria-label="Add Item" (click)="addNItem()">
+              <mat-icon>add</mat-icon>
+            </button>
+            <button mat-icon-button color="cancel" aria-label="Delete Item" (click)="deleteNItem(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>
+<div>
+  <button mat-raised-button color="primary" (click)="saveWorksheet()">Save Worksheet</button>
+</div>

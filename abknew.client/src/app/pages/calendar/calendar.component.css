@@ -57,8 +57,19 @@ a.fc-event, a.fc-event:hover {
   background-color: rgba(0,0,0,0.4);
   color: white;
   border: 1px solid #ccc;
-  border-radius:5px;
+  border-radius: 5px;
   padding: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   z-index: 1000; /* Ensure it's on top */
+}
+
+.search-container {
+  display: flex;
+  align-items: center; /* Vertically center the content */
+  justify-content: space-between; /* Distribute space between items */
+}
+
+.search-container mat-form-field {
+  flex-grow: 1; /* Allow the search box to take up available space */
+  margin: 0 16px; /* Add some margin on the sides of the search box */
 }

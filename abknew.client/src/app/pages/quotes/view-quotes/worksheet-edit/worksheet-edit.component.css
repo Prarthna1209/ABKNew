@@ -1,0 +1,31 @@
+.quote-card {
+  width: 100%; /* Or a specific width */
+  max-width: 800px; /* Optional max width */
+  margin: 20px auto; /* Center the card */
+}
+
+.header-section, .details-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
+  grid-gap: 10px;
+  margin-bottom: 10px;
+}
+
+.bidders-section {
+  margin-bottom: 10px;
+}
+
+.label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.actions-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+  .actions-section button {
+    min-width: 150px;
+  }

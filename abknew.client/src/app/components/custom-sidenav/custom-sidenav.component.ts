@@ -38,7 +38,7 @@ export class CustomSidenavComponent
   menuItems = signal<MenuItem[]>([
     {
       icon: "date_range",
-      label: "Calendar",
+      label: "Home",
       route: "calendar",
       include: true
     }, {
@@ -50,7 +50,7 @@ export class CustomSidenavComponent
       icon: "request_quote",
       label: "Quotes",
       route: "quotes",
-      include: false,
+      include: true,
       subItems: [{
         icon: "airplane_ticket",
         label: "Pending Takeoffs",

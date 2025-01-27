@@ -21,7 +21,7 @@ namespace ABKNew.Server.Controllers
         [HttpGet]
         public async Task<IEnumerable<Manufacturers>> Get()
         {
-            var result = await _repository.GetAll();
+            var result = await _repository.GetList();
             return result;
         }
 

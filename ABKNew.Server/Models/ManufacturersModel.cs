@@ -1,4 +1,6 @@
-﻿namespace ABKNew.Server.Models
+﻿using ABKNew.Server.Entities;
+
+namespace ABKNew.Server.Models
 {
     public class ManufacturersModel
     {
@@ -11,5 +13,6 @@
         public string? Created_by { get; set; } = "1";
         public string? Updated_at { get; set; }
         public DateTime? Created_at { get; set; } = DateTime.Now;
+        public Products[] Products { get; set; } = [];
     }
 }

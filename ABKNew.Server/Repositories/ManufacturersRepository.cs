@@ -5,7 +5,7 @@ using ABKNew.Server.Models;
 
 namespace ABKNew.Server.Repositories
 {
-    public class ManufacturersRepository:GenericRepository<Manufacturers>, IManufacturersRepository
+    public class ManufacturersRepository : GenericRepository<Manufacturers>, IManufacturersRepository
     {
         public ManufacturersRepository(ABKDBContext dbContext) : base(dbContext) { }
 
@@ -28,7 +28,24 @@ namespace ABKNew.Server.Repositories
 
         public async Task<IEnumerable<Manufacturers>> GetList()
         {
-            return await GetAll();
+            var list = (IEnumerable<Manufacturers>)(
+                from m in _context.Manufacturers
+                join p in _context.Products
+                    on m.Id equals p.ManufacturerId into products
+                select new Manufacturers
+                {
+                    Id = m.Id,
+                    IsFeatured = m.IsFeatured,
+                    Name = m.Name,
+                    TLP = m.TLP,
+                    TTL = m.TTL,
+                    Created_at = m.Created_at,
+                    Created_by = m.Created_by,
+                    Updated_at = m.Updated_at,
+                    ProductCount = products.Count()
+                }
+                );
+            return list;
         }
 
         public async Task<int> DeleteManufacturers(string id)
@@ -53,9 +70,17 @@ namespace ABKNew.Server.Repositories
 
         public async Task<Manufacturers> GetManufacturers(string id)
         {
-            var item = await GetById(id);
-            var prdCount = await ProductCount(id);
-            item.ProductCount = prdCount;
+            var item = (Manufacturers)(
+                from m in _context.Manufacturers
+                where m.Id == id
+                join p in _context.Products
+                    on m.Id equals p.ManufacturerId into products
+                select new
+                {
+                    m,
+                    ProductCount = products.Count()
+                }
+                );
             return item;
         }
 

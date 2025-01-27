@@ -26,10 +26,27 @@ namespace ABKNew.Server.Controllers
         }
 
         // GET: api/<TakeoffController>
+        [HttpGet("GetPendingQuote")]
+        public async Task<IEnumerable<TakeoffDetails>> GetPendingQuote()
+        {
+            var result = await _repository.GetPendingQuotes();
+            return result;
+        }
+
+        // GET: api/<TakeoffController>
+        [HttpGet("GetQuotes")]
+        public async Task<IEnumerable<TakeoffDetails>> GetQuotes()
+        {
+            var result = await _repository.GetQuotes();
+            return result;
+        }
+
+        // GET: api/<TakeoffController>
         [HttpGet("GetTakeoffId")]
         public async Task<string> GetTakeoffId()
         {
-            var result = await _repository.GetTakeoffId();
+            string prefix = HttpContext.Session.GetString("Prefix_Takeoff") ?? "";
+            var result = await _repository.GetTakeoffId(prefix);
             return result;
         }
 
@@ -37,7 +54,8 @@ namespace ABKNew.Server.Controllers
         [HttpGet("GetQuoteId")]
         public async Task<string> GetQuoteId()
         {
-            var result = await _repository.GetQuoteId();
+            string prefix = HttpContext.Session.GetString("Prefix_Quote") ?? "";
+            var result = await _repository.GetQuoteId(prefix);
             return result;
         }
 
@@ -53,9 +71,10 @@ namespace ABKNew.Server.Controllers
         [HttpPost]
         public async Task<bool> Post([FromBody] TakeoffModel model)
         {
+            string prefix = HttpContext.Session.GetString("Prefix_Takeoff") ?? "";
             var result = model.Id != "" ?
                 await _repository.UpdateTakeoff(model) :
-                await _repository.AddTakeoff(model);
+                await _repository.AddTakeoff(model, prefix);
 
             return result > 0;
         }
@@ -73,7 +92,8 @@ namespace ABKNew.Server.Controllers
         [HttpGet("GenerateQuote/{id}")]
         public async Task<bool> GenerateQuote(string id)
         {
-            var result = await _repository.GenerateQuote(id);
+            string prefix = HttpContext.Session.GetString("Prefix_Quote") ?? "";
+            var result = await _repository.GenerateQuote(id, prefix);
 
             return result > 0;
         }

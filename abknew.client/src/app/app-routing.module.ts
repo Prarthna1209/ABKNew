@@ -35,6 +35,9 @@ import { CreateComponent } from './pages/users/create/create.component';
 import { ShippingsComponent } from './pages/DMP/shippings/shippings.component';
 import { EmailEditorComponent } from './pages/email-editor/email-editor.component';
 import { FileUploadComponent } from './pages/file-upload/file-upload.component';
+import { AddProductComponent } from './pages/DMP/manufacturer/add-product/add-product.component';
+import { ProductComponent } from './pages/DMP/manufacturer/product/product.component';
+import { WorksheetEditComponent } from './pages/quotes/view-quotes/worksheet-edit/worksheet-edit.component';
 
 const routes: Routes = [
   {
@@ -49,6 +52,29 @@ const routes: Routes = [
   {
     path: 'takeoffs',
     component: TakeoffsComponent
+  },
+  {
+    path: 'quotes',
+    component: QuotesComponent,
+    children: [{
+      path: 'view-followups',
+      component: ViewFollowupsComponent
+    },
+    {
+      path: 'view-quotes',
+      component: ViewQuotesComponent
+    },
+    {
+      path: 'pending-takeoff',
+      component: PendingTakeoffsComponent
+    }]
+  },
+  {
+    path: 'add-products',
+    component: AddProductComponent
+  }, {
+    path: 'products',
+    component: ProductComponent
   },
   {
     path: 'DMP',
@@ -125,7 +151,7 @@ const routes: Routes = [
     component: EmailTemplatesComponent
   },
   {
-    path:'email-editor',
+    path: 'email-editor',
     component: EmailEditorComponent
   },
   {
@@ -169,20 +195,8 @@ const routes: Routes = [
     }]
   },
   {
-    path: 'quotes',
-    component: QuotesComponent,
-    children: [{
-      path: 'view-followups',
-      component: ViewFollowupsComponent
-    },
-    {
-      path: 'view-quotes',
-      component: ViewQuotesComponent
-    },
-    {
-      path: 'pending-takeoff',
-      component: PendingTakeoffsComponent
-    }]
+    path: 'worksheet-edit',
+    component: WorksheetEditComponent
   }
 ];
 

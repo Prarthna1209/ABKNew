@@ -1,7 +1,23 @@
 .quote-card {
   width: 100%; /* Or a specific width */
-  max-width: 800px; /* Optional max width */
-  margin: 20px auto; /* Center the card */
+  /*max-width: 800px;*/ /* Optional max width */
+  /*margin: 20px auto;*/ /* Center the card */
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Two columns: first for label, second for value */
+  gap: 16px; /* Spacing between rows and columns */
+  margin: 16px 0; /* Spacing around the grid */
+}
+
+.details-label {
+  font-weight: bold;
+  color: #ccc;
+}
+
+.details-value {
+  color: #ccc;
 }
 
 .header-section, .details-section {
@@ -9,6 +25,10 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
   grid-gap: 10px;
   margin-bottom: 10px;
+}
+
+.bg-secondary {
+  background-color: #6c757d !important;
 }
 
 .bidders-section {

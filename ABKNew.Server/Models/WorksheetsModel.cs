@@ -16,5 +16,9 @@ namespace ABKNew.Server.Models
         public string CreatedBy { get; set; }
         public string? UpdatedBy { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public List<WorkbookNotesWorksheet> NotesWorksheets { get; set; } = new List<WorkbookNotesWorksheet>();
+        public List<PDNIWorksheet> PDNIWorksheets { get; set; } = new List<PDNIWorksheet>();
+        public List<WorksheetItems> WorksheetItems {  get; set; } = new List<WorksheetItems>(); 
+
     }
 }

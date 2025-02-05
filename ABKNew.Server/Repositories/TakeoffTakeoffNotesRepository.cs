@@ -40,6 +40,15 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
+        public async Task<int> DeleteByTakeoffId(string id)
+        {
+            var item = (TakeoffTakeoffNotes)(from t in _context.TakeoffTakeoffNotes
+                                             where t.TakeoffId == id
+                                             select t);
+            var result = await Remove(item);
+            return result;
+        }
+
         public async Task<int> UpdateTakeoffTakeoffNotes(TakeoffTakeoffNotesModel model)
         {
             var item = await GetById(model.Id);

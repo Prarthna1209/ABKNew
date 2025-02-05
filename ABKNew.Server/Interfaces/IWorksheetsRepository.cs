@@ -7,8 +7,8 @@ namespace ABKNew.Server.Interfaces
     {
         Task<IEnumerable<Worksheets>> GetList();
         Task<Worksheets> GetWorksheets(string id);
-        Task<int> AddWorksheets(WorksheetsModel Worksheets);
-        Task<int> UpdateWorksheets(WorksheetsModel Worksheets);
+        Task<Dictionary<string, object>> AddWorksheets(WorksheetsModel Worksheets);
+        Task<Dictionary<string, object>> UpdateWorksheets(WorksheetsModel Worksheets);
         Task<int> DeleteWorksheets(string id);
     }
 }

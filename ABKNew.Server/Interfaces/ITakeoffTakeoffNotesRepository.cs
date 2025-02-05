@@ -10,5 +10,6 @@ namespace ABKNew.Server.Interfaces
         Task<int> AddTakeoffTakeoffNotes(TakeoffTakeoffNotesModel TakeoffTakeoffNotes);
         Task<int> UpdateTakeoffTakeoffNotes(TakeoffTakeoffNotesModel TakeoffTakeoffNotes);
         Task<int> DeleteTakeoffTakeoffNotes(string id);
+        Task<int> DeleteByTakeoffId(string id);
     }
 }

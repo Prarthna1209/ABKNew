@@ -36,5 +36,6 @@ namespace ABKNew.Server.Data
         public DbSet<Worksheets> Worksheets { get; set; }
         public DbSet<WorksheetItems> WorksheetItems { get; set; }
         public DbSet<WorkbookNotesWorksheet> WorkbookNotesWorksheet { get; set; }
+        public DbSet<PDNIWorksheet> PDNIWorksheet { get; set; }
     }
 }

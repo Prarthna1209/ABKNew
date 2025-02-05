@@ -1,7 +1,7 @@
-export interface WorkbookNotesWorksheet
+export interface PdniWorksheet
 {
   id: string,
-  workbookNoteId: string,
+  pdniId: string,
   worksheetId: string,
   createdAt?: string,
   updatedAt?: string

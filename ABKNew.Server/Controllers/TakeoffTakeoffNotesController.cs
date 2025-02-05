@@ -61,5 +61,14 @@ namespace ABKNew.Server.Controllers
 
             return result > 0;
         }
+
+        // DELETE api/<TakeoffTakeoffNotesController>/5
+        [HttpDelete("DeleteByTakeoffId/{id}")]
+        public async Task<bool> DeleteByTakeoffId(string id)
+        {
+            var result = await _repository.DeleteByTakeoffId(id);
+
+            return result > 0;
+        }
     }
 }

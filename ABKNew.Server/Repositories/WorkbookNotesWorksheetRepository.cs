@@ -35,6 +35,15 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
+        public async Task<int> DeleteByWorksheetId(string id)
+        {
+            var item = (WorkbookNotesWorksheet)(from w in _context.WorkbookNotesWorksheet
+                                                where w.WorksheetId == id
+                                                select w);
+            var result = await Remove(item);
+            return result;
+        }
+
         public async Task<int> UpdateWorkbookNotesWorksheet(WorkbookNotesWorksheetModel model)
         {
             var item = await GetById(model.Id);
@@ -50,6 +59,16 @@ namespace ABKNew.Server.Repositories
         {
             var item = await GetById(id);
             return item;
+        }
+
+        public async Task<int> BulkSave(List<WorkbookNotesWorksheet> items)
+        {
+            int result = 0;
+
+            await _context.WorkbookNotesWorksheet.AddRangeAsync(items); // Bulk Insert
+            result = await _context.SaveChangesAsync(); // Save to Database
+
+            return result;
         }
     }
 }

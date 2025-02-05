@@ -8,7 +8,9 @@ namespace ABKNew.Server.Interfaces
         Task<IEnumerable<WorksheetItems>> GetList();
         Task<WorksheetItems> GetWorksheetItems(string id);
         Task<int> AddWorksheetItems(WorksheetItemsModel WorksheetItems);
+        Task<int> BulkSave(List<WorksheetItems> WorksheetItems);
         Task<int> UpdateWorksheetItems(WorksheetItemsModel WorksheetItems);
         Task<int> DeleteWorksheetItems(string id);
+        Task<int> DeleteByWorksheetId(string id);
     }
 }

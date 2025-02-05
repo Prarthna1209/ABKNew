@@ -2,7 +2,6 @@
 using ABKNew.Server.Entities;
 using ABKNew.Server.Interfaces;
 using ABKNew.Server.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace ABKNew.Server.Repositories
 {
@@ -10,7 +9,7 @@ namespace ABKNew.Server.Repositories
     {
         public WorksheetsRepository(ABKDBContext dbContext) : base(dbContext) { }
 
-        public async Task<int> AddWorksheets(WorksheetsModel model)
+        public async Task<Dictionary<string, object>> AddWorksheets(WorksheetsModel model)
         {
             Worksheets item = new Worksheets
             {
@@ -29,7 +28,12 @@ namespace ABKNew.Server.Repositories
             };
 
             var result = await Add(item);
-            return result;
+            Dictionary<string, object> obj = new Dictionary<string, object>
+            {
+                {"result", result},
+                {"id", item.Id }
+            };
+            return obj;
         }
 
         public async Task<IEnumerable<Worksheets>> GetList()
@@ -44,7 +48,7 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
-        public async Task<int> UpdateWorksheets(WorksheetsModel model)
+        public async Task<Dictionary<string,object>> UpdateWorksheets(WorksheetsModel model)
         {
             var item = await GetById(model.Id);
             item.Comments = model.Comments ?? item.Comments;
@@ -60,7 +64,12 @@ namespace ABKNew.Server.Repositories
             //item.CreatedAt = DateTime.Now;
 
             var result = await Update(item);
-            return result;
+            Dictionary<string, object> obj = new Dictionary<string, object>
+            {
+                {"result", result},
+                {"id", item.Id }
+            };
+            return obj;
         }
 
         public async Task<Worksheets> GetWorksheets(string id)

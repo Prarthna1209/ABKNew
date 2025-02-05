@@ -83,6 +83,7 @@ builder.Services.AddScoped<IWorkbookNotesWorksheetRepository, WorkbookNotesWorks
 builder.Services.AddScoped<IWorksheetItemsRepository, WorksheetItemsRepository>();
 builder.Services.AddScoped<IWorksheetsRepository, WorksheetsRepository>();
 builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
+builder.Services.AddScoped<IPDNIWorksheetRepository, PDNIWorksheetRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

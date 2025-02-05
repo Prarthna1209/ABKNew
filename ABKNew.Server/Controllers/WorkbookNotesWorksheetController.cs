@@ -62,5 +62,14 @@ namespace ABKNew.Server.Controllers
 
             return result > 0;
         }
+
+        // DELETE api/<WorkbookNotesWorksheetController>/5
+        [HttpDelete("DeleteByWorksheetId/{id}")]
+        public async Task<bool> DeleteByWorksheetId(string id)
+        {
+            var result = await _repository.DeleteByWorksheetId(id);
+
+            return result > 0;
+        }
     }
 }

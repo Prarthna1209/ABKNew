@@ -37,4 +37,9 @@ export class WorksheetItemsService
   {
     return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
   }
+
+  deleteByWorksheetId(id: string): Observable<boolean>
+  {
+    return this.http.delete<boolean>(`${this.apiUrl}/DeleteByWorksheetId/${id}`);
+  }
 }

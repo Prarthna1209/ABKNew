@@ -3,6 +3,7 @@ using ABKNew.Server.Interfaces;
 using ABKNew.Server.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ABKNew.Server.Controllers
 {
@@ -44,6 +45,19 @@ namespace ABKNew.Server.Controllers
 
             return result > 0;
         }
+        
+        // Bulk Save API
+        [HttpPost("bulk-save")]
+        public async Task<IActionResult> BulkSave([FromBody] List<WorksheetItems> items)
+        {
+            if (items == null || items.Count() == 0)
+            {
+                return BadRequest("Invalid data");
+            }
+            _repository.BulkSave(items);
+
+            return Ok(new { message = "Items saved successfully", count = items.Count() });
+        }
 
         // PUT api/<WorksheetItemsController>/5
         [HttpPut("{id}")]
@@ -59,6 +73,15 @@ namespace ABKNew.Server.Controllers
         public async Task<bool> Delete(string id)
         {
             var result = await _repository.DeleteWorksheetItems(id);
+
+            return result > 0;
+        }
+
+        // DELETE api/<WorkbookNotesWorksheetController>/5
+        [HttpDelete("DeleteByWorksheetId/{id}")]
+        public async Task<bool> DeleteByWorksheetId(string id)
+        {
+            var result = await _repository.DeleteByWorksheetId(id);
 
             return result > 0;
         }

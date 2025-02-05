@@ -30,6 +30,17 @@ namespace ABKNew.Server.Repositories
             return result;
         }
 
+
+        public async Task<int> BulkSave(List<WorksheetItems> items)
+        {
+            int result = 0;
+
+            await _context.WorksheetItems.AddRangeAsync(items); // Bulk Insert
+            result = await _context.SaveChangesAsync(); // Save to Database
+
+            return result;
+        }
+
         public async Task<IEnumerable<WorksheetItems>> GetList()
         {
             return await GetAll();
@@ -38,6 +49,15 @@ namespace ABKNew.Server.Repositories
         public async Task<int> DeleteWorksheetItems(string id)
         {
             var item = await GetById(id);
+            var result = await Remove(item);
+            return result;
+        }
+
+        public async Task<int> DeleteByWorksheetId(string id)
+        {
+            var item = (WorksheetItems)(from w in _context.WorksheetItems
+                                        where w.WorksheetId == id
+                                        select w);
             var result = await Remove(item);
             return result;
         }

@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Configuration;
+using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -51,8 +52,8 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JWTSetting.GetSection("securityKey").Value!))
     };
 });
-
-builder.Services.AddDbContext<ABKDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ABKConnectionLocal")));
+var assemblyName = typeof(Program).Assembly.GetName().Name;
+builder.Services.AddDbContext<ABKDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ABKConnectionLocal"), m=>m.MigrationsAssembly(assemblyName)));
 
 builder.Services.AddScoped<JwtHandler>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -131,6 +132,13 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
+using var scope = app.Services.CreateScope();
+var context = scope.ServiceProvider.GetRequiredService<ABKDBContext>();
+if (context.Database.GetPendingMigrations().Any())
+{
+    await context.Database.MigrateAsync();
+}
+
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
@@ -152,5 +160,6 @@ app.MapControllers();
 
 app.MapFallbackToFile("/index.html");
 
+app.Urls.Add("http://0.0.0.0:5000");
 
 app.Run();

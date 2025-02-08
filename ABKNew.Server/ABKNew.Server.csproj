@@ -9,6 +9,20 @@
     <SpaProxyServerUrl>https://localhost:4200</SpaProxyServerUrl>
     <StartupObject></StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ContainerImageName>abk-api</ContainerImageName>
+    <ContainerImageTags>latest</ContainerImageTags>
+    <PublishProfile>DefaultContainer</PublishProfile>
+    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
+    <UserSecretsId>88b2f7c6-fcd9-4ce2-9da1-64c9f492495a</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="publish\**" />
+    <Content Remove="publish\**" />
+    <EmbeddedResource Remove="publish\**" />
+    <None Remove="publish\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
@@ -25,6 +39,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>

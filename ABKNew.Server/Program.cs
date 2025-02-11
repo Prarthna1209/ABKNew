@@ -53,7 +53,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 var assemblyName = typeof(Program).Assembly.GetName().Name;
-builder.Services.AddDbContext<ABKDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ABKConnectionLocal"), m=>m.MigrationsAssembly(assemblyName)));
+builder.Services.AddDbContext<ABKDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ABKConnectionLocal"), m => m.MigrationsAssembly(assemblyName)));
 
 builder.Services.AddScoped<JwtHandler>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -92,33 +92,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(
     c =>
     {
-        c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-        {
-            Description = @"JWT Authorization example: bearer jlkjljjdljsjdslj",
-            Name = "Authorization",
-            In = ParameterLocation.Header,
-            Type = SecuritySchemeType.ApiKey,
-            Scheme = "Bearer"
-        });
-
-        c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-        {
-            {
-                new OpenApiSecurityScheme
-                {
-                    Reference=new OpenApiReference
-                    {
-                        Type=ReferenceType.SecurityScheme,
-                        Id="Bearer"
-                    },
-                    Scheme= "outh2",
-                    Name="Bearer",
-                    In=ParameterLocation.Header
-                },
-                new List<string>()
-            }
-        });
-    });
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+    }
+    );
 
 // Add Distributed Memory Cache (required for sessions)
 builder.Services.AddDistributedMemoryCache(); //Use AddStackExchangeRedisCache for Redis
@@ -146,7 +122,10 @@ app.UseStaticFiles();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+    });
 }
 
 app.UseHttpsRedirection();

@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Takeoff } from '../models/takeoffs.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TakeoffService
 {
-  private apiUrl = 'https://localhost:7002/api/Takeoff';
+  private apiUrl = `${environment.apiUrl}Takeoff`;
 
   constructor(private http: HttpClient) { }
 

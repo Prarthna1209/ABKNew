@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { WorkbookNotes } from '../models/workbook-notes.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WorkbookNotesService
 {
-  private apiUrl = 'https://localhost:7002/api/workbooknotes';
+  private apiUrl = `${environment.apiUrl}workbooknotes`;
 
   constructor(private http: HttpClient) { }
 

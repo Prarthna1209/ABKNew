@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pm } from '../models/pm.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PmService {
-  private apiUrl = 'https://localhost:7002/api/pm';
+export class PmService
+{
+  private apiUrl = `${environment.apiUrl}pm`;
 
   constructor(private http: HttpClient) { }
 

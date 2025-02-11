@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PdniWorksheet } from '../models/pdni-worksheet.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PdniWorksheetService {
-  private apiUrl = 'https://localhost:7002/api/pdniWorksheet';
+  private apiUrl = `${environment.apiUrl}pdniWorksheet`;
 
   constructor(private http: HttpClient) { }
 

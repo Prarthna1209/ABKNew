@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Bidder } from '../models/bidder.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BidderService {
-  private apiUrl = 'https://localhost:7002/api/bidders';
+  private apiUrl = `${environment.apiUrl}bidders`;
 
   constructor(private http: HttpClient) { }
 

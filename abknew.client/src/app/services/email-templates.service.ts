@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EmailTemplates } from '../models/email-template.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
   })
 
-export class EmailTemplateServie {
-    private apiUrl = 'https://localhost:7002/api/emailtemplates';
+export class EmailTemplateServie
+{
+  private apiUrl = `${environment.apiUrl}emailtemplates`;
 
   constructor(private http: HttpClient) { }
 

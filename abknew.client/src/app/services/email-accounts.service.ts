@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EmailAccounts } from '../models/email-accounts.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmailAccountsService {
-  private apiUrl = 'https://localhost:7002/api/emailaccounts';
+  private apiUrl = `${environment.apiUrl}emailaccounts`;
 
   constructor(private http: HttpClient) { }
 

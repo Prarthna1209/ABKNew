@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SiteSettings } from '../models/site-settings.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SiteSettingsService {
-  private apiUrl = 'https://localhost:7002/api/settings';
+  private apiUrl = `${environment.apiUrl}settings`;
 
   constructor(private http: HttpClient) { }
 

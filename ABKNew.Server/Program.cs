@@ -127,18 +127,20 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
     });
 }
+app.UseRouting();
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
 
 app.UseAuthorization();
 app.UseCors("AllowAll");
+app.UseEndpoints(x => x.MapControllers());
 
 app.UseSession();
-app.MapControllers();
 
 app.MapFallbackToFile("/index.html");
 
-app.Urls.Add("http://0.0.0.0:5000");
+//app.Urls.Add("http://0.0.0.0:5000");
+app.UsePathBase("/api");
 
 app.Run();
